@@ -1,5 +1,6 @@
 # QtProject
-本工程是基于Qt5.10 开发的 游戏平台 客户端.与其对应的服务端https://github.com/po2656233/Golang_PRJ/tree/master/src/server
+本工程是基于Qt5.10 开发的 游戏平台 客户端.     
+与之对应的服务端https://github.com/po2656233/Golang_PRJ/tree/master/src/server
 
 1.登录流程:  
 平台登录->大厅->房间(类型)列表->游戏列表->子游戏.
