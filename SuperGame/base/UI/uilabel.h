@@ -9,6 +9,8 @@ class UILabel : public QLabel
 public:
     explicit UILabel(QWidget *parent = nullptr);
 
+    void setNoStyle(bool haveStyle);
+
 protected:
     void enterEvent(QEvent *event);
     void leaveEvent(QEvent *event);
@@ -20,6 +22,7 @@ public slots:
     void onClicked();
 private:
     QString m_styleSheet;
+    bool m_bStyle;
 };
 
 #endif // UILABEL_H

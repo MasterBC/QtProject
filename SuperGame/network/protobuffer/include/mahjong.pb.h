@@ -890,17 +890,17 @@ class GameMahjongAward final :
   ::std::string* release_codes();
   void set_allocated_codes(::std::string* codes);
 
+  // int64 GetGold = 3;
+  void clear_getgold();
+  static const int kGetGoldFieldNumber = 3;
+  ::google::protobuf::int64 getgold() const;
+  void set_getgold(::google::protobuf::int64 value);
+
   // uint32 Site = 1;
   void clear_site();
   static const int kSiteFieldNumber = 1;
   ::google::protobuf::uint32 site() const;
   void set_site(::google::protobuf::uint32 value);
-
-  // float GetGold = 3;
-  void clear_getgold();
-  static const int kGetGoldFieldNumber = 3;
-  float getgold() const;
-  void set_getgold(float value);
 
   // @@protoc_insertion_point(class_scope:go.GameMahjongAward)
  private:
@@ -908,8 +908,8 @@ class GameMahjongAward final :
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr codes_;
+  ::google::protobuf::int64 getgold_;
   ::google::protobuf::uint32 site_;
-  float getgold_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_mahjong_2eproto;
 };
@@ -1634,15 +1634,15 @@ inline void GameMahjongAward::set_allocated_codes(::std::string* codes) {
   // @@protoc_insertion_point(field_set_allocated:go.GameMahjongAward.Codes)
 }
 
-// float GetGold = 3;
+// int64 GetGold = 3;
 inline void GameMahjongAward::clear_getgold() {
-  getgold_ = 0;
+  getgold_ = PROTOBUF_LONGLONG(0);
 }
-inline float GameMahjongAward::getgold() const {
+inline ::google::protobuf::int64 GameMahjongAward::getgold() const {
   // @@protoc_insertion_point(field_get:go.GameMahjongAward.GetGold)
   return getgold_;
 }
-inline void GameMahjongAward::set_getgold(float value) {
+inline void GameMahjongAward::set_getgold(::google::protobuf::int64 value) {
   
   getgold_ = value;
   // @@protoc_insertion_point(field_set:go.GameMahjongAward.GetGold)

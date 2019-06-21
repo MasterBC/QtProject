@@ -178,10 +178,10 @@ class GameBaccaratEnter final :
 
   // accessors -------------------------------------------------------
 
-  // repeated int32 Chips = 4;
+  // repeated int32 Chips = 3;
   int chips_size() const;
   void clear_chips();
-  static const int kChipsFieldNumber = 4;
+  static const int kChipsFieldNumber = 3;
   ::google::protobuf::int32 chips(int index) const;
   void set_chips(int index, ::google::protobuf::int32 value);
   void add_chips(::google::protobuf::int32 value);
@@ -190,10 +190,10 @@ class GameBaccaratEnter final :
   ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
       mutable_chips();
 
-  // repeated bytes AwardAreas = 6;
+  // repeated bytes AwardAreas = 4;
   int awardareas_size() const;
   void clear_awardareas();
-  static const int kAwardAreasFieldNumber = 6;
+  static const int kAwardAreasFieldNumber = 4;
   const ::std::string& awardareas(int index) const;
   ::std::string* mutable_awardareas(int index);
   void set_awardareas(int index, const ::std::string& value);
@@ -212,48 +212,36 @@ class GameBaccaratEnter final :
   const ::google::protobuf::RepeatedPtrField<::std::string>& awardareas() const;
   ::google::protobuf::RepeatedPtrField<::std::string>* mutable_awardareas();
 
-  // .go.UserList Players = 5;
-  bool has_players() const;
-  void clear_players();
-  static const int kPlayersFieldNumber = 5;
-  const ::go::UserList& players() const;
-  ::go::UserList* release_players();
-  ::go::UserList* mutable_players();
-  void set_allocated_players(::go::UserList* players);
+  // .go.PlayerInfo UserInfo = 1;
+  bool has_userinfo() const;
+  void clear_userinfo();
+  static const int kUserInfoFieldNumber = 1;
+  const ::go::PlayerInfo& userinfo() const;
+  ::go::PlayerInfo* release_userinfo();
+  ::go::PlayerInfo* mutable_userinfo();
+  void set_allocated_userinfo(::go::PlayerInfo* userinfo);
 
-  // uint64 UserID = 1;
-  void clear_userid();
-  static const int kUserIDFieldNumber = 1;
-  ::google::protobuf::uint64 userid() const;
-  void set_userid(::google::protobuf::uint64 value);
-
-  // int64 TimeStamp = 3;
+  // int64 TimeStamp = 2;
   void clear_timestamp();
-  static const int kTimeStampFieldNumber = 3;
+  static const int kTimeStampFieldNumber = 2;
   ::google::protobuf::int64 timestamp() const;
   void set_timestamp(::google::protobuf::int64 value);
 
-  // float BankerScore = 2;
-  void clear_bankerscore();
-  static const int kBankerScoreFieldNumber = 2;
-  float bankerscore() const;
-  void set_bankerscore(float value);
-
-  // uint32 FreeTime = 7;
+  // uint32 FreeTime = 5;
   void clear_freetime();
-  static const int kFreeTimeFieldNumber = 7;
+  static const int kFreeTimeFieldNumber = 5;
   ::google::protobuf::uint32 freetime() const;
   void set_freetime(::google::protobuf::uint32 value);
 
-  // uint32 BetTime = 8;
+  // uint32 BetTime = 6;
   void clear_bettime();
-  static const int kBetTimeFieldNumber = 8;
+  static const int kBetTimeFieldNumber = 6;
   ::google::protobuf::uint32 bettime() const;
   void set_bettime(::google::protobuf::uint32 value);
 
-  // uint32 OpenTime = 9;
+  // uint32 OpenTime = 7;
   void clear_opentime();
-  static const int kOpenTimeFieldNumber = 9;
+  static const int kOpenTimeFieldNumber = 7;
   ::google::protobuf::uint32 opentime() const;
   void set_opentime(::google::protobuf::uint32 value);
 
@@ -265,10 +253,8 @@ class GameBaccaratEnter final :
   ::google::protobuf::RepeatedField< ::google::protobuf::int32 > chips_;
   mutable std::atomic<int> _chips_cached_byte_size_;
   ::google::protobuf::RepeatedPtrField<::std::string> awardareas_;
-  ::go::UserList* players_;
-  ::google::protobuf::uint64 userid_;
+  ::go::PlayerInfo* userinfo_;
   ::google::protobuf::int64 timestamp_;
-  float bankerscore_;
   ::google::protobuf::uint32 freetime_;
   ::google::protobuf::uint32 bettime_;
   ::google::protobuf::uint32 opentime_;
@@ -610,25 +596,25 @@ class GameBaccaratBet final :
 
   // accessors -------------------------------------------------------
 
+  // int64 BetScore = 2;
+  void clear_betscore();
+  static const int kBetScoreFieldNumber = 2;
+  ::google::protobuf::int64 betscore() const;
+  void set_betscore(::google::protobuf::int64 value);
+
   // int32 BetArea = 1;
   void clear_betarea();
   static const int kBetAreaFieldNumber = 1;
   ::google::protobuf::int32 betarea() const;
   void set_betarea(::google::protobuf::int32 value);
 
-  // float BetScore = 2;
-  void clear_betscore();
-  static const int kBetScoreFieldNumber = 2;
-  float betscore() const;
-  void set_betscore(float value);
-
   // @@protoc_insertion_point(class_scope:go.GameBaccaratBet)
  private:
   class HasBitSetters;
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::int64 betscore_;
   ::google::protobuf::int32 betarea_;
-  float betscore_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_baccarat_2eproto;
 };
@@ -898,11 +884,11 @@ class GameBaccaratOver final :
   ::std::string* release_bankercard();
   void set_allocated_bankercard(::std::string* bankercard);
 
-  // float Acquire = 4;
+  // int64 Acquire = 4;
   void clear_acquire();
   static const int kAcquireFieldNumber = 4;
-  float acquire() const;
-  void set_acquire(float value);
+  ::google::protobuf::int64 acquire() const;
+  void set_acquire(::google::protobuf::int64 value);
 
   // @@protoc_insertion_point(class_scope:go.GameBaccaratOver)
  private:
@@ -912,7 +898,7 @@ class GameBaccaratOver final :
   ::google::protobuf::internal::ArenaStringPtr awardarea_;
   ::google::protobuf::internal::ArenaStringPtr playercard_;
   ::google::protobuf::internal::ArenaStringPtr bankercard_;
-  float acquire_;
+  ::google::protobuf::int64 acquire_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_baccarat_2eproto;
 };
@@ -927,35 +913,52 @@ class GameBaccaratOver final :
 #endif  // __GNUC__
 // GameBaccaratEnter
 
-// uint64 UserID = 1;
-inline void GameBaccaratEnter::clear_userid() {
-  userid_ = PROTOBUF_ULONGLONG(0);
+// .go.PlayerInfo UserInfo = 1;
+inline bool GameBaccaratEnter::has_userinfo() const {
+  return this != internal_default_instance() && userinfo_ != nullptr;
 }
-inline ::google::protobuf::uint64 GameBaccaratEnter::userid() const {
-  // @@protoc_insertion_point(field_get:go.GameBaccaratEnter.UserID)
-  return userid_;
+inline const ::go::PlayerInfo& GameBaccaratEnter::userinfo() const {
+  const ::go::PlayerInfo* p = userinfo_;
+  // @@protoc_insertion_point(field_get:go.GameBaccaratEnter.UserInfo)
+  return p != nullptr ? *p : *reinterpret_cast<const ::go::PlayerInfo*>(
+      &::go::_PlayerInfo_default_instance_);
 }
-inline void GameBaccaratEnter::set_userid(::google::protobuf::uint64 value) {
+inline ::go::PlayerInfo* GameBaccaratEnter::release_userinfo() {
+  // @@protoc_insertion_point(field_release:go.GameBaccaratEnter.UserInfo)
   
-  userid_ = value;
-  // @@protoc_insertion_point(field_set:go.GameBaccaratEnter.UserID)
+  ::go::PlayerInfo* temp = userinfo_;
+  userinfo_ = nullptr;
+  return temp;
+}
+inline ::go::PlayerInfo* GameBaccaratEnter::mutable_userinfo() {
+  
+  if (userinfo_ == nullptr) {
+    auto* p = CreateMaybeMessage<::go::PlayerInfo>(GetArenaNoVirtual());
+    userinfo_ = p;
+  }
+  // @@protoc_insertion_point(field_mutable:go.GameBaccaratEnter.UserInfo)
+  return userinfo_;
+}
+inline void GameBaccaratEnter::set_allocated_userinfo(::go::PlayerInfo* userinfo) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::google::protobuf::MessageLite*>(userinfo_);
+  }
+  if (userinfo) {
+    ::google::protobuf::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      userinfo = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, userinfo, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  userinfo_ = userinfo;
+  // @@protoc_insertion_point(field_set_allocated:go.GameBaccaratEnter.UserInfo)
 }
 
-// float BankerScore = 2;
-inline void GameBaccaratEnter::clear_bankerscore() {
-  bankerscore_ = 0;
-}
-inline float GameBaccaratEnter::bankerscore() const {
-  // @@protoc_insertion_point(field_get:go.GameBaccaratEnter.BankerScore)
-  return bankerscore_;
-}
-inline void GameBaccaratEnter::set_bankerscore(float value) {
-  
-  bankerscore_ = value;
-  // @@protoc_insertion_point(field_set:go.GameBaccaratEnter.BankerScore)
-}
-
-// int64 TimeStamp = 3;
+// int64 TimeStamp = 2;
 inline void GameBaccaratEnter::clear_timestamp() {
   timestamp_ = PROTOBUF_LONGLONG(0);
 }
@@ -969,7 +972,7 @@ inline void GameBaccaratEnter::set_timestamp(::google::protobuf::int64 value) {
   // @@protoc_insertion_point(field_set:go.GameBaccaratEnter.TimeStamp)
 }
 
-// repeated int32 Chips = 4;
+// repeated int32 Chips = 3;
 inline int GameBaccaratEnter::chips_size() const {
   return chips_.size();
 }
@@ -999,52 +1002,7 @@ GameBaccaratEnter::mutable_chips() {
   return &chips_;
 }
 
-// .go.UserList Players = 5;
-inline bool GameBaccaratEnter::has_players() const {
-  return this != internal_default_instance() && players_ != nullptr;
-}
-inline const ::go::UserList& GameBaccaratEnter::players() const {
-  const ::go::UserList* p = players_;
-  // @@protoc_insertion_point(field_get:go.GameBaccaratEnter.Players)
-  return p != nullptr ? *p : *reinterpret_cast<const ::go::UserList*>(
-      &::go::_UserList_default_instance_);
-}
-inline ::go::UserList* GameBaccaratEnter::release_players() {
-  // @@protoc_insertion_point(field_release:go.GameBaccaratEnter.Players)
-  
-  ::go::UserList* temp = players_;
-  players_ = nullptr;
-  return temp;
-}
-inline ::go::UserList* GameBaccaratEnter::mutable_players() {
-  
-  if (players_ == nullptr) {
-    auto* p = CreateMaybeMessage<::go::UserList>(GetArenaNoVirtual());
-    players_ = p;
-  }
-  // @@protoc_insertion_point(field_mutable:go.GameBaccaratEnter.Players)
-  return players_;
-}
-inline void GameBaccaratEnter::set_allocated_players(::go::UserList* players) {
-  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::google::protobuf::MessageLite*>(players_);
-  }
-  if (players) {
-    ::google::protobuf::Arena* submessage_arena = nullptr;
-    if (message_arena != submessage_arena) {
-      players = ::google::protobuf::internal::GetOwnedMessage(
-          message_arena, players, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  players_ = players;
-  // @@protoc_insertion_point(field_set_allocated:go.GameBaccaratEnter.Players)
-}
-
-// repeated bytes AwardAreas = 6;
+// repeated bytes AwardAreas = 4;
 inline int GameBaccaratEnter::awardareas_size() const {
   return awardareas_.size();
 }
@@ -1113,7 +1071,7 @@ GameBaccaratEnter::mutable_awardareas() {
   return &awardareas_;
 }
 
-// uint32 FreeTime = 7;
+// uint32 FreeTime = 5;
 inline void GameBaccaratEnter::clear_freetime() {
   freetime_ = 0u;
 }
@@ -1127,7 +1085,7 @@ inline void GameBaccaratEnter::set_freetime(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:go.GameBaccaratEnter.FreeTime)
 }
 
-// uint32 BetTime = 8;
+// uint32 BetTime = 6;
 inline void GameBaccaratEnter::clear_bettime() {
   bettime_ = 0u;
 }
@@ -1141,7 +1099,7 @@ inline void GameBaccaratEnter::set_bettime(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:go.GameBaccaratEnter.BetTime)
 }
 
-// uint32 OpenTime = 9;
+// uint32 OpenTime = 7;
 inline void GameBaccaratEnter::clear_opentime() {
   opentime_ = 0u;
 }
@@ -1237,15 +1195,15 @@ inline void GameBaccaratBet::set_betarea(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:go.GameBaccaratBet.BetArea)
 }
 
-// float BetScore = 2;
+// int64 BetScore = 2;
 inline void GameBaccaratBet::clear_betscore() {
-  betscore_ = 0;
+  betscore_ = PROTOBUF_LONGLONG(0);
 }
-inline float GameBaccaratBet::betscore() const {
+inline ::google::protobuf::int64 GameBaccaratBet::betscore() const {
   // @@protoc_insertion_point(field_get:go.GameBaccaratBet.BetScore)
   return betscore_;
 }
-inline void GameBaccaratBet::set_betscore(float value) {
+inline void GameBaccaratBet::set_betscore(::google::protobuf::int64 value) {
   
   betscore_ = value;
   // @@protoc_insertion_point(field_set:go.GameBaccaratBet.BetScore)
@@ -1485,15 +1443,15 @@ inline void GameBaccaratOver::set_allocated_bankercard(::std::string* bankercard
   // @@protoc_insertion_point(field_set_allocated:go.GameBaccaratOver.BankerCard)
 }
 
-// float Acquire = 4;
+// int64 Acquire = 4;
 inline void GameBaccaratOver::clear_acquire() {
-  acquire_ = 0;
+  acquire_ = PROTOBUF_LONGLONG(0);
 }
-inline float GameBaccaratOver::acquire() const {
+inline ::google::protobuf::int64 GameBaccaratOver::acquire() const {
   // @@protoc_insertion_point(field_get:go.GameBaccaratOver.Acquire)
   return acquire_;
 }
-inline void GameBaccaratOver::set_acquire(float value) {
+inline void GameBaccaratOver::set_acquire(::google::protobuf::int64 value) {
   
   acquire_ = value;
   // @@protoc_insertion_point(field_set:go.GameBaccaratOver.Acquire)

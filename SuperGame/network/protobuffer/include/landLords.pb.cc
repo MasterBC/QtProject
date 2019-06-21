@@ -18,7 +18,6 @@
 
 extern PROTOBUF_INTERNAL_EXPORT_gamecomm_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_UserList_gamecomm_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_landLords_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_GameLandLordsAward_landLords_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_landLords_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_GameLandLordsPlayer_landLords_2eproto;
 namespace go {
 class GameLandLordsEnterDefaultTypeInternal {
  public:
@@ -89,9 +88,8 @@ static void InitDefaultsGameLandLordsBegins_landLords_2eproto() {
   ::go::GameLandLordsBegins::InitAsDefaultInstance();
 }
 
-::google::protobuf::internal::SCCInfo<1> scc_info_GameLandLordsBegins_landLords_2eproto =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsGameLandLordsBegins_landLords_2eproto}, {
-      &scc_info_GameLandLordsPlayer_landLords_2eproto.base,}};
+::google::protobuf::internal::SCCInfo<0> scc_info_GameLandLordsBegins_landLords_2eproto =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsGameLandLordsBegins_landLords_2eproto}, {}};
 
 static void InitDefaultsGameLandLordsOutcard_landLords_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -188,8 +186,8 @@ const ::google::protobuf::uint32 TableStruct_landLords_2eproto::offsets[] PROTOB
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::go::GameLandLordsBegins, dice_),
-  PROTOBUF_FIELD_OFFSET(::go::GameLandLordsBegins, playersinfo_),
+  PROTOBUF_FIELD_OFFSET(::go::GameLandLordsBegins, cardsbottom_),
+  PROTOBUF_FIELD_OFFSET(::go::GameLandLordsBegins, cardshand_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::go::GameLandLordsOutcard, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -253,21 +251,21 @@ const char descriptor_table_protodef_landLords_2eproto[] =
   "imeStamp\030\002 \001(\003\022\035\n\007Players\030\003 \001(\0132\014.go.Use"
   "rList\022\020\n\010FreeTime\030\004 \001(\r\"T\n\023GameLandLords"
   "Player\022\016\n\006UserID\030\001 \001(\004\022\014\n\004Site\030\002 \001(\r\022\r\n\005"
-  "Cards\030\003 \001(\014\022\020\n\010IsBanker\030\004 \001(\010\"Q\n\023GameLan"
-  "dLordsBegins\022\014\n\004Dice\030\001 \001(\014\022,\n\013PlayersInf"
-  "o\030\002 \003(\0132\027.go.GameLandLordsPlayer\"B\n\024Game"
-  "LandLordsOutcard\022\014\n\004Site\030\001 \001(\r\022\r\n\005Cards\030"
-  "\002 \001(\014\022\r\n\005Hints\030\003 \001(\t\"B\n\024GameLandLordsOpe"
-  "rate\022\014\n\004Code\030\001 \001(\005\022\r\n\005Cards\030\002 \001(\014\022\r\n\005Hin"
-  "ts\030\003 \001(\t\"B\n\022GameLandLordsAward\022\014\n\004Site\030\001"
-  " \001(\r\022\r\n\005Codes\030\002 \001(\014\022\017\n\007GetGold\030\003 \001(\002\"@\n\025"
-  "GameLandLordsCheckout\022\'\n\007players\030\001 \003(\0132\026"
-  ".go.GameLandLordsAwardb\006proto3"
+  "Cards\030\003 \001(\014\022\020\n\010IsBanker\030\004 \001(\010\"=\n\023GameLan"
+  "dLordsBegins\022\023\n\013CardsBottom\030\001 \001(\014\022\021\n\tCar"
+  "dsHand\030\002 \001(\014\"B\n\024GameLandLordsOutcard\022\014\n\004"
+  "Site\030\001 \001(\r\022\r\n\005Cards\030\002 \001(\014\022\r\n\005Hints\030\003 \001(\t"
+  "\"B\n\024GameLandLordsOperate\022\014\n\004Code\030\001 \001(\005\022\r"
+  "\n\005Cards\030\002 \001(\014\022\r\n\005Hints\030\003 \001(\t\"B\n\022GameLand"
+  "LordsAward\022\014\n\004Site\030\001 \001(\r\022\r\n\005Codes\030\002 \001(\014\022"
+  "\017\n\007GetGold\030\003 \001(\003\"@\n\025GameLandLordsCheckou"
+  "t\022\'\n\007players\030\001 \003(\0132\026.go.GameLandLordsAwa"
+  "rdb\006proto3"
   ;
 ::google::protobuf::internal::DescriptorTable descriptor_table_landLords_2eproto = {
   false, InitDefaults_landLords_2eproto, 
   descriptor_table_protodef_landLords_2eproto,
-  "landLords.proto", &assign_descriptors_table_landLords_2eproto, 590,
+  "landLords.proto", &assign_descriptors_table_landLords_2eproto, 570,
 };
 
 void AddDescriptors_landLords_2eproto() {
@@ -1135,8 +1133,8 @@ class GameLandLordsBegins::HasBitSetters {
 };
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int GameLandLordsBegins::kDiceFieldNumber;
-const int GameLandLordsBegins::kPlayersInfoFieldNumber;
+const int GameLandLordsBegins::kCardsBottomFieldNumber;
+const int GameLandLordsBegins::kCardsHandFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 GameLandLordsBegins::GameLandLordsBegins()
@@ -1146,12 +1144,15 @@ GameLandLordsBegins::GameLandLordsBegins()
 }
 GameLandLordsBegins::GameLandLordsBegins(const GameLandLordsBegins& from)
   : ::google::protobuf::Message(),
-      _internal_metadata_(nullptr),
-      playersinfo_(from.playersinfo_) {
+      _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  dice_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.dice().size() > 0) {
-    dice_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.dice_);
+  cardsbottom_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.cardsbottom().size() > 0) {
+    cardsbottom_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.cardsbottom_);
+  }
+  cardshand_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.cardshand().size() > 0) {
+    cardshand_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.cardshand_);
   }
   // @@protoc_insertion_point(copy_constructor:go.GameLandLordsBegins)
 }
@@ -1159,7 +1160,8 @@ GameLandLordsBegins::GameLandLordsBegins(const GameLandLordsBegins& from)
 void GameLandLordsBegins::SharedCtor() {
   ::google::protobuf::internal::InitSCC(
       &scc_info_GameLandLordsBegins_landLords_2eproto.base);
-  dice_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  cardsbottom_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  cardshand_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
 GameLandLordsBegins::~GameLandLordsBegins() {
@@ -1168,7 +1170,8 @@ GameLandLordsBegins::~GameLandLordsBegins() {
 }
 
 void GameLandLordsBegins::SharedDtor() {
-  dice_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  cardsbottom_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  cardshand_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
 void GameLandLordsBegins::SetCachedSize(int size) const {
@@ -1186,8 +1189,8 @@ void GameLandLordsBegins::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  playersinfo_.Clear();
-  dice_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  cardsbottom_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  cardshand_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   _internal_metadata_.Clear();
 }
 
@@ -1204,12 +1207,12 @@ const char* GameLandLordsBegins::_InternalParse(const char* begin, const char* e
     ptr = ::google::protobuf::io::Parse32(ptr, &tag);
     GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
     switch (tag >> 3) {
-      // bytes Dice = 1;
+      // bytes CardsBottom = 1;
       case 1: {
         if (static_cast<::google::protobuf::uint8>(tag) != 10) goto handle_unusual;
         ptr = ::google::protobuf::io::ReadSize(ptr, &size);
         GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
-        object = msg->mutable_dice();
+        object = msg->mutable_cardsbottom();
         if (size > end - ptr + ::google::protobuf::internal::ParseContext::kSlopBytes) {
           parser_till_end = ::google::protobuf::internal::GreedyStringParser;
           goto string_till_end;
@@ -1219,20 +1222,19 @@ const char* GameLandLordsBegins::_InternalParse(const char* begin, const char* e
         ptr += size;
         break;
       }
-      // repeated .go.GameLandLordsPlayer PlayersInfo = 2;
+      // bytes CardsHand = 2;
       case 2: {
         if (static_cast<::google::protobuf::uint8>(tag) != 18) goto handle_unusual;
-        do {
-          ptr = ::google::protobuf::io::ReadSize(ptr, &size);
-          GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
-          parser_till_end = ::go::GameLandLordsPlayer::_InternalParse;
-          object = msg->add_playersinfo();
-          if (size > end - ptr) goto len_delim_till_end;
-          ptr += size;
-          GOOGLE_PROTOBUF_PARSER_ASSERT(ctx->ParseExactRange(
-              {parser_till_end, object}, ptr - size, ptr));
-          if (ptr >= end) break;
-        } while ((::google::protobuf::io::UnalignedLoad<::google::protobuf::uint64>(ptr) & 255) == 18 && (ptr += 1));
+        ptr = ::google::protobuf::io::ReadSize(ptr, &size);
+        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
+        object = msg->mutable_cardshand();
+        if (size > end - ptr + ::google::protobuf::internal::ParseContext::kSlopBytes) {
+          parser_till_end = ::google::protobuf::internal::GreedyStringParser;
+          goto string_till_end;
+        }
+        GOOGLE_PROTOBUF_PARSER_ASSERT(::google::protobuf::internal::StringCheck(ptr, size, ctx));
+        ::google::protobuf::internal::InlineGreedyStringParser(object, ptr, size, ctx);
+        ptr += size;
         break;
       }
       default: {
@@ -1269,22 +1271,22 @@ bool GameLandLordsBegins::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // bytes Dice = 1;
+      // bytes CardsBottom = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) == (10 & 0xFF)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
-                input, this->mutable_dice()));
+                input, this->mutable_cardsbottom()));
         } else {
           goto handle_unusual;
         }
         break;
       }
 
-      // repeated .go.GameLandLordsPlayer PlayersInfo = 2;
+      // bytes CardsHand = 2;
       case 2: {
         if (static_cast< ::google::protobuf::uint8>(tag) == (18 & 0xFF)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
-                input, add_playersinfo()));
+          DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
+                input, this->mutable_cardshand()));
         } else {
           goto handle_unusual;
         }
@@ -1318,19 +1320,16 @@ void GameLandLordsBegins::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // bytes Dice = 1;
-  if (this->dice().size() > 0) {
+  // bytes CardsBottom = 1;
+  if (this->cardsbottom().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
-      1, this->dice(), output);
+      1, this->cardsbottom(), output);
   }
 
-  // repeated .go.GameLandLordsPlayer PlayersInfo = 2;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->playersinfo_size()); i < n; i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      2,
-      this->playersinfo(static_cast<int>(i)),
-      output);
+  // bytes CardsHand = 2;
+  if (this->cardshand().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
+      2, this->cardshand(), output);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -1346,19 +1345,18 @@ void GameLandLordsBegins::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // bytes Dice = 1;
-  if (this->dice().size() > 0) {
+  // bytes CardsBottom = 1;
+  if (this->cardsbottom().size() > 0) {
     target =
       ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
-        1, this->dice(), target);
+        1, this->cardsbottom(), target);
   }
 
-  // repeated .go.GameLandLordsPlayer PlayersInfo = 2;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->playersinfo_size()); i < n; i++) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageToArray(
-        2, this->playersinfo(static_cast<int>(i)), target);
+  // bytes CardsHand = 2;
+  if (this->cardshand().size() > 0) {
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
+        2, this->cardshand(), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -1382,22 +1380,18 @@ size_t GameLandLordsBegins::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated .go.GameLandLordsPlayer PlayersInfo = 2;
-  {
-    unsigned int count = static_cast<unsigned int>(this->playersinfo_size());
-    total_size += 1UL * count;
-    for (unsigned int i = 0; i < count; i++) {
-      total_size +=
-        ::google::protobuf::internal::WireFormatLite::MessageSize(
-          this->playersinfo(static_cast<int>(i)));
-    }
-  }
-
-  // bytes Dice = 1;
-  if (this->dice().size() > 0) {
+  // bytes CardsBottom = 1;
+  if (this->cardsbottom().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::BytesSize(
-        this->dice());
+        this->cardsbottom());
+  }
+
+  // bytes CardsHand = 2;
+  if (this->cardshand().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::BytesSize(
+        this->cardshand());
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -1427,10 +1421,13 @@ void GameLandLordsBegins::MergeFrom(const GameLandLordsBegins& from) {
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  playersinfo_.MergeFrom(from.playersinfo_);
-  if (from.dice().size() > 0) {
+  if (from.cardsbottom().size() > 0) {
 
-    dice_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.dice_);
+    cardsbottom_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.cardsbottom_);
+  }
+  if (from.cardshand().size() > 0) {
+
+    cardshand_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.cardshand_);
   }
 }
 
@@ -1459,8 +1456,9 @@ void GameLandLordsBegins::Swap(GameLandLordsBegins* other) {
 void GameLandLordsBegins::InternalSwap(GameLandLordsBegins* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
-  CastToBase(&playersinfo_)->InternalSwap(CastToBase(&other->playersinfo_));
-  dice_.Swap(&other->dice_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+  cardsbottom_.Swap(&other->cardsbottom_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  cardshand_.Swap(&other->cardshand_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
 }
 
@@ -2301,9 +2299,9 @@ GameLandLordsAward::GameLandLordsAward(const GameLandLordsAward& from)
   if (from.codes().size() > 0) {
     codes_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.codes_);
   }
-  ::memcpy(&site_, &from.site_,
-    static_cast<size_t>(reinterpret_cast<char*>(&getgold_) -
-    reinterpret_cast<char*>(&site_)) + sizeof(getgold_));
+  ::memcpy(&getgold_, &from.getgold_,
+    static_cast<size_t>(reinterpret_cast<char*>(&site_) -
+    reinterpret_cast<char*>(&getgold_)) + sizeof(site_));
   // @@protoc_insertion_point(copy_constructor:go.GameLandLordsAward)
 }
 
@@ -2311,9 +2309,9 @@ void GameLandLordsAward::SharedCtor() {
   ::google::protobuf::internal::InitSCC(
       &scc_info_GameLandLordsAward_landLords_2eproto.base);
   codes_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ::memset(&site_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&getgold_) -
-      reinterpret_cast<char*>(&site_)) + sizeof(getgold_));
+  ::memset(&getgold_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&site_) -
+      reinterpret_cast<char*>(&getgold_)) + sizeof(site_));
 }
 
 GameLandLordsAward::~GameLandLordsAward() {
@@ -2341,9 +2339,9 @@ void GameLandLordsAward::Clear() {
   (void) cached_has_bits;
 
   codes_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ::memset(&site_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&getgold_) -
-      reinterpret_cast<char*>(&site_)) + sizeof(getgold_));
+  ::memset(&getgold_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&site_) -
+      reinterpret_cast<char*>(&getgold_)) + sizeof(site_));
   _internal_metadata_.Clear();
 }
 
@@ -2382,11 +2380,11 @@ const char* GameLandLordsAward::_InternalParse(const char* begin, const char* en
         ptr += size;
         break;
       }
-      // float GetGold = 3;
+      // int64 GetGold = 3;
       case 3: {
-        if (static_cast<::google::protobuf::uint8>(tag) != 29) goto handle_unusual;
-        msg->set_getgold(::google::protobuf::io::UnalignedLoad<float>(ptr));
-        ptr += sizeof(float);
+        if (static_cast<::google::protobuf::uint8>(tag) != 24) goto handle_unusual;
+        msg->set_getgold(::google::protobuf::internal::ReadVarint(&ptr));
+        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
         break;
       }
       default: {
@@ -2447,12 +2445,12 @@ bool GameLandLordsAward::MergePartialFromCodedStream(
         break;
       }
 
-      // float GetGold = 3;
+      // int64 GetGold = 3;
       case 3: {
-        if (static_cast< ::google::protobuf::uint8>(tag) == (29 & 0xFF)) {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (24 & 0xFF)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &getgold_)));
         } else {
           goto handle_unusual;
@@ -2498,9 +2496,9 @@ void GameLandLordsAward::SerializeWithCachedSizes(
       2, this->codes(), output);
   }
 
-  // float GetGold = 3;
+  // int64 GetGold = 3;
   if (this->getgold() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteFloat(3, this->getgold(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(3, this->getgold(), output);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -2528,9 +2526,9 @@ void GameLandLordsAward::SerializeWithCachedSizes(
         2, this->codes(), target);
   }
 
-  // float GetGold = 3;
+  // int64 GetGold = 3;
   if (this->getgold() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(3, this->getgold(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(3, this->getgold(), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -2561,16 +2559,18 @@ size_t GameLandLordsAward::ByteSizeLong() const {
         this->codes());
   }
 
+  // int64 GetGold = 3;
+  if (this->getgold() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
+        this->getgold());
+  }
+
   // uint32 Site = 1;
   if (this->site() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->site());
-  }
-
-  // float GetGold = 3;
-  if (this->getgold() != 0) {
-    total_size += 1 + 4;
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -2604,11 +2604,11 @@ void GameLandLordsAward::MergeFrom(const GameLandLordsAward& from) {
 
     codes_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.codes_);
   }
-  if (from.site() != 0) {
-    set_site(from.site());
-  }
   if (from.getgold() != 0) {
     set_getgold(from.getgold());
+  }
+  if (from.site() != 0) {
+    set_site(from.site());
   }
 }
 
@@ -2639,8 +2639,8 @@ void GameLandLordsAward::InternalSwap(GameLandLordsAward* other) {
   _internal_metadata_.Swap(&other->_internal_metadata_);
   codes_.Swap(&other->codes_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
-  swap(site_, other->site_);
   swap(getgold_, other->getgold_);
+  swap(site_, other->site_);
 }
 
 ::google::protobuf::Metadata GameLandLordsAward::GetMetadata() const {

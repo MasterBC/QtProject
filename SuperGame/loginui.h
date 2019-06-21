@@ -17,7 +17,6 @@ public:
 
 private slots:
     void on_pushButtonEnter_clicked();
-    void on_recvData(QByteArray data);
 
 private:
     Ui::LoginUI     *ui;

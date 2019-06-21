@@ -27,3 +27,8 @@ bool MahjongUI::gameHandle(int code, const std::string &data)
 {
 
 }
+
+bool MahjongUI::updateInfo(int code, const std::string &data)
+{
+
+}

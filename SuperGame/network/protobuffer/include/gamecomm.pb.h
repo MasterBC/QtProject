@@ -41,7 +41,7 @@ struct TableStruct_gamecomm_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::google::protobuf::internal::ParseTable schema[10]
+  static const ::google::protobuf::internal::ParseTable schema[11]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
@@ -52,6 +52,9 @@ namespace go {
 class GameBet;
 class GameBetDefaultTypeInternal;
 extern GameBetDefaultTypeInternal _GameBet_default_instance_;
+class GameBetResult;
+class GameBetResultDefaultTypeInternal;
+extern GameBetResultDefaultTypeInternal _GameBetResult_default_instance_;
 class GameHost;
 class GameHostDefaultTypeInternal;
 extern GameHostDefaultTypeInternal _GameHost_default_instance_;
@@ -83,6 +86,7 @@ extern UserListDefaultTypeInternal _UserList_default_instance_;
 namespace google {
 namespace protobuf {
 template<> ::go::GameBet* Arena::CreateMaybeMessage<::go::GameBet>(Arena*);
+template<> ::go::GameBetResult* Arena::CreateMaybeMessage<::go::GameBetResult>(Arena*);
 template<> ::go::GameHost* Arena::CreateMaybeMessage<::go::GameHost>(Arena*);
 template<> ::go::GameReady* Arena::CreateMaybeMessage<::go::GameReady>(Arena*);
 template<> ::go::GameRecord* Arena::CreateMaybeMessage<::go::GameRecord>(Arena*);
@@ -225,11 +229,11 @@ class PlayerInfo final :
   ::google::protobuf::int32 sex() const;
   void set_sex(::google::protobuf::int32 value);
 
-  // float Gold = 5;
+  // int64 Gold = 5;
   void clear_gold();
   static const int kGoldFieldNumber = 5;
-  float gold() const;
-  void set_gold(float value);
+  ::google::protobuf::int64 gold() const;
+  void set_gold(::google::protobuf::int64 value);
 
   // int32 VipLevel = 6;
   void clear_viplevel();
@@ -246,7 +250,7 @@ class PlayerInfo final :
   ::google::protobuf::uint64 userid_;
   ::google::protobuf::int32 age_;
   ::google::protobuf::int32 sex_;
-  float gold_;
+  ::google::protobuf::int64 gold_;
   ::google::protobuf::int32 viplevel_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_gamecomm_2eproto;
@@ -487,17 +491,17 @@ class PlayerRecord final :
   ::google::protobuf::int32 ranking() const;
   void set_ranking(::google::protobuf::int32 value);
 
+  // int64 WinLos = 5;
+  void clear_winlos();
+  static const int kWinLosFieldNumber = 5;
+  ::google::protobuf::int64 winlos() const;
+  void set_winlos(::google::protobuf::int64 value);
+
   // int32 Bankroll = 4;
   void clear_bankroll();
   static const int kBankrollFieldNumber = 4;
   ::google::protobuf::int32 bankroll() const;
   void set_bankroll(::google::protobuf::int32 value);
-
-  // float WinLos = 5;
-  void clear_winlos();
-  static const int kWinLosFieldNumber = 5;
-  float winlos() const;
-  void set_winlos(float value);
 
   // @@protoc_insertion_point(class_scope:go.PlayerRecord)
  private:
@@ -507,8 +511,8 @@ class PlayerRecord final :
   ::go::PlayerInfo* user_;
   ::google::protobuf::int32 twice_;
   ::google::protobuf::int32 ranking_;
+  ::google::protobuf::int64 winlos_;
   ::google::protobuf::int32 bankroll_;
-  float winlos_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_gamecomm_2eproto;
 };
@@ -609,9 +613,15 @@ class GameReady final :
 
   // accessors -------------------------------------------------------
 
-  // bool IsReady = 1;
+  // uint64 UserID = 1;
+  void clear_userid();
+  static const int kUserIDFieldNumber = 1;
+  ::google::protobuf::uint64 userid() const;
+  void set_userid(::google::protobuf::uint64 value);
+
+  // bool IsReady = 2;
   void clear_isready();
-  static const int kIsReadyFieldNumber = 1;
+  static const int kIsReadyFieldNumber = 2;
   bool isready() const;
   void set_isready(bool value);
 
@@ -620,6 +630,7 @@ class GameReady final :
   class HasBitSetters;
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::uint64 userid_;
   bool isready_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_gamecomm_2eproto;
@@ -721,25 +732,173 @@ class GameBet final :
 
   // accessors -------------------------------------------------------
 
+  // int64 BetScore = 2;
+  void clear_betscore();
+  static const int kBetScoreFieldNumber = 2;
+  ::google::protobuf::int64 betscore() const;
+  void set_betscore(::google::protobuf::int64 value);
+
   // int32 BetArea = 1;
   void clear_betarea();
   static const int kBetAreaFieldNumber = 1;
   ::google::protobuf::int32 betarea() const;
   void set_betarea(::google::protobuf::int32 value);
 
-  // float BetScore = 2;
-  void clear_betscore();
-  static const int kBetScoreFieldNumber = 2;
-  float betscore() const;
-  void set_betscore(float value);
-
   // @@protoc_insertion_point(class_scope:go.GameBet)
  private:
   class HasBitSetters;
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::int64 betscore_;
   ::google::protobuf::int32 betarea_;
-  float betscore_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_gamecomm_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GameBetResult final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:go.GameBetResult) */ {
+ public:
+  GameBetResult();
+  virtual ~GameBetResult();
+
+  GameBetResult(const GameBetResult& from);
+
+  inline GameBetResult& operator=(const GameBetResult& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  GameBetResult(GameBetResult&& from) noexcept
+    : GameBetResult() {
+    *this = ::std::move(from);
+  }
+
+  inline GameBetResult& operator=(GameBetResult&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return default_instance().GetDescriptor();
+  }
+  static const GameBetResult& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const GameBetResult* internal_default_instance() {
+    return reinterpret_cast<const GameBetResult*>(
+               &_GameBetResult_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  void Swap(GameBetResult* other);
+  friend void swap(GameBetResult& a, GameBetResult& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline GameBetResult* New() const final {
+    return CreateMaybeMessage<GameBetResult>(nullptr);
+  }
+
+  GameBetResult* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<GameBetResult>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const GameBetResult& from);
+  void MergeFrom(const GameBetResult& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  #if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+  static const char* _InternalParse(const char* begin, const char* end, void* object, ::google::protobuf::internal::ParseContext* ctx);
+  ::google::protobuf::internal::ParseFunc _ParseFunc() const final { return _InternalParse; }
+  #else
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  #endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GameBetResult* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string Hints = 3;
+  void clear_hints();
+  static const int kHintsFieldNumber = 3;
+  const ::std::string& hints() const;
+  void set_hints(const ::std::string& value);
+  #if LANG_CXX11
+  void set_hints(::std::string&& value);
+  #endif
+  void set_hints(const char* value);
+  void set_hints(const char* value, size_t size);
+  ::std::string* mutable_hints();
+  ::std::string* release_hints();
+  void set_allocated_hints(::std::string* hints);
+
+  // uint64 UserID = 1;
+  void clear_userid();
+  static const int kUserIDFieldNumber = 1;
+  ::google::protobuf::uint64 userid() const;
+  void set_userid(::google::protobuf::uint64 value);
+
+  // int32 State = 2;
+  void clear_state();
+  static const int kStateFieldNumber = 2;
+  ::google::protobuf::int32 state() const;
+  void set_state(::google::protobuf::int32 value);
+
+  // int32 BetArea = 4;
+  void clear_betarea();
+  static const int kBetAreaFieldNumber = 4;
+  ::google::protobuf::int32 betarea() const;
+  void set_betarea(::google::protobuf::int32 value);
+
+  // int64 BetScore = 5;
+  void clear_betscore();
+  static const int kBetScoreFieldNumber = 5;
+  ::google::protobuf::int64 betscore() const;
+  void set_betscore(::google::protobuf::int64 value);
+
+  // @@protoc_insertion_point(class_scope:go.GameBetResult)
+ private:
+  class HasBitSetters;
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr hints_;
+  ::google::protobuf::uint64 userid_;
+  ::google::protobuf::int32 state_;
+  ::google::protobuf::int32 betarea_;
+  ::google::protobuf::int64 betscore_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_gamecomm_2eproto;
 };
@@ -783,7 +942,7 @@ class GameHost final :
                &_GameHost_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    6;
 
   void Swap(GameHost* other);
   friend void swap(GameHost& a, GameHost& b) {
@@ -895,7 +1054,7 @@ class GameSuperHost final :
                &_GameSuperHost_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    7;
 
   void Swap(GameSuperHost* other);
   friend void swap(GameSuperHost& a, GameSuperHost& b) {
@@ -1007,7 +1166,7 @@ class GameRecord final :
                &_GameRecord_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    8;
 
   void Swap(GameRecord* other);
   friend void swap(GameRecord& a, GameRecord& b) {
@@ -1141,7 +1300,7 @@ class GameRecordList final :
                &_GameRecordList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   void Swap(GameRecordList* other);
   friend void swap(GameRecordList& a, GameRecordList& b) {
@@ -1259,7 +1418,7 @@ class GameResult final :
                &_GameResult_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   void Swap(GameResult* other);
   friend void swap(GameResult& a, GameResult& b) {
@@ -1452,15 +1611,15 @@ inline void PlayerInfo::set_sex(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:go.PlayerInfo.Sex)
 }
 
-// float Gold = 5;
+// int64 Gold = 5;
 inline void PlayerInfo::clear_gold() {
-  gold_ = 0;
+  gold_ = PROTOBUF_LONGLONG(0);
 }
-inline float PlayerInfo::gold() const {
+inline ::google::protobuf::int64 PlayerInfo::gold() const {
   // @@protoc_insertion_point(field_get:go.PlayerInfo.Gold)
   return gold_;
 }
-inline void PlayerInfo::set_gold(float value) {
+inline void PlayerInfo::set_gold(::google::protobuf::int64 value) {
   
   gold_ = value;
   // @@protoc_insertion_point(field_set:go.PlayerInfo.Gold)
@@ -1611,15 +1770,15 @@ inline void PlayerRecord::set_bankroll(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:go.PlayerRecord.Bankroll)
 }
 
-// float WinLos = 5;
+// int64 WinLos = 5;
 inline void PlayerRecord::clear_winlos() {
-  winlos_ = 0;
+  winlos_ = PROTOBUF_LONGLONG(0);
 }
-inline float PlayerRecord::winlos() const {
+inline ::google::protobuf::int64 PlayerRecord::winlos() const {
   // @@protoc_insertion_point(field_get:go.PlayerRecord.WinLos)
   return winlos_;
 }
-inline void PlayerRecord::set_winlos(float value) {
+inline void PlayerRecord::set_winlos(::google::protobuf::int64 value) {
   
   winlos_ = value;
   // @@protoc_insertion_point(field_set:go.PlayerRecord.WinLos)
@@ -1629,7 +1788,21 @@ inline void PlayerRecord::set_winlos(float value) {
 
 // GameReady
 
-// bool IsReady = 1;
+// uint64 UserID = 1;
+inline void GameReady::clear_userid() {
+  userid_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::google::protobuf::uint64 GameReady::userid() const {
+  // @@protoc_insertion_point(field_get:go.GameReady.UserID)
+  return userid_;
+}
+inline void GameReady::set_userid(::google::protobuf::uint64 value) {
+  
+  userid_ = value;
+  // @@protoc_insertion_point(field_set:go.GameReady.UserID)
+}
+
+// bool IsReady = 2;
 inline void GameReady::clear_isready() {
   isready_ = false;
 }
@@ -1661,18 +1834,131 @@ inline void GameBet::set_betarea(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:go.GameBet.BetArea)
 }
 
-// float BetScore = 2;
+// int64 BetScore = 2;
 inline void GameBet::clear_betscore() {
-  betscore_ = 0;
+  betscore_ = PROTOBUF_LONGLONG(0);
 }
-inline float GameBet::betscore() const {
+inline ::google::protobuf::int64 GameBet::betscore() const {
   // @@protoc_insertion_point(field_get:go.GameBet.BetScore)
   return betscore_;
 }
-inline void GameBet::set_betscore(float value) {
+inline void GameBet::set_betscore(::google::protobuf::int64 value) {
   
   betscore_ = value;
   // @@protoc_insertion_point(field_set:go.GameBet.BetScore)
+}
+
+// -------------------------------------------------------------------
+
+// GameBetResult
+
+// uint64 UserID = 1;
+inline void GameBetResult::clear_userid() {
+  userid_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::google::protobuf::uint64 GameBetResult::userid() const {
+  // @@protoc_insertion_point(field_get:go.GameBetResult.UserID)
+  return userid_;
+}
+inline void GameBetResult::set_userid(::google::protobuf::uint64 value) {
+  
+  userid_ = value;
+  // @@protoc_insertion_point(field_set:go.GameBetResult.UserID)
+}
+
+// int32 State = 2;
+inline void GameBetResult::clear_state() {
+  state_ = 0;
+}
+inline ::google::protobuf::int32 GameBetResult::state() const {
+  // @@protoc_insertion_point(field_get:go.GameBetResult.State)
+  return state_;
+}
+inline void GameBetResult::set_state(::google::protobuf::int32 value) {
+  
+  state_ = value;
+  // @@protoc_insertion_point(field_set:go.GameBetResult.State)
+}
+
+// string Hints = 3;
+inline void GameBetResult::clear_hints() {
+  hints_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& GameBetResult::hints() const {
+  // @@protoc_insertion_point(field_get:go.GameBetResult.Hints)
+  return hints_.GetNoArena();
+}
+inline void GameBetResult::set_hints(const ::std::string& value) {
+  
+  hints_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:go.GameBetResult.Hints)
+}
+#if LANG_CXX11
+inline void GameBetResult::set_hints(::std::string&& value) {
+  
+  hints_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:go.GameBetResult.Hints)
+}
+#endif
+inline void GameBetResult::set_hints(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  hints_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:go.GameBetResult.Hints)
+}
+inline void GameBetResult::set_hints(const char* value, size_t size) {
+  
+  hints_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:go.GameBetResult.Hints)
+}
+inline ::std::string* GameBetResult::mutable_hints() {
+  
+  // @@protoc_insertion_point(field_mutable:go.GameBetResult.Hints)
+  return hints_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* GameBetResult::release_hints() {
+  // @@protoc_insertion_point(field_release:go.GameBetResult.Hints)
+  
+  return hints_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void GameBetResult::set_allocated_hints(::std::string* hints) {
+  if (hints != nullptr) {
+    
+  } else {
+    
+  }
+  hints_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), hints);
+  // @@protoc_insertion_point(field_set_allocated:go.GameBetResult.Hints)
+}
+
+// int32 BetArea = 4;
+inline void GameBetResult::clear_betarea() {
+  betarea_ = 0;
+}
+inline ::google::protobuf::int32 GameBetResult::betarea() const {
+  // @@protoc_insertion_point(field_get:go.GameBetResult.BetArea)
+  return betarea_;
+}
+inline void GameBetResult::set_betarea(::google::protobuf::int32 value) {
+  
+  betarea_ = value;
+  // @@protoc_insertion_point(field_set:go.GameBetResult.BetArea)
+}
+
+// int64 BetScore = 5;
+inline void GameBetResult::clear_betscore() {
+  betscore_ = PROTOBUF_LONGLONG(0);
+}
+inline ::google::protobuf::int64 GameBetResult::betscore() const {
+  // @@protoc_insertion_point(field_get:go.GameBetResult.BetScore)
+  return betscore_;
+}
+inline void GameBetResult::set_betscore(::google::protobuf::int64 value) {
+  
+  betscore_ = value;
+  // @@protoc_insertion_point(field_set:go.GameBetResult.BetScore)
 }
 
 // -------------------------------------------------------------------
@@ -1904,6 +2190,8 @@ inline void GameResult::set_allocated_reason(::std::string* reason) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

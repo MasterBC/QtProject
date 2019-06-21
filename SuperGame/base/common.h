@@ -234,10 +234,4 @@ inline char * unmarshal(const void * data, size_t len, size_t & size)
 
 //}
 
-class Common
-{
-public:
-    Common();
-};
-
 #endif // COMMON_H

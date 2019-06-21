@@ -82,7 +82,3 @@ void LoginUI::on_pushButtonEnter_clicked()
 
 }
 
-void LoginUI::on_recvData(QByteArray data)
-{
-
-}

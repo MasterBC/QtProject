@@ -10,6 +10,7 @@
 #include "login.pb.h"
 #include "baccarat.pb.h"
 #include "mahjong.pb.h"
+#include "landLords.pb.h"
 
 
 // Qt
@@ -26,12 +27,17 @@ HandleMsg::HandleMsg(QObject *parent):
     GOOGLE_PROTOBUF_VERIFY_VERSION;
     m_theme = 0;
     m_state = 0;
+    m_headSize = 4;
+    m_unpack = "";
     m_socket = nullptr;
     registerProtoMsg();                // -------------> 注册消息
-    m_socket = new QTcpSocket(this);
-    connect(m_socket,SIGNAL(connected()),this,SLOT(SlotSend()));
-    connect(m_socket,SIGNAL(readyRead()),this,SLOT(SlotRead())); //接收发来的数据
-    connect(m_socket,SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(SlotError(QAbstractSocket::SocketError)));
+    if(nullptr == m_socket)
+    {
+        m_socket = new QTcpSocket(this);
+    }
+    connect(m_socket,SIGNAL(connected()),this,SLOT(onSend()));
+    connect(m_socket,SIGNAL(readyRead()),this,SLOT(onRead())); //接收发来的数据
+    connect(m_socket,SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(onError(QAbstractSocket::SocketError)));
 }
 
 HandleMsg::~HandleMsg()
@@ -97,7 +103,7 @@ void HandleMsg::addMsg(QString &strData)
 
 void HandleMsg::sendAllMsg()
 {
-    SlotSend();
+    onSend();
 }
 
 bool HandleMsg::ReqLogin(const char *account, const char *password, const char *securitycode, const char *machinecode)
@@ -175,6 +181,30 @@ bool HandleMsg::ReqEnterGame(int gameID)
     return true;
 }
 
+bool HandleMsg::ReqReady(int userID, bool isReady)
+{
+    go::GameReady ready;
+    ready.set_userid(userID);
+    ready.set_isready(isReady);
+
+    // len + id + data
+    int len = ready.ByteSize();
+    int id = m_mapMsgID[typeid(go::GameReady).name()];
+    char data[256];						//这里的大小可以适时调整
+    ready.SerializeToArray(data, len);
+
+    // 数据序列化
+    size_t size = 0;
+    char* buffer = marshal(len, id, data, size);
+
+    // 数据发送
+    //sendMsg(buffer, size);
+    sendIMMsg(buffer, size);
+    qDebug()<<"准备 成功发送\n";
+    return true;
+
+}
+
 bool HandleMsg::ReqPlayBet(int area, float money)
 {
     go::GameBet bet;
@@ -195,6 +225,29 @@ bool HandleMsg::ReqPlayBet(int area, float money)
     //sendMsg(buffer, size);
     sendIMMsg(buffer, size);
     qDebug()<<"下注区域:"<<area<<" 金币:"<<money<<" 成功发送\n";
+    return true;
+}
+
+bool HandleMsg::ReqPlayCard(int site, const char *cards, size_t cardsLen, const char *hints, size_t hintLen)
+{
+    go::GameLandLordsOutcard outCard;
+    outCard.set_site(site);
+    outCard.set_cards(cards,cardsLen);
+    outCard.set_hints(hints,hintLen);
+
+    // len + id + data
+    int len = outCard.ByteSize();
+    int id = m_mapMsgID[typeid(go::GameLandLordsOutcard).name()];
+    char data[256];						//这里的大小可以适时调整
+    outCard.SerializeToArray(data, len);
+
+    // 数据序列化
+    size_t size = 0;
+    char* buffer = marshal(len, id, data, size);
+
+    // 数据发送
+    sendIMMsg(buffer, size);
+    qDebug()<<"座位:"<<site<<" 出牌:"<<outCard.cards().c_str();
     return true;
 }
 
@@ -229,20 +282,21 @@ void HandleMsg::close()
     m_socket->close();
 }
 
-void HandleMsg::SlotSend()
+void HandleMsg::onSend()
 {
     m_socket->write(m_sendData);
     m_socket->waitForBytesWritten();
+    m_socket->flush();
     m_sendData.clear();
 }
 
-#include <QDataStream>
-void HandleMsg::SlotRead()
+//#include <QDataStream>
+void HandleMsg::onRead()
 {
-    //parseData(m_socket->readAll().data(), m_socket->readAll().length());
-    //m_socket->bytesAvailable()
+
     QByteArray allData = m_socket->readAll();
-    qDebug()<<"接收长度:"<<allData.size() <<"  -> "<<m_socket->readBufferSize();
+    m_socket->flush();
+    qDebug()<<"接收长度:"<<allData.size() <<"  ->\n ";
 
     //    QByteArray allData;
     //    while (!m_socket->atEnd()) {
@@ -253,7 +307,7 @@ void HandleMsg::SlotRead()
     emit recvSig( allData );
 }
 
-void HandleMsg::SlotError(QAbstractSocket::SocketError err)
+void HandleMsg::onError(QAbstractSocket::SocketError err)
 {
     switch (err) {
     case QAbstractSocket::UnconnectedState:
@@ -261,8 +315,8 @@ void HandleMsg::SlotError(QAbstractSocket::SocketError err)
         // emit m_socket->connected();
         break;
     case QAbstractSocket::HostLookupState:
-        QMessageBox::about(nullptr, tr("提示"), tr("请检查是否与主机断开连接"));
-        emit m_socket->connected();
+        emit disconnectSig();
+        QMessageBox::warning(nullptr, tr("提示"), tr("与主机断开连接"));
         break;
     case QAbstractSocket::ConnectingState:
         QMessageBox::about(nullptr, tr("提示"), tr("正在连接主机"));
@@ -271,7 +325,7 @@ void HandleMsg::SlotError(QAbstractSocket::SocketError err)
         QMessageBox::about(nullptr, tr("提示"), tr("已经连接主机"));
         break;
     case QAbstractSocket::BoundState:
-        // QMessageBox::about(nullptr, tr("提示"), tr("已经绑定"));
+        QMessageBox::about(nullptr, tr("提示"), tr("已经绑定"));
         break;
     case QAbstractSocket::ListeningState:
         //QMessageBox::about(nullptr, tr("提示"), tr("正在监听"));
@@ -280,6 +334,7 @@ void HandleMsg::SlotError(QAbstractSocket::SocketError err)
         QMessageBox::about(nullptr, tr("提示"), tr("服务端已经关闭"));
         break;
     default:
+        QMessageBox::about(nullptr, tr("提示"), tr("总之由错误"));
         break;
     }
 }
@@ -297,12 +352,15 @@ void HandleMsg::registerProtoMsg()
     //游戏房间列表
     registerMsg(typeid(go::GameList).name());
     registerMsg(typeid(go::GameBet).name());
+    registerMsg(typeid(go::GameBetResult).name());
     registerMsg(typeid(go::GameHost).name());
     registerMsg(typeid(go::GameSuperHost).name());
     registerMsg(typeid(go::GameReady).name());
 
     // 子游戏
     baccaratRegister(); //百家乐
+    mahjongRegister();  //麻将
+    landLordsRegister();//斗地主
 
     //
 }
@@ -339,11 +397,24 @@ void HandleMsg::mahjongRegister()
     registerMsg(typeid(go::GameMahjongCheckout).name());    //所有得分
 }
 
+
+void HandleMsg::landLordsRegister()
+{
+    registerMsg(typeid(go::GameLandLordsEnter).name());       //入场
+    registerMsg(typeid(go::GameLandLordsPlayer).name());      //玩家信息
+    registerMsg(typeid(go::GameLandLordsBegins).name());      //开始
+    registerMsg(typeid(go::GameLandLordsOutcard).name());     //出牌
+    registerMsg(typeid(go::GameLandLordsOperate).name());     //操作
+    registerMsg(typeid(go::GameLandLordsAward).name());       //个人得分
+    registerMsg(typeid(go::GameLandLordsCheckout).name());    //所有得分
+}
+
 std::string HandleMsg::parseData(const char *data, size_t size)
 {
     // 数据反序列化
     m_theme = 0;
     m_state = 0;
+    m_unpack = "";
     size_t nRealSize = 0;
     char* recvBuffer = unmarshal(data, size, nRealSize);
     if (NULL == recvBuffer)
@@ -357,7 +428,11 @@ std::string HandleMsg::parseData(const char *data, size_t size)
     }
 
     // 需要重复拆包
-
+    qDebug()<<"数据大小:"<<size<<" 真实大小:"<<nRealSize;
+    if( m_headSize < size - nRealSize )
+    {
+        m_unpack.assign(data+nRealSize + m_headSize, size - nRealSize - m_headSize);
+    }
 
     // 主题码 和 状态码
     m_theme = packet.mainid();

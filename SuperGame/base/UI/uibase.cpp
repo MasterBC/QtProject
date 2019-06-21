@@ -17,10 +17,13 @@
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
 UIbase::UIbase(QWidget *parent) : QWidget(parent),m_mediaPlayer(nullptr),m_playlist(nullptr)
-{
-    this->setWindowFlags(Qt::FramelessWindowHint);
+{ 
+    m_direction = NONE;
     // 追踪鼠标
     this->setMouseTracking(true);
+    // 无边框
+    this->setWindowFlags(Qt::FramelessWindowHint);
+
 }
 
 UIbase::~UIbase()
@@ -52,6 +55,15 @@ void UIbase::setBackMusic(const QString &strPath, int volume)
     m_playlist->setCurrentIndex(1);
     m_mediaPlayer->setVolume(volume);
     m_mediaPlayer->play();
+
+}
+
+void UIbase::setBGMVolume(int volume)
+{
+    if(nullptr == m_mediaPlayer)
+    {
+        m_mediaPlayer->setVolume(volume);
+    }
 
 }
 
@@ -117,7 +129,7 @@ void UIbase::mousePressEvent(QMouseEvent *event)
         }
 
     }
-    event->ignore();
+   // event->ignore();
     QWidget::mousePressEvent(event);
 }
 
@@ -127,6 +139,7 @@ void UIbase::mouseMoveEvent(QMouseEvent *event)
     QRect rect = this->rect();
     QPoint tl = mapToGlobal(rect.topLeft());
     QPoint rb = mapToGlobal(rect.bottomRight());
+
 
     if (!m_isLeftPressDown) {
         this->judgeRegionSetCursor(gloPoint);
@@ -208,7 +221,7 @@ void UIbase::contextMenuEvent(QContextMenuEvent *event)
     a.setText("返回");
     connect(&a, &QAction::triggered, [this](){
         this->close();
-        emit exitSig();
+        emit closeSig();
     });
     menu.addAction(&a);
 
@@ -245,6 +258,7 @@ void UIbase::judgeRegionSetCursor(const QPoint & currentPoint)
 
     int x = currentPoint.x();
     int y = currentPoint.y();
+    if(x<0||y<0)return;
 
     if (tl.x() + m_padding >= x && tl.x() <= x && tl.y() + m_padding >= y && tl.y() <= y) {
         // 左上角

@@ -30,7 +30,8 @@ public:
 
     explicit UIbase(QWidget *parent = nullptr);
     virtual ~UIbase();
-    virtual void setBackMusic(const QString& strPath,int volume = 30);
+    virtual void setBackMusic(const QString& strPath,int volume = 0);
+    virtual void setBGMVolume(int volume);
     virtual void addBGM(const QString& strPath);
     virtual void playBGM();
     virtual void pauseBGM();
@@ -40,7 +41,7 @@ public:
 
 
 signals:
-    void exitSig();
+    void closeSig();
 public slots:
 
 protected:
@@ -53,7 +54,7 @@ protected:
     void mouseDoubleClickEvent(QMouseEvent *event);
 
 private:
-    void judgeRegionSetCursor(const QPoint&); //根据拖拽拉伸
+    void judgeRegionSetCursor(const QPoint&currentPoint); //根据拖拽拉伸
 
     const int       m_padding = 10;      // c++11 可以直接赋值
     bool            m_isLeftPressDown;  // 判断左键是否按下

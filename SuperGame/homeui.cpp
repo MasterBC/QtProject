@@ -20,7 +20,7 @@
 // 静态成员
 int HomeUI::S_GameID = 0;
 int HomeUI::S_GameKindID = 0;
-
+int HomeUI::S_GameLevel = 0;
 
 HomeUI::HomeUI(QWidget *parent) :
     UIbase(parent),
@@ -34,7 +34,7 @@ HomeUI::HomeUI(QWidget *parent) :
 
 
     connect(this,SIGNAL(enterSig(int)),this,SLOT(onEnterGame(int)));
-    connect(this,SIGNAL(exitSig()), this, SLOT(onExit()));
+    connect(this,SIGNAL(closeSig()), this, SLOT(onExit()));
 }
 
 HomeUI::~HomeUI()
@@ -83,6 +83,7 @@ void HomeUI::updateGameList(go::GameList &list)
         connect(gameItemBtn, &QPushButton::pressed,[=](){
 
             S_GameKindID = info.kindid();
+            S_GameLevel = info.level();
             qDebug()<<"请求进入游戏:"<<list.items(i).id();
             emit enterSig(list.items(i).id());
         });
@@ -99,9 +100,6 @@ void HomeUI::updateGameList(go::GameList &list)
 
 
         m_layoutGames->addWidget(gameItemBtn, nRow, nCol++, Qt::AlignHCenter);
-        //        info.type();
-        //        info.name();
-        //        info.kindid();
     }
     // 删除动画
 
@@ -117,8 +115,8 @@ void HomeUI::clearList()
         if(child->widget())
         {
             child->widget()->setParent(NULL);
+            child->widget()->deleteLater();
         }
-
         delete child;
         child = nullptr;
     }
@@ -171,8 +169,7 @@ void HomeUI::on_pushButton_clicked()
         //qDebug()<<"随机选中...控件:"<<selectID<< " 随机个数:"<<nRandomCount<<" 控件总数"<<size;
     }else if(1 == size){
         vecNums.push_back(0);
-    }
-    else{
+    }else{
         return;
     }
 

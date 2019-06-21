@@ -7,7 +7,7 @@
 QT       += core gui network multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-CONFIG += c++11  #resources_big
+CONFIG += c++11  resources_big
 TARGET = SuperGame
 TEMPLATE = app
 # The following define makes your compiler emit warnings if you use
@@ -41,13 +41,16 @@ SOURCES += \
     base/UI/uibase.cpp \
     base/UI/gamemap.cpp \
     base/UI/chronograph.cpp \
-    games/baccarat/baccaratgamelogic.cpp \
     games/landlord/landlordui.cpp \
     base/UI/poker.cpp \
-    base/common.cpp \
     base/UI/uilabel.cpp \
     games/mahjong/mahjongui.cpp \
-    games/cowcow/cowcowui.cpp
+    games/cowcow/cowcowui.cpp \
+    games/landlord/landlordlogic.cpp \
+    games/baccarat/baccaratlogic.cpp \
+    base/UI/uichips.cpp \
+    base/UI/uibetarea.cpp \
+    base/UI/uitextscroll.cpp
 
 HEADERS += \
     login.pb.h \
@@ -72,13 +75,17 @@ HEADERS += \
     base/UI/uibase.h \
     base/UI/gamemap.h \
     base/UI/chronograph.h \
-    games/baccarat/baccaratgamelogic.h \
     games/landlord/landlordui.h \
     base/UI/poker.h \
     base/common.h \
     base/UI/uilabel.h \
     games/mahjong/mahjongui.h \
-    games/cowcow/cowcowui.h
+    games/cowcow/cowcowui.h \
+    games/landlord/landlordlogic.h \
+    games/baccarat/baccaratlogic.h \
+    base/UI/uichips.h \
+    base/UI/uibetarea.h \
+    base/UI/uitextscroll.h
 
 
 FORMS += \

@@ -260,7 +260,7 @@ const char descriptor_table_protodef_mahjong_2eproto[] =
   "ts\030\003 \001(\t\"@\n\022GameMahjongOperate\022\014\n\004Code\030\001"
   " \001(\005\022\r\n\005Cards\030\002 \001(\014\022\r\n\005Hints\030\003 \001(\t\"@\n\020Ga"
   "meMahjongAward\022\014\n\004Site\030\001 \001(\r\022\r\n\005Codes\030\002 "
-  "\001(\014\022\017\n\007GetGold\030\003 \001(\002\"<\n\023GameMahjongCheck"
+  "\001(\014\022\017\n\007GetGold\030\003 \001(\003\"<\n\023GameMahjongCheck"
   "out\022%\n\007players\030\001 \003(\0132\024.go.GameMahjongAwa"
   "rdb\006proto3"
   ;
@@ -2301,9 +2301,9 @@ GameMahjongAward::GameMahjongAward(const GameMahjongAward& from)
   if (from.codes().size() > 0) {
     codes_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.codes_);
   }
-  ::memcpy(&site_, &from.site_,
-    static_cast<size_t>(reinterpret_cast<char*>(&getgold_) -
-    reinterpret_cast<char*>(&site_)) + sizeof(getgold_));
+  ::memcpy(&getgold_, &from.getgold_,
+    static_cast<size_t>(reinterpret_cast<char*>(&site_) -
+    reinterpret_cast<char*>(&getgold_)) + sizeof(site_));
   // @@protoc_insertion_point(copy_constructor:go.GameMahjongAward)
 }
 
@@ -2311,9 +2311,9 @@ void GameMahjongAward::SharedCtor() {
   ::google::protobuf::internal::InitSCC(
       &scc_info_GameMahjongAward_mahjong_2eproto.base);
   codes_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ::memset(&site_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&getgold_) -
-      reinterpret_cast<char*>(&site_)) + sizeof(getgold_));
+  ::memset(&getgold_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&site_) -
+      reinterpret_cast<char*>(&getgold_)) + sizeof(site_));
 }
 
 GameMahjongAward::~GameMahjongAward() {
@@ -2341,9 +2341,9 @@ void GameMahjongAward::Clear() {
   (void) cached_has_bits;
 
   codes_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ::memset(&site_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&getgold_) -
-      reinterpret_cast<char*>(&site_)) + sizeof(getgold_));
+  ::memset(&getgold_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&site_) -
+      reinterpret_cast<char*>(&getgold_)) + sizeof(site_));
   _internal_metadata_.Clear();
 }
 
@@ -2382,11 +2382,11 @@ const char* GameMahjongAward::_InternalParse(const char* begin, const char* end,
         ptr += size;
         break;
       }
-      // float GetGold = 3;
+      // int64 GetGold = 3;
       case 3: {
-        if (static_cast<::google::protobuf::uint8>(tag) != 29) goto handle_unusual;
-        msg->set_getgold(::google::protobuf::io::UnalignedLoad<float>(ptr));
-        ptr += sizeof(float);
+        if (static_cast<::google::protobuf::uint8>(tag) != 24) goto handle_unusual;
+        msg->set_getgold(::google::protobuf::internal::ReadVarint(&ptr));
+        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
         break;
       }
       default: {
@@ -2447,12 +2447,12 @@ bool GameMahjongAward::MergePartialFromCodedStream(
         break;
       }
 
-      // float GetGold = 3;
+      // int64 GetGold = 3;
       case 3: {
-        if (static_cast< ::google::protobuf::uint8>(tag) == (29 & 0xFF)) {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (24 & 0xFF)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &getgold_)));
         } else {
           goto handle_unusual;
@@ -2498,9 +2498,9 @@ void GameMahjongAward::SerializeWithCachedSizes(
       2, this->codes(), output);
   }
 
-  // float GetGold = 3;
+  // int64 GetGold = 3;
   if (this->getgold() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteFloat(3, this->getgold(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(3, this->getgold(), output);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -2528,9 +2528,9 @@ void GameMahjongAward::SerializeWithCachedSizes(
         2, this->codes(), target);
   }
 
-  // float GetGold = 3;
+  // int64 GetGold = 3;
   if (this->getgold() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(3, this->getgold(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(3, this->getgold(), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -2561,16 +2561,18 @@ size_t GameMahjongAward::ByteSizeLong() const {
         this->codes());
   }
 
+  // int64 GetGold = 3;
+  if (this->getgold() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
+        this->getgold());
+  }
+
   // uint32 Site = 1;
   if (this->site() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->site());
-  }
-
-  // float GetGold = 3;
-  if (this->getgold() != 0) {
-    total_size += 1 + 4;
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -2604,11 +2606,11 @@ void GameMahjongAward::MergeFrom(const GameMahjongAward& from) {
 
     codes_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.codes_);
   }
-  if (from.site() != 0) {
-    set_site(from.site());
-  }
   if (from.getgold() != 0) {
     set_getgold(from.getgold());
+  }
+  if (from.site() != 0) {
+    set_site(from.site());
   }
 }
 
@@ -2639,8 +2641,8 @@ void GameMahjongAward::InternalSwap(GameMahjongAward* other) {
   _internal_metadata_.Swap(&other->_internal_metadata_);
   codes_.Swap(&other->codes_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
-  swap(site_, other->site_);
   swap(getgold_, other->getgold_);
+  swap(site_, other->site_);
 }
 
 ::google::protobuf::Metadata GameMahjongAward::GetMetadata() const {

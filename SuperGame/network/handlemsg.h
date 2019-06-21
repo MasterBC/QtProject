@@ -16,7 +16,6 @@
 #include <QAbstractSocket>
 #include "base/Magic_Singleton.h"
 
-// 建议使用单例模式
 
 class QTcpSocket;
 class HandleMsg:public QObject
@@ -30,6 +29,7 @@ public:
 
     inline int GetTheme()const{ return m_theme; }
     inline int GetCode()const { return m_state; }                   //  状态码
+    inline std::string GetUnpack()const{ return m_unpack; }                //  是否需要拆包
 
 
     bool connectTo(QString& strIP, int nPort, int msecs = 30000);   // 连接外网
@@ -50,35 +50,48 @@ public:
     // 请求进入游戏
     bool ReqEnterGame(int gameID);
 
+    // 请求准备(对战类游戏)
+    bool ReqReady(int userID, bool isReady);
+
     // 请求下注
     bool ReqPlayBet(int area,float money);
 
-    // 请求下注
+
+    // 请求 出牌
+    bool ReqPlayCard(int site, const char* cards, size_t len, const char* hints, size_t hintLen);
+
+
+    // 请求退出游戏
     bool ReqExitGame(int gameID);//不需要服务端返回
 
 
     void close();
+
 signals:
     void recvSig(QByteArray data);
+    void disconnectSig();
 
 
 public slots:
-    void SlotSend();
+    void onSend();
+
 
 
 private slots:
-    void SlotRead();
-    void SlotError(QAbstractSocket::SocketError err);
+    void onRead();
+    void onError(QAbstractSocket::SocketError err);
 private:
     void registerProtoMsg();									// ******务必与leaf服务器注册的一致
     void registerMsg(const char* clsName);
 
     void baccaratRegister();
     void mahjongRegister();
-
+    void landLordsRegister();
 
     int m_theme;                                                // 主题码  == mainID
     int m_state;												// 状态码  == subID
+    std::string  m_unpack;                                      // 是否需要重复拆包
+    size_t m_headSize;
     QTcpSocket* m_socket;
     QByteArray  m_sendData;
     std::map<std::string, int> m_mapMsgID;

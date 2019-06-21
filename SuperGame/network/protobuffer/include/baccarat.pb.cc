@@ -16,7 +16,7 @@
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 
-extern PROTOBUF_INTERNAL_EXPORT_gamecomm_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_UserList_gamecomm_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_gamecomm_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_PlayerInfo_gamecomm_2eproto;
 namespace go {
 class GameBaccaratEnterDefaultTypeInternal {
  public:
@@ -56,7 +56,7 @@ static void InitDefaultsGameBaccaratEnter_baccarat_2eproto() {
 
 ::google::protobuf::internal::SCCInfo<1> scc_info_GameBaccaratEnter_baccarat_2eproto =
     {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsGameBaccaratEnter_baccarat_2eproto}, {
-      &scc_info_UserList_gamecomm_2eproto.base,}};
+      &scc_info_PlayerInfo_gamecomm_2eproto.base,}};
 
 static void InitDefaultsGameBaccaratHost_baccarat_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -147,11 +147,9 @@ const ::google::protobuf::uint32 TableStruct_baccarat_2eproto::offsets[] PROTOBU
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::go::GameBaccaratEnter, userid_),
-  PROTOBUF_FIELD_OFFSET(::go::GameBaccaratEnter, bankerscore_),
+  PROTOBUF_FIELD_OFFSET(::go::GameBaccaratEnter, userinfo_),
   PROTOBUF_FIELD_OFFSET(::go::GameBaccaratEnter, timestamp_),
   PROTOBUF_FIELD_OFFSET(::go::GameBaccaratEnter, chips_),
-  PROTOBUF_FIELD_OFFSET(::go::GameBaccaratEnter, players_),
   PROTOBUF_FIELD_OFFSET(::go::GameBaccaratEnter, awardareas_),
   PROTOBUF_FIELD_OFFSET(::go::GameBaccaratEnter, freetime_),
   PROTOBUF_FIELD_OFFSET(::go::GameBaccaratEnter, bettime_),
@@ -196,11 +194,11 @@ const ::google::protobuf::uint32 TableStruct_baccarat_2eproto::offsets[] PROTOBU
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::go::GameBaccaratEnter)},
-  { 14, -1, sizeof(::go::GameBaccaratHost)},
-  { 21, -1, sizeof(::go::GameBaccaratSuperHost)},
-  { 28, -1, sizeof(::go::GameBaccaratBet)},
-  { 35, -1, sizeof(::go::GameBaccaratBetResult)},
-  { 42, -1, sizeof(::go::GameBaccaratOver)},
+  { 12, -1, sizeof(::go::GameBaccaratHost)},
+  { 19, -1, sizeof(::go::GameBaccaratSuperHost)},
+  { 26, -1, sizeof(::go::GameBaccaratBet)},
+  { 33, -1, sizeof(::go::GameBaccaratBetResult)},
+  { 40, -1, sizeof(::go::GameBaccaratOver)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -219,25 +217,25 @@ static ::google::protobuf::Message const * const file_default_instances[] = {
 };
 
 const char descriptor_table_protodef_baccarat_2eproto[] =
-  "\n\016baccarat.proto\022\002go\032\016gamecomm.proto\"\302\001\n"
-  "\021GameBaccaratEnter\022\016\n\006UserID\030\001 \001(\004\022\023\n\013Ba"
-  "nkerScore\030\002 \001(\002\022\021\n\tTimeStamp\030\003 \001(\003\022\r\n\005Ch"
-  "ips\030\004 \003(\005\022\035\n\007Players\030\005 \001(\0132\014.go.UserList"
-  "\022\022\n\nAwardAreas\030\006 \003(\014\022\020\n\010FreeTime\030\007 \001(\r\022\017"
-  "\n\007BetTime\030\010 \001(\r\022\020\n\010OpenTime\030\t \001(\r\"2\n\020Gam"
-  "eBaccaratHost\022\016\n\006UserID\030\001 \001(\004\022\016\n\006IsWant\030"
-  "\002 \001(\010\"7\n\025GameBaccaratSuperHost\022\016\n\006UserID"
-  "\030\001 \001(\004\022\016\n\006IsWant\030\002 \001(\010\"4\n\017GameBaccaratBe"
-  "t\022\017\n\007BetArea\030\001 \001(\005\022\020\n\010BetScore\030\002 \001(\002\"5\n\025"
-  "GameBaccaratBetResult\022\r\n\005State\030\001 \001(\005\022\r\n\005"
-  "Hints\030\002 \001(\t\"^\n\020GameBaccaratOver\022\021\n\tAward"
-  "Area\030\001 \001(\014\022\022\n\nPlayerCard\030\002 \001(\014\022\022\n\nBanker"
-  "Card\030\003 \001(\014\022\017\n\007Acquire\030\004 \001(\002b\006proto3"
+  "\n\016baccarat.proto\022\002go\032\016gamecomm.proto\"\240\001\n"
+  "\021GameBaccaratEnter\022 \n\010UserInfo\030\001 \001(\0132\016.g"
+  "o.PlayerInfo\022\021\n\tTimeStamp\030\002 \001(\003\022\r\n\005Chips"
+  "\030\003 \003(\005\022\022\n\nAwardAreas\030\004 \003(\014\022\020\n\010FreeTime\030\005"
+  " \001(\r\022\017\n\007BetTime\030\006 \001(\r\022\020\n\010OpenTime\030\007 \001(\r\""
+  "2\n\020GameBaccaratHost\022\016\n\006UserID\030\001 \001(\004\022\016\n\006I"
+  "sWant\030\002 \001(\010\"7\n\025GameBaccaratSuperHost\022\016\n\006"
+  "UserID\030\001 \001(\004\022\016\n\006IsWant\030\002 \001(\010\"4\n\017GameBacc"
+  "aratBet\022\017\n\007BetArea\030\001 \001(\005\022\020\n\010BetScore\030\002 \001"
+  "(\003\"5\n\025GameBaccaratBetResult\022\r\n\005State\030\001 \001"
+  "(\005\022\r\n\005Hints\030\002 \001(\t\"^\n\020GameBaccaratOver\022\021\n"
+  "\tAwardArea\030\001 \001(\014\022\022\n\nPlayerCard\030\002 \001(\014\022\022\n\n"
+  "BankerCard\030\003 \001(\014\022\017\n\007Acquire\030\004 \001(\003b\006proto"
+  "3"
   ;
 ::google::protobuf::internal::DescriptorTable descriptor_table_baccarat_2eproto = {
   false, InitDefaults_baccarat_2eproto, 
   descriptor_table_protodef_baccarat_2eproto,
-  "baccarat.proto", &assign_descriptors_table_baccarat_2eproto, 555,
+  "baccarat.proto", &assign_descriptors_table_baccarat_2eproto, 521,
 };
 
 void AddDescriptors_baccarat_2eproto() {
@@ -255,30 +253,28 @@ namespace go {
 // ===================================================================
 
 void GameBaccaratEnter::InitAsDefaultInstance() {
-  ::go::_GameBaccaratEnter_default_instance_._instance.get_mutable()->players_ = const_cast< ::go::UserList*>(
-      ::go::UserList::internal_default_instance());
+  ::go::_GameBaccaratEnter_default_instance_._instance.get_mutable()->userinfo_ = const_cast< ::go::PlayerInfo*>(
+      ::go::PlayerInfo::internal_default_instance());
 }
 class GameBaccaratEnter::HasBitSetters {
  public:
-  static const ::go::UserList& players(const GameBaccaratEnter* msg);
+  static const ::go::PlayerInfo& userinfo(const GameBaccaratEnter* msg);
 };
 
-const ::go::UserList&
-GameBaccaratEnter::HasBitSetters::players(const GameBaccaratEnter* msg) {
-  return *msg->players_;
+const ::go::PlayerInfo&
+GameBaccaratEnter::HasBitSetters::userinfo(const GameBaccaratEnter* msg) {
+  return *msg->userinfo_;
 }
-void GameBaccaratEnter::clear_players() {
-  if (GetArenaNoVirtual() == nullptr && players_ != nullptr) {
-    delete players_;
+void GameBaccaratEnter::clear_userinfo() {
+  if (GetArenaNoVirtual() == nullptr && userinfo_ != nullptr) {
+    delete userinfo_;
   }
-  players_ = nullptr;
+  userinfo_ = nullptr;
 }
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int GameBaccaratEnter::kUserIDFieldNumber;
-const int GameBaccaratEnter::kBankerScoreFieldNumber;
+const int GameBaccaratEnter::kUserInfoFieldNumber;
 const int GameBaccaratEnter::kTimeStampFieldNumber;
 const int GameBaccaratEnter::kChipsFieldNumber;
-const int GameBaccaratEnter::kPlayersFieldNumber;
 const int GameBaccaratEnter::kAwardAreasFieldNumber;
 const int GameBaccaratEnter::kFreeTimeFieldNumber;
 const int GameBaccaratEnter::kBetTimeFieldNumber;
@@ -296,23 +292,23 @@ GameBaccaratEnter::GameBaccaratEnter(const GameBaccaratEnter& from)
       chips_(from.chips_),
       awardareas_(from.awardareas_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  if (from.has_players()) {
-    players_ = new ::go::UserList(*from.players_);
+  if (from.has_userinfo()) {
+    userinfo_ = new ::go::PlayerInfo(*from.userinfo_);
   } else {
-    players_ = nullptr;
+    userinfo_ = nullptr;
   }
-  ::memcpy(&userid_, &from.userid_,
+  ::memcpy(&timestamp_, &from.timestamp_,
     static_cast<size_t>(reinterpret_cast<char*>(&opentime_) -
-    reinterpret_cast<char*>(&userid_)) + sizeof(opentime_));
+    reinterpret_cast<char*>(&timestamp_)) + sizeof(opentime_));
   // @@protoc_insertion_point(copy_constructor:go.GameBaccaratEnter)
 }
 
 void GameBaccaratEnter::SharedCtor() {
   ::google::protobuf::internal::InitSCC(
       &scc_info_GameBaccaratEnter_baccarat_2eproto.base);
-  ::memset(&players_, 0, static_cast<size_t>(
+  ::memset(&userinfo_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&opentime_) -
-      reinterpret_cast<char*>(&players_)) + sizeof(opentime_));
+      reinterpret_cast<char*>(&userinfo_)) + sizeof(opentime_));
 }
 
 GameBaccaratEnter::~GameBaccaratEnter() {
@@ -321,7 +317,7 @@ GameBaccaratEnter::~GameBaccaratEnter() {
 }
 
 void GameBaccaratEnter::SharedDtor() {
-  if (this != internal_default_instance()) delete players_;
+  if (this != internal_default_instance()) delete userinfo_;
 }
 
 void GameBaccaratEnter::SetCachedSize(int size) const {
@@ -341,13 +337,13 @@ void GameBaccaratEnter::Clear() {
 
   chips_.Clear();
   awardareas_.Clear();
-  if (GetArenaNoVirtual() == nullptr && players_ != nullptr) {
-    delete players_;
+  if (GetArenaNoVirtual() == nullptr && userinfo_ != nullptr) {
+    delete userinfo_;
   }
-  players_ = nullptr;
-  ::memset(&userid_, 0, static_cast<size_t>(
+  userinfo_ = nullptr;
+  ::memset(&timestamp_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&opentime_) -
-      reinterpret_cast<char*>(&userid_)) + sizeof(opentime_));
+      reinterpret_cast<char*>(&timestamp_)) + sizeof(opentime_));
   _internal_metadata_.Clear();
 }
 
@@ -364,30 +360,29 @@ const char* GameBaccaratEnter::_InternalParse(const char* begin, const char* end
     ptr = ::google::protobuf::io::Parse32(ptr, &tag);
     GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
     switch (tag >> 3) {
-      // uint64 UserID = 1;
+      // .go.PlayerInfo UserInfo = 1;
       case 1: {
-        if (static_cast<::google::protobuf::uint8>(tag) != 8) goto handle_unusual;
-        msg->set_userid(::google::protobuf::internal::ReadVarint(&ptr));
+        if (static_cast<::google::protobuf::uint8>(tag) != 10) goto handle_unusual;
+        ptr = ::google::protobuf::io::ReadSize(ptr, &size);
         GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
+        parser_till_end = ::go::PlayerInfo::_InternalParse;
+        object = msg->mutable_userinfo();
+        if (size > end - ptr) goto len_delim_till_end;
+        ptr += size;
+        GOOGLE_PROTOBUF_PARSER_ASSERT(ctx->ParseExactRange(
+            {parser_till_end, object}, ptr - size, ptr));
         break;
       }
-      // float BankerScore = 2;
+      // int64 TimeStamp = 2;
       case 2: {
-        if (static_cast<::google::protobuf::uint8>(tag) != 21) goto handle_unusual;
-        msg->set_bankerscore(::google::protobuf::io::UnalignedLoad<float>(ptr));
-        ptr += sizeof(float);
-        break;
-      }
-      // int64 TimeStamp = 3;
-      case 3: {
-        if (static_cast<::google::protobuf::uint8>(tag) != 24) goto handle_unusual;
+        if (static_cast<::google::protobuf::uint8>(tag) != 16) goto handle_unusual;
         msg->set_timestamp(::google::protobuf::internal::ReadVarint(&ptr));
         GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
         break;
       }
-      // repeated int32 Chips = 4;
-      case 4: {
-        if (static_cast<::google::protobuf::uint8>(tag) == 34) {
+      // repeated int32 Chips = 3;
+      case 3: {
+        if (static_cast<::google::protobuf::uint8>(tag) == 26) {
           ptr = ::google::protobuf::io::ReadSize(ptr, &size);
           GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
           parser_till_end = ::google::protobuf::internal::PackedInt32Parser;
@@ -397,30 +392,17 @@ const char* GameBaccaratEnter::_InternalParse(const char* begin, const char* end
           if (size) ptr = parser_till_end(ptr, newend, object, ctx);
           GOOGLE_PROTOBUF_PARSER_ASSERT(ptr == newend);
           break;
-        } else if (static_cast<::google::protobuf::uint8>(tag) != 32) goto handle_unusual;
+        } else if (static_cast<::google::protobuf::uint8>(tag) != 24) goto handle_unusual;
         do {
           msg->add_chips(::google::protobuf::internal::ReadVarint(&ptr));
           GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
           if (ptr >= end) break;
-        } while ((::google::protobuf::io::UnalignedLoad<::google::protobuf::uint64>(ptr) & 255) == 32 && (ptr += 1));
+        } while ((::google::protobuf::io::UnalignedLoad<::google::protobuf::uint64>(ptr) & 255) == 24 && (ptr += 1));
         break;
       }
-      // .go.UserList Players = 5;
-      case 5: {
-        if (static_cast<::google::protobuf::uint8>(tag) != 42) goto handle_unusual;
-        ptr = ::google::protobuf::io::ReadSize(ptr, &size);
-        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
-        parser_till_end = ::go::UserList::_InternalParse;
-        object = msg->mutable_players();
-        if (size > end - ptr) goto len_delim_till_end;
-        ptr += size;
-        GOOGLE_PROTOBUF_PARSER_ASSERT(ctx->ParseExactRange(
-            {parser_till_end, object}, ptr - size, ptr));
-        break;
-      }
-      // repeated bytes AwardAreas = 6;
-      case 6: {
-        if (static_cast<::google::protobuf::uint8>(tag) != 50) goto handle_unusual;
+      // repeated bytes AwardAreas = 4;
+      case 4: {
+        if (static_cast<::google::protobuf::uint8>(tag) != 34) goto handle_unusual;
         do {
           ptr = ::google::protobuf::io::ReadSize(ptr, &size);
           GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
@@ -433,26 +415,26 @@ const char* GameBaccaratEnter::_InternalParse(const char* begin, const char* end
           ::google::protobuf::internal::InlineGreedyStringParser(object, ptr, size, ctx);
           ptr += size;
           if (ptr >= end) break;
-        } while ((::google::protobuf::io::UnalignedLoad<::google::protobuf::uint64>(ptr) & 255) == 50 && (ptr += 1));
+        } while ((::google::protobuf::io::UnalignedLoad<::google::protobuf::uint64>(ptr) & 255) == 34 && (ptr += 1));
         break;
       }
-      // uint32 FreeTime = 7;
-      case 7: {
-        if (static_cast<::google::protobuf::uint8>(tag) != 56) goto handle_unusual;
+      // uint32 FreeTime = 5;
+      case 5: {
+        if (static_cast<::google::protobuf::uint8>(tag) != 40) goto handle_unusual;
         msg->set_freetime(::google::protobuf::internal::ReadVarint(&ptr));
         GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
         break;
       }
-      // uint32 BetTime = 8;
-      case 8: {
-        if (static_cast<::google::protobuf::uint8>(tag) != 64) goto handle_unusual;
+      // uint32 BetTime = 6;
+      case 6: {
+        if (static_cast<::google::protobuf::uint8>(tag) != 48) goto handle_unusual;
         msg->set_bettime(::google::protobuf::internal::ReadVarint(&ptr));
         GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
         break;
       }
-      // uint32 OpenTime = 9;
-      case 9: {
-        if (static_cast<::google::protobuf::uint8>(tag) != 72) goto handle_unusual;
+      // uint32 OpenTime = 7;
+      case 7: {
+        if (static_cast<::google::protobuf::uint8>(tag) != 56) goto handle_unusual;
         msg->set_opentime(::google::protobuf::internal::ReadVarint(&ptr));
         GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
         break;
@@ -491,35 +473,20 @@ bool GameBaccaratEnter::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // uint64 UserID = 1;
+      // .go.PlayerInfo UserInfo = 1;
       case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) == (8 & 0xFF)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
-                 input, &userid_)));
+        if (static_cast< ::google::protobuf::uint8>(tag) == (10 & 0xFF)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_userinfo()));
         } else {
           goto handle_unusual;
         }
         break;
       }
 
-      // float BankerScore = 2;
+      // int64 TimeStamp = 2;
       case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) == (21 & 0xFF)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
-                 input, &bankerscore_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      // int64 TimeStamp = 3;
-      case 3: {
-        if (static_cast< ::google::protobuf::uint8>(tag) == (24 & 0xFF)) {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (16 & 0xFF)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
@@ -530,36 +497,25 @@ bool GameBaccaratEnter::MergePartialFromCodedStream(
         break;
       }
 
-      // repeated int32 Chips = 4;
-      case 4: {
-        if (static_cast< ::google::protobuf::uint8>(tag) == (34 & 0xFF)) {
+      // repeated int32 Chips = 3;
+      case 3: {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (26 & 0xFF)) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, this->mutable_chips())));
-        } else if (static_cast< ::google::protobuf::uint8>(tag) == (32 & 0xFF)) {
+        } else if (static_cast< ::google::protobuf::uint8>(tag) == (24 & 0xFF)) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitiveNoInline<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 1, 34u, input, this->mutable_chips())));
+                 1, 26u, input, this->mutable_chips())));
         } else {
           goto handle_unusual;
         }
         break;
       }
 
-      // .go.UserList Players = 5;
-      case 5: {
-        if (static_cast< ::google::protobuf::uint8>(tag) == (42 & 0xFF)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
-               input, mutable_players()));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      // repeated bytes AwardAreas = 6;
-      case 6: {
-        if (static_cast< ::google::protobuf::uint8>(tag) == (50 & 0xFF)) {
+      // repeated bytes AwardAreas = 4;
+      case 4: {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (34 & 0xFF)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
                 input, this->add_awardareas()));
         } else {
@@ -568,9 +524,9 @@ bool GameBaccaratEnter::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 FreeTime = 7;
-      case 7: {
-        if (static_cast< ::google::protobuf::uint8>(tag) == (56 & 0xFF)) {
+      // uint32 FreeTime = 5;
+      case 5: {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (40 & 0xFF)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -581,9 +537,9 @@ bool GameBaccaratEnter::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 BetTime = 8;
-      case 8: {
-        if (static_cast< ::google::protobuf::uint8>(tag) == (64 & 0xFF)) {
+      // uint32 BetTime = 6;
+      case 6: {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (48 & 0xFF)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -594,9 +550,9 @@ bool GameBaccaratEnter::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 OpenTime = 9;
-      case 9: {
-        if (static_cast< ::google::protobuf::uint8>(tag) == (72 & 0xFF)) {
+      // uint32 OpenTime = 7;
+      case 7: {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (56 & 0xFF)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -634,24 +590,20 @@ void GameBaccaratEnter::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // uint64 UserID = 1;
-  if (this->userid() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt64(1, this->userid(), output);
+  // .go.PlayerInfo UserInfo = 1;
+  if (this->has_userinfo()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1, HasBitSetters::userinfo(this), output);
   }
 
-  // float BankerScore = 2;
-  if (this->bankerscore() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteFloat(2, this->bankerscore(), output);
-  }
-
-  // int64 TimeStamp = 3;
+  // int64 TimeStamp = 2;
   if (this->timestamp() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt64(3, this->timestamp(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(2, this->timestamp(), output);
   }
 
-  // repeated int32 Chips = 4;
+  // repeated int32 Chips = 3;
   if (this->chips_size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteTag(4, ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
+    ::google::protobuf::internal::WireFormatLite::WriteTag(3, ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
     output->WriteVarint32(_chips_cached_byte_size_.load(
         std::memory_order_relaxed));
   }
@@ -660,31 +612,25 @@ void GameBaccaratEnter::SerializeWithCachedSizes(
       this->chips(i), output);
   }
 
-  // .go.UserList Players = 5;
-  if (this->has_players()) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      5, HasBitSetters::players(this), output);
-  }
-
-  // repeated bytes AwardAreas = 6;
+  // repeated bytes AwardAreas = 4;
   for (int i = 0, n = this->awardareas_size(); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteBytes(
-      6, this->awardareas(i), output);
+      4, this->awardareas(i), output);
   }
 
-  // uint32 FreeTime = 7;
+  // uint32 FreeTime = 5;
   if (this->freetime() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(7, this->freetime(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(5, this->freetime(), output);
   }
 
-  // uint32 BetTime = 8;
+  // uint32 BetTime = 6;
   if (this->bettime() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(8, this->bettime(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(6, this->bettime(), output);
   }
 
-  // uint32 OpenTime = 9;
+  // uint32 OpenTime = 7;
   if (this->opentime() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(9, this->opentime(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(7, this->opentime(), output);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -700,25 +646,22 @@ void GameBaccaratEnter::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // uint64 UserID = 1;
-  if (this->userid() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(1, this->userid(), target);
+  // .go.PlayerInfo UserInfo = 1;
+  if (this->has_userinfo()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        1, HasBitSetters::userinfo(this), target);
   }
 
-  // float BankerScore = 2;
-  if (this->bankerscore() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(2, this->bankerscore(), target);
-  }
-
-  // int64 TimeStamp = 3;
+  // int64 TimeStamp = 2;
   if (this->timestamp() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(3, this->timestamp(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(2, this->timestamp(), target);
   }
 
-  // repeated int32 Chips = 4;
+  // repeated int32 Chips = 3;
   if (this->chips_size() > 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteTagToArray(
-      4,
+      3,
       ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED,
       target);
     target = ::google::protobuf::io::CodedOutputStream::WriteVarint32ToArray(
@@ -728,32 +671,25 @@ void GameBaccaratEnter::SerializeWithCachedSizes(
       WriteInt32NoTagToArray(this->chips_, target);
   }
 
-  // .go.UserList Players = 5;
-  if (this->has_players()) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageToArray(
-        5, HasBitSetters::players(this), target);
-  }
-
-  // repeated bytes AwardAreas = 6;
+  // repeated bytes AwardAreas = 4;
   for (int i = 0, n = this->awardareas_size(); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteBytesToArray(6, this->awardareas(i), target);
+      WriteBytesToArray(4, this->awardareas(i), target);
   }
 
-  // uint32 FreeTime = 7;
+  // uint32 FreeTime = 5;
   if (this->freetime() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(7, this->freetime(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(5, this->freetime(), target);
   }
 
-  // uint32 BetTime = 8;
+  // uint32 BetTime = 6;
   if (this->bettime() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(8, this->bettime(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(6, this->bettime(), target);
   }
 
-  // uint32 OpenTime = 9;
+  // uint32 OpenTime = 7;
   if (this->opentime() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(9, this->opentime(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(7, this->opentime(), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -777,7 +713,7 @@ size_t GameBaccaratEnter::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated int32 Chips = 4;
+  // repeated int32 Chips = 3;
   {
     size_t data_size = ::google::protobuf::internal::WireFormatLite::
       Int32Size(this->chips_);
@@ -792,7 +728,7 @@ size_t GameBaccaratEnter::ByteSizeLong() const {
     total_size += data_size;
   }
 
-  // repeated bytes AwardAreas = 6;
+  // repeated bytes AwardAreas = 4;
   total_size += 1 *
       ::google::protobuf::internal::FromIntSize(this->awardareas_size());
   for (int i = 0, n = this->awardareas_size(); i < n; i++) {
@@ -800,47 +736,35 @@ size_t GameBaccaratEnter::ByteSizeLong() const {
       this->awardareas(i));
   }
 
-  // .go.UserList Players = 5;
-  if (this->has_players()) {
+  // .go.PlayerInfo UserInfo = 1;
+  if (this->has_userinfo()) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSize(
-        *players_);
+        *userinfo_);
   }
 
-  // uint64 UserID = 1;
-  if (this->userid() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::UInt64Size(
-        this->userid());
-  }
-
-  // int64 TimeStamp = 3;
+  // int64 TimeStamp = 2;
   if (this->timestamp() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->timestamp());
   }
 
-  // float BankerScore = 2;
-  if (this->bankerscore() != 0) {
-    total_size += 1 + 4;
-  }
-
-  // uint32 FreeTime = 7;
+  // uint32 FreeTime = 5;
   if (this->freetime() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->freetime());
   }
 
-  // uint32 BetTime = 8;
+  // uint32 BetTime = 6;
   if (this->bettime() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->bettime());
   }
 
-  // uint32 OpenTime = 9;
+  // uint32 OpenTime = 7;
   if (this->opentime() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
@@ -876,17 +800,11 @@ void GameBaccaratEnter::MergeFrom(const GameBaccaratEnter& from) {
 
   chips_.MergeFrom(from.chips_);
   awardareas_.MergeFrom(from.awardareas_);
-  if (from.has_players()) {
-    mutable_players()->::go::UserList::MergeFrom(from.players());
-  }
-  if (from.userid() != 0) {
-    set_userid(from.userid());
+  if (from.has_userinfo()) {
+    mutable_userinfo()->::go::PlayerInfo::MergeFrom(from.userinfo());
   }
   if (from.timestamp() != 0) {
     set_timestamp(from.timestamp());
-  }
-  if (from.bankerscore() != 0) {
-    set_bankerscore(from.bankerscore());
   }
   if (from.freetime() != 0) {
     set_freetime(from.freetime());
@@ -926,10 +844,8 @@ void GameBaccaratEnter::InternalSwap(GameBaccaratEnter* other) {
   _internal_metadata_.Swap(&other->_internal_metadata_);
   chips_.InternalSwap(&other->chips_);
   awardareas_.InternalSwap(CastToBase(&other->awardareas_));
-  swap(players_, other->players_);
-  swap(userid_, other->userid_);
+  swap(userinfo_, other->userinfo_);
   swap(timestamp_, other->timestamp_);
-  swap(bankerscore_, other->bankerscore_);
   swap(freetime_, other->freetime_);
   swap(bettime_, other->bettime_);
   swap(opentime_, other->opentime_);
@@ -1575,16 +1491,16 @@ GameBaccaratBet::GameBaccaratBet(const GameBaccaratBet& from)
   : ::google::protobuf::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::memcpy(&betarea_, &from.betarea_,
-    static_cast<size_t>(reinterpret_cast<char*>(&betscore_) -
-    reinterpret_cast<char*>(&betarea_)) + sizeof(betscore_));
+  ::memcpy(&betscore_, &from.betscore_,
+    static_cast<size_t>(reinterpret_cast<char*>(&betarea_) -
+    reinterpret_cast<char*>(&betscore_)) + sizeof(betarea_));
   // @@protoc_insertion_point(copy_constructor:go.GameBaccaratBet)
 }
 
 void GameBaccaratBet::SharedCtor() {
-  ::memset(&betarea_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&betscore_) -
-      reinterpret_cast<char*>(&betarea_)) + sizeof(betscore_));
+  ::memset(&betscore_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&betarea_) -
+      reinterpret_cast<char*>(&betscore_)) + sizeof(betarea_));
 }
 
 GameBaccaratBet::~GameBaccaratBet() {
@@ -1610,9 +1526,9 @@ void GameBaccaratBet::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&betarea_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&betscore_) -
-      reinterpret_cast<char*>(&betarea_)) + sizeof(betscore_));
+  ::memset(&betscore_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&betarea_) -
+      reinterpret_cast<char*>(&betscore_)) + sizeof(betarea_));
   _internal_metadata_.Clear();
 }
 
@@ -1636,11 +1552,11 @@ const char* GameBaccaratBet::_InternalParse(const char* begin, const char* end, 
         GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
         break;
       }
-      // float BetScore = 2;
+      // int64 BetScore = 2;
       case 2: {
-        if (static_cast<::google::protobuf::uint8>(tag) != 21) goto handle_unusual;
-        msg->set_betscore(::google::protobuf::io::UnalignedLoad<float>(ptr));
-        ptr += sizeof(float);
+        if (static_cast<::google::protobuf::uint8>(tag) != 16) goto handle_unusual;
+        msg->set_betscore(::google::protobuf::internal::ReadVarint(&ptr));
+        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
         break;
       }
       default: {
@@ -1683,12 +1599,12 @@ bool GameBaccaratBet::MergePartialFromCodedStream(
         break;
       }
 
-      // float BetScore = 2;
+      // int64 BetScore = 2;
       case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) == (21 & 0xFF)) {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (16 & 0xFF)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &betscore_)));
         } else {
           goto handle_unusual;
@@ -1728,9 +1644,9 @@ void GameBaccaratBet::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->betarea(), output);
   }
 
-  // float BetScore = 2;
+  // int64 BetScore = 2;
   if (this->betscore() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteFloat(2, this->betscore(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(2, this->betscore(), output);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -1751,9 +1667,9 @@ void GameBaccaratBet::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->betarea(), target);
   }
 
-  // float BetScore = 2;
+  // int64 BetScore = 2;
   if (this->betscore() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(2, this->betscore(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(2, this->betscore(), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -1777,16 +1693,18 @@ size_t GameBaccaratBet::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  // int64 BetScore = 2;
+  if (this->betscore() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
+        this->betscore());
+  }
+
   // int32 BetArea = 1;
   if (this->betarea() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int32Size(
         this->betarea());
-  }
-
-  // float BetScore = 2;
-  if (this->betscore() != 0) {
-    total_size += 1 + 4;
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -1816,11 +1734,11 @@ void GameBaccaratBet::MergeFrom(const GameBaccaratBet& from) {
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from.betarea() != 0) {
-    set_betarea(from.betarea());
-  }
   if (from.betscore() != 0) {
     set_betscore(from.betscore());
+  }
+  if (from.betarea() != 0) {
+    set_betarea(from.betarea());
   }
 }
 
@@ -1849,8 +1767,8 @@ void GameBaccaratBet::Swap(GameBaccaratBet* other) {
 void GameBaccaratBet::InternalSwap(GameBaccaratBet* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(betarea_, other->betarea_);
   swap(betscore_, other->betscore_);
+  swap(betarea_, other->betarea_);
 }
 
 ::google::protobuf::Metadata GameBaccaratBet::GetMetadata() const {
@@ -2247,7 +2165,7 @@ void GameBaccaratOver::SharedCtor() {
   awardarea_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   playercard_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   bankercard_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  acquire_ = 0;
+  acquire_ = PROTOBUF_LONGLONG(0);
 }
 
 GameBaccaratOver::~GameBaccaratOver() {
@@ -2279,7 +2197,7 @@ void GameBaccaratOver::Clear() {
   awardarea_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   playercard_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   bankercard_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  acquire_ = 0;
+  acquire_ = PROTOBUF_LONGLONG(0);
   _internal_metadata_.Clear();
 }
 
@@ -2341,11 +2259,11 @@ const char* GameBaccaratOver::_InternalParse(const char* begin, const char* end,
         ptr += size;
         break;
       }
-      // float Acquire = 4;
+      // int64 Acquire = 4;
       case 4: {
-        if (static_cast<::google::protobuf::uint8>(tag) != 37) goto handle_unusual;
-        msg->set_acquire(::google::protobuf::io::UnalignedLoad<float>(ptr));
-        ptr += sizeof(float);
+        if (static_cast<::google::protobuf::uint8>(tag) != 32) goto handle_unusual;
+        msg->set_acquire(::google::protobuf::internal::ReadVarint(&ptr));
+        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
         break;
       }
       default: {
@@ -2415,12 +2333,12 @@ bool GameBaccaratOver::MergePartialFromCodedStream(
         break;
       }
 
-      // float Acquire = 4;
+      // int64 Acquire = 4;
       case 4: {
-        if (static_cast< ::google::protobuf::uint8>(tag) == (37 & 0xFF)) {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (32 & 0xFF)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &acquire_)));
         } else {
           goto handle_unusual;
@@ -2473,9 +2391,9 @@ void GameBaccaratOver::SerializeWithCachedSizes(
       3, this->bankercard(), output);
   }
 
-  // float Acquire = 4;
+  // int64 Acquire = 4;
   if (this->acquire() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteFloat(4, this->acquire(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(4, this->acquire(), output);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -2512,9 +2430,9 @@ void GameBaccaratOver::SerializeWithCachedSizes(
         3, this->bankercard(), target);
   }
 
-  // float Acquire = 4;
+  // int64 Acquire = 4;
   if (this->acquire() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(4, this->acquire(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(4, this->acquire(), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -2559,9 +2477,11 @@ size_t GameBaccaratOver::ByteSizeLong() const {
         this->bankercard());
   }
 
-  // float Acquire = 4;
+  // int64 Acquire = 4;
   if (this->acquire() != 0) {
-    total_size += 1 + 4;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
+        this->acquire());
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);

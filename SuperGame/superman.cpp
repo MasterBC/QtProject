@@ -21,6 +21,12 @@
 
 SuperMan::SuperMan(QObject *parent) : QObject(parent),m_curScene(EnScene::NoScene)
 {
+
+
+    m_data = "";
+    m_updateCode = 0;
+    m_updateInfo = "";
+
     // 登录界面
     m_login = new LoginUI();
 
@@ -50,13 +56,13 @@ SuperMan::SuperMan(QObject *parent) : QObject(parent),m_curScene(EnScene::NoScen
 
 
     // 界面返回
-    connect(m_homeUI, &UIbase::exitSig, [this](){
+    connect(m_homeUI, &UIbase::closeSig, [this](){
         onChangeScene(EnScene::Home,EnScene::GameFrame);
     });
-    connect(m_loadingUI, &UIbase::exitSig, [this](){
+    connect(m_loadingUI, &UIbase::closeSig, [this](){
         onChangeScene(EnScene::Loading, EnScene::Home);
     });
-    connect(m_gameFrameUI, &UIbase::exitSig, [this](){
+    connect(m_gameFrameUI, &UIbase::closeSig, [this](){
         onChangeScene(EnScene::GameFrame, EnScene::Login);
     });
 
@@ -109,10 +115,8 @@ void SuperMan::setSceneBGM(const QString &strMusic)
             case EnScene::NoScene:
             break;
             default:
-            break;
-}
-            return nullptr;
-};
+            break;}
+            return nullptr;};
     UIbase* ui = getBaseUI();
     ui->setBackMusic(strMusic);
 
@@ -140,15 +144,23 @@ void SuperMan::closeAllScene()
 
 void SuperMan::onHandleMsg(QByteArray data)
 {
-    m_data = m_msg->parseData(data.data(), data.size());
-    if(switchCMD(m_msg->GetTheme(),m_msg->GetCode()))
-    {
-        //   qDebug()<<"正在处理"<<m_msg->GetTheme()<<"  "<<m_msg->GetCode() << data;
-    }
-    else
-    {
-        qDebug()<<"无法处理"<<m_msg->GetTheme()<<"  "<<m_msg->GetCode() << data;
-    }
+    int nCout = 0;
+    do{
+        m_data = m_msg->parseData(data.data(), data.size());
+        if(switchCMD(m_msg->GetTheme(),m_msg->GetCode()))
+        {
+            // qDebug()<<"正在处理"<<m_msg->GetTheme()<<"  "<<m_msg->GetCode() << data;
+        }
+        else
+        {
+            qDebug()<<"无法处理"<<m_msg->GetTheme()<<"  "<<m_msg->GetCode() << data;
+        }
+
+        data.clear();
+        std::string unpackData = m_msg->GetUnpack();
+        data.setRawData(unpackData.c_str(),unpackData.size());
+        nCout++;
+    }while( !data.isEmpty() && nCout < 20 );
 
 }
 
@@ -388,7 +400,16 @@ bool SuperMan::handleScene(int subID)
 
         // 游戏返回首页
         qDebug()<<"进入场景 !!!";
+        disconnect(m_gameMapFather, SIGNAL(exitSig(int)), this, SLOT(onExitGame(int)));
         connect(m_gameMapFather, SIGNAL(exitSig(int)), this, SLOT(onExitGame(int)));
+
+        if(!m_updateInfo.empty())
+        {
+            handleUpdate(m_updateCode);
+            m_updateInfo.clear();
+            m_updateCode = 0;
+        }
+
         return true;
     }
     else
@@ -434,6 +455,15 @@ bool SuperMan::handlePlayerState(int subID)
 bool SuperMan::handleUpdate(int subID)
 {
     qDebug()<<"handleUpdate"<<subID;
+
+    if(nullptr != m_gameMapFather)
+    {
+        // 状态切换
+        return m_gameMapFather->updateInfo(subID, m_data);
+    }
+    m_updateCode = subID;
+    m_updateInfo = m_data;
+    qDebug()<<"无效 的游戏"<<subID;
     return false;
 
 }

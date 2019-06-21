@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>746</width>
-    <height>632</height>
+    <width>774</width>
+    <height>707</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,9 +16,9 @@
   <property name="styleSheet">
    <string notr="true">background-color: rgb(223, 255, 116);</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_4">
+  <layout class="QGridLayout" name="gridLayout_3">
    <item row="0" column="0">
-    <widget class="QLabel" name="label_7">
+    <widget class="QLabel" name="label_banker">
      <property name="minimumSize">
       <size>
        <width>0</width>
@@ -34,7 +34,29 @@
     </widget>
    </item>
    <item row="0" column="1">
-    <widget class="QLabel" name="label_8">
+    <widget class="QLabel" name="label_State">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>75</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>状态:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QLabel" name="label_player">
      <property name="minimumSize">
       <size>
        <width>0</width>
@@ -49,7 +71,7 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="2" rowspan="2">
+   <item row="0" column="3" rowspan="3">
     <layout class="QHBoxLayout" name="horizontalLayout_Logo">
      <item>
       <widget class="QLabel" name="label_15">
@@ -75,7 +97,116 @@
      </item>
     </layout>
    </item>
-   <item row="2" column="0" colspan="2">
+   <item row="2" column="0" colspan="3">
+    <widget class="QFrame" name="horizontalFrame">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="Poker" name="poker_1" native="true">
+        <property name="maximumSize">
+         <size>
+          <width>70</width>
+          <height>80</height>
+         </size>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Poker" name="poker_2" native="true">
+        <property name="maximumSize">
+         <size>
+          <width>70</width>
+          <height>80</height>
+         </size>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Poker" name="poker_3" native="true">
+        <property name="maximumSize">
+         <size>
+          <width>70</width>
+          <height>80</height>
+         </size>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_Number">
+        <property name="maximumSize">
+         <size>
+          <width>100</width>
+          <height>80</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../../imgage.qrc">:/img/number/0.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Poker" name="poker_4" native="true">
+        <property name="maximumSize">
+         <size>
+          <width>70</width>
+          <height>80</height>
+         </size>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Poker" name="poker_5" native="true">
+        <property name="maximumSize">
+         <size>
+          <width>70</width>
+          <height>80</height>
+         </size>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Poker" name="poker_6" native="true">
+        <property name="maximumSize">
+         <size>
+          <width>70</width>
+          <height>80</height>
+         </size>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="3">
     <widget class="QGroupBox" name="groupBox">
      <property name="minimumSize">
       <size>
@@ -101,6 +232,9 @@
      <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="0">
        <widget class="QLabel" name="label_Zhuang">
+        <property name="cursor">
+         <cursorShape>ArrowCursor</cursorShape>
+        </property>
         <property name="styleSheet">
          <string notr="true">background-color: rgb(247, 180, 255);</string>
         </property>
@@ -110,10 +244,16 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>false</bool>
+        </property>
        </widget>
       </item>
       <item row="0" column="2">
        <widget class="QLabel" name="label_Xian">
+        <property name="cursor">
+         <cursorShape>ArrowCursor</cursorShape>
+        </property>
         <property name="styleSheet">
          <string notr="true">background-color: rgb(247, 180, 255);</string>
         </property>
@@ -123,10 +263,16 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>false</bool>
+        </property>
        </widget>
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="label_ZTW">
+        <property name="cursor">
+         <cursorShape>ArrowCursor</cursorShape>
+        </property>
         <property name="styleSheet">
          <string notr="true">background-color: rgb(247, 180, 255);</string>
         </property>
@@ -136,10 +282,16 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>false</bool>
+        </property>
        </widget>
       </item>
       <item row="1" column="2">
        <widget class="QLabel" name="label_XTW">
+        <property name="cursor">
+         <cursorShape>ArrowCursor</cursorShape>
+        </property>
         <property name="styleSheet">
          <string notr="true">background-color: rgb(247, 180, 255);</string>
         </property>
@@ -149,10 +301,16 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>false</bool>
+        </property>
        </widget>
       </item>
       <item row="2" column="0">
        <widget class="QLabel" name="label_ZDZ">
+        <property name="cursor">
+         <cursorShape>ArrowCursor</cursorShape>
+        </property>
         <property name="styleSheet">
          <string notr="true">background-color: rgb(247, 180, 255);</string>
         </property>
@@ -162,10 +320,16 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>false</bool>
+        </property>
        </widget>
       </item>
       <item row="2" column="2">
        <widget class="QLabel" name="label_XDZ">
+        <property name="cursor">
+         <cursorShape>ArrowCursor</cursorShape>
+        </property>
         <property name="styleSheet">
          <string notr="true">background-color: rgb(247, 180, 255);</string>
         </property>
@@ -175,12 +339,18 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>false</bool>
+        </property>
        </widget>
       </item>
       <item row="0" column="1" rowspan="3">
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
          <widget class="QLabel" name="label_Ping">
+          <property name="cursor">
+           <cursorShape>ArrowCursor</cursorShape>
+          </property>
           <property name="styleSheet">
            <string notr="true">background-color: rgb(247, 180, 255);</string>
           </property>
@@ -190,10 +360,16 @@
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
+          <property name="wordWrap">
+           <bool>false</bool>
+          </property>
          </widget>
         </item>
         <item>
          <widget class="QLabel" name="label_TDP">
+          <property name="cursor">
+           <cursorShape>ArrowCursor</cursorShape>
+          </property>
           <property name="styleSheet">
            <string notr="true">background-color: rgb(247, 180, 255);</string>
           </property>
@@ -203,6 +379,9 @@
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
+          <property name="wordWrap">
+           <bool>false</bool>
+          </property>
          </widget>
         </item>
        </layout>
@@ -210,7 +389,7 @@
      </layout>
     </widget>
    </item>
-   <item row="2" column="2">
+   <item row="3" column="3">
     <widget class="QListView" name="listView">
      <property name="maximumSize">
       <size>
@@ -220,157 +399,7 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="0" colspan="2">
-    <widget class="QFrame" name="horizontalFrame">
-     <layout class="QHBoxLayout" name="horizontalLayout_State">
-      <property name="sizeConstraint">
-       <enum>QLayout::SetNoConstraint</enum>
-      </property>
-      <item>
-       <widget class="Poker" name="poker_1" native="true">
-        <property name="maximumSize">
-         <size>
-          <width>70</width>
-          <height>80</height>
-         </size>
-        </property>
-        <property name="autoFillBackground">
-         <bool>false</bool>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/img/poker_b/b_bg.png);</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="Poker" name="poker_2" native="true">
-        <property name="maximumSize">
-         <size>
-          <width>70</width>
-          <height>80</height>
-         </size>
-        </property>
-        <property name="autoFillBackground">
-         <bool>false</bool>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/img/poker_b/b_bg.png);</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="Poker" name="poker_3" native="true">
-        <property name="maximumSize">
-         <size>
-          <width>70</width>
-          <height>80</height>
-         </size>
-        </property>
-        <property name="autoFillBackground">
-         <bool>false</bool>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/img/poker_b/b_bg.png);</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <layout class="QGridLayout" name="gridLayout_3">
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_Number">
-          <property name="maximumSize">
-           <size>
-            <width>75</width>
-            <height>60</height>
-           </size>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="pixmap">
-           <pixmap resource="../../imgage.qrc">:/img/number/0.png</pixmap>
-          </property>
-          <property name="scaledContents">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_State">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>75</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>状态:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <widget class="Poker" name="poker_4" native="true">
-        <property name="maximumSize">
-         <size>
-          <width>70</width>
-          <height>80</height>
-         </size>
-        </property>
-        <property name="autoFillBackground">
-         <bool>false</bool>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/img/poker_b/b_bg.png);</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="Poker" name="poker_5" native="true">
-        <property name="maximumSize">
-         <size>
-          <width>70</width>
-          <height>80</height>
-         </size>
-        </property>
-        <property name="autoFillBackground">
-         <bool>false</bool>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/img/poker_b/b_bg.png);</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="Poker" name="poker_6" native="true">
-        <property name="maximumSize">
-         <size>
-          <width>70</width>
-          <height>80</height>
-         </size>
-        </property>
-        <property name="autoFillBackground">
-         <bool>false</bool>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/img/poker_b/b_bg.png);</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="3" column="0" colspan="3">
+   <item row="4" column="0" colspan="3">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -433,6 +462,9 @@
          <height>119</height>
         </size>
        </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
        <property name="styleSheet">
         <string notr="true">background-color: rgb(255, 85, 255);</string>
        </property>
@@ -451,6 +483,9 @@
          <width>16777215</width>
          <height>119</height>
         </size>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="styleSheet">
         <string notr="true">background-color: rgb(85, 170, 255);</string>
@@ -471,6 +506,9 @@
          <height>119</height>
         </size>
        </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
        <property name="styleSheet">
         <string notr="true">background-color: rgb(255, 110, 53);</string>
        </property>
@@ -489,6 +527,9 @@
          <width>16777215</width>
          <height>119</height>
         </size>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="styleSheet">
         <string notr="true">background-color: rgb(255, 180, 157);</string>
@@ -509,6 +550,9 @@
          <height>119</height>
         </size>
        </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
        <property name="styleSheet">
         <string notr="true">background-color: rgb(0, 170, 127);</string>
        </property>
@@ -522,6 +566,32 @@
      </item>
     </layout>
    </item>
+   <item row="4" column="3">
+    <widget class="QLabel" name="label_GameInfo">
+     <property name="text">
+      <string>玩家游戏信息</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="3">
+    <widget class="UiTextScroll" name="label_scrollText">
+     <property name="minimumSize">
+      <size>
+       <width>200</width>
+       <height>40</height>
+      </size>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <customwidgets>
@@ -530,6 +600,11 @@
    <extends>QWidget</extends>
    <header>base/UI/poker.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>UiTextScroll</class>
+   <extends>QLabel</extends>
+   <header location="global">base/UI/uitextscroll.h</header>
   </customwidget>
  </customwidgets>
  <resources>

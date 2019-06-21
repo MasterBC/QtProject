@@ -76,6 +76,10 @@ private:
     // 消息处理
     HandleMsg*      m_msg;
     std::string     m_data;
+
+    // 信息更新
+    int             m_updateCode; //更新所需子码
+    std::string     m_updateInfo;//缓存信息
 };
 QT_END_NAMESPACE
 #endif // SUPERMAN_H

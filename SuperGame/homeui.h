@@ -20,6 +20,7 @@ public:
     ~HomeUI();
     static int S_GameID;  // 当前的游戏ID
     static int S_GameKindID;
+    static int S_GameLevel;
 
 
     void updateGameList(go::GameList& list);

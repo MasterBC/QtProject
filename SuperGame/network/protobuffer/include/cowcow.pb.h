@@ -227,29 +227,29 @@ class GameCowcowEnter final :
   ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
       mutable_odds();
 
+  // int64 BankerScore = 6;
+  void clear_bankerscore();
+  static const int kBankerScoreFieldNumber = 6;
+  ::google::protobuf::int64 bankerscore() const;
+  void set_bankerscore(::google::protobuf::int64 value);
+
+  // int64 PlayerScore = 7;
+  void clear_playerscore();
+  static const int kPlayerScoreFieldNumber = 7;
+  ::google::protobuf::int64 playerscore() const;
+  void set_playerscore(::google::protobuf::int64 value);
+
+  // int64 Acquire = 8;
+  void clear_acquire();
+  static const int kAcquireFieldNumber = 8;
+  ::google::protobuf::int64 acquire() const;
+  void set_acquire(::google::protobuf::int64 value);
+
   // int32 Countdown = 3;
   void clear_countdown();
   static const int kCountdownFieldNumber = 3;
   ::google::protobuf::int32 countdown() const;
   void set_countdown(::google::protobuf::int32 value);
-
-  // float BankerScore = 6;
-  void clear_bankerscore();
-  static const int kBankerScoreFieldNumber = 6;
-  float bankerscore() const;
-  void set_bankerscore(float value);
-
-  // float PlayerScore = 7;
-  void clear_playerscore();
-  static const int kPlayerScoreFieldNumber = 7;
-  float playerscore() const;
-  void set_playerscore(float value);
-
-  // float Acquire = 8;
-  void clear_acquire();
-  static const int kAcquireFieldNumber = 8;
-  float acquire() const;
-  void set_acquire(float value);
 
   // @@protoc_insertion_point(class_scope:go.GameCowcowEnter)
  private:
@@ -263,10 +263,10 @@ class GameCowcowEnter final :
   mutable std::atomic<int> _chips_cached_byte_size_;
   ::google::protobuf::RepeatedField< ::google::protobuf::int32 > odds_;
   mutable std::atomic<int> _odds_cached_byte_size_;
+  ::google::protobuf::int64 bankerscore_;
+  ::google::protobuf::int64 playerscore_;
+  ::google::protobuf::int64 acquire_;
   ::google::protobuf::int32 countdown_;
-  float bankerscore_;
-  float playerscore_;
-  float acquire_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_cowcow_2eproto;
 };
@@ -367,25 +367,25 @@ class GameCowcowPlaying final :
 
   // accessors -------------------------------------------------------
 
+  // int64 BetScore = 2;
+  void clear_betscore();
+  static const int kBetScoreFieldNumber = 2;
+  ::google::protobuf::int64 betscore() const;
+  void set_betscore(::google::protobuf::int64 value);
+
   // int32 BetArea = 1;
   void clear_betarea();
   static const int kBetAreaFieldNumber = 1;
   ::google::protobuf::int32 betarea() const;
   void set_betarea(::google::protobuf::int32 value);
 
-  // float BetScore = 2;
-  void clear_betscore();
-  static const int kBetScoreFieldNumber = 2;
-  float betscore() const;
-  void set_betscore(float value);
-
   // @@protoc_insertion_point(class_scope:go.GameCowcowPlaying)
  private:
   class HasBitSetters;
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::int64 betscore_;
   ::google::protobuf::int32 betarea_;
-  float betscore_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_cowcow_2eproto;
 };
@@ -649,11 +649,11 @@ class GameCowcowOver final :
   ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
       mutable_bankercard();
 
-  // float Acquire = 4;
+  // int64 Acquire = 4;
   void clear_acquire();
   static const int kAcquireFieldNumber = 4;
-  float acquire() const;
-  void set_acquire(float value);
+  ::google::protobuf::int64 acquire() const;
+  void set_acquire(::google::protobuf::int64 value);
 
   // @@protoc_insertion_point(class_scope:go.GameCowcowOver)
  private:
@@ -666,7 +666,7 @@ class GameCowcowOver final :
   mutable std::atomic<int> _playercard_cached_byte_size_;
   ::google::protobuf::RepeatedField< ::google::protobuf::int32 > bankercard_;
   mutable std::atomic<int> _bankercard_cached_byte_size_;
-  float acquire_;
+  ::google::protobuf::int64 acquire_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_cowcow_2eproto;
 };
@@ -854,43 +854,43 @@ GameCowcowEnter::mutable_odds() {
   return &odds_;
 }
 
-// float BankerScore = 6;
+// int64 BankerScore = 6;
 inline void GameCowcowEnter::clear_bankerscore() {
-  bankerscore_ = 0;
+  bankerscore_ = PROTOBUF_LONGLONG(0);
 }
-inline float GameCowcowEnter::bankerscore() const {
+inline ::google::protobuf::int64 GameCowcowEnter::bankerscore() const {
   // @@protoc_insertion_point(field_get:go.GameCowcowEnter.BankerScore)
   return bankerscore_;
 }
-inline void GameCowcowEnter::set_bankerscore(float value) {
+inline void GameCowcowEnter::set_bankerscore(::google::protobuf::int64 value) {
   
   bankerscore_ = value;
   // @@protoc_insertion_point(field_set:go.GameCowcowEnter.BankerScore)
 }
 
-// float PlayerScore = 7;
+// int64 PlayerScore = 7;
 inline void GameCowcowEnter::clear_playerscore() {
-  playerscore_ = 0;
+  playerscore_ = PROTOBUF_LONGLONG(0);
 }
-inline float GameCowcowEnter::playerscore() const {
+inline ::google::protobuf::int64 GameCowcowEnter::playerscore() const {
   // @@protoc_insertion_point(field_get:go.GameCowcowEnter.PlayerScore)
   return playerscore_;
 }
-inline void GameCowcowEnter::set_playerscore(float value) {
+inline void GameCowcowEnter::set_playerscore(::google::protobuf::int64 value) {
   
   playerscore_ = value;
   // @@protoc_insertion_point(field_set:go.GameCowcowEnter.PlayerScore)
 }
 
-// float Acquire = 8;
+// int64 Acquire = 8;
 inline void GameCowcowEnter::clear_acquire() {
-  acquire_ = 0;
+  acquire_ = PROTOBUF_LONGLONG(0);
 }
-inline float GameCowcowEnter::acquire() const {
+inline ::google::protobuf::int64 GameCowcowEnter::acquire() const {
   // @@protoc_insertion_point(field_get:go.GameCowcowEnter.Acquire)
   return acquire_;
 }
-inline void GameCowcowEnter::set_acquire(float value) {
+inline void GameCowcowEnter::set_acquire(::google::protobuf::int64 value) {
   
   acquire_ = value;
   // @@protoc_insertion_point(field_set:go.GameCowcowEnter.Acquire)
@@ -914,15 +914,15 @@ inline void GameCowcowPlaying::set_betarea(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:go.GameCowcowPlaying.BetArea)
 }
 
-// float BetScore = 2;
+// int64 BetScore = 2;
 inline void GameCowcowPlaying::clear_betscore() {
-  betscore_ = 0;
+  betscore_ = PROTOBUF_LONGLONG(0);
 }
-inline float GameCowcowPlaying::betscore() const {
+inline ::google::protobuf::int64 GameCowcowPlaying::betscore() const {
   // @@protoc_insertion_point(field_get:go.GameCowcowPlaying.BetScore)
   return betscore_;
 }
-inline void GameCowcowPlaying::set_betscore(float value) {
+inline void GameCowcowPlaying::set_betscore(::google::protobuf::int64 value) {
   
   betscore_ = value;
   // @@protoc_insertion_point(field_set:go.GameCowcowPlaying.BetScore)
@@ -1093,15 +1093,15 @@ GameCowcowOver::mutable_bankercard() {
   return &bankercard_;
 }
 
-// float Acquire = 4;
+// int64 Acquire = 4;
 inline void GameCowcowOver::clear_acquire() {
-  acquire_ = 0;
+  acquire_ = PROTOBUF_LONGLONG(0);
 }
-inline float GameCowcowOver::acquire() const {
+inline ::google::protobuf::int64 GameCowcowOver::acquire() const {
   // @@protoc_insertion_point(field_get:go.GameCowcowOver.Acquire)
   return acquire_;
 }
-inline void GameCowcowOver::set_acquire(float value) {
+inline void GameCowcowOver::set_acquire(::google::protobuf::int64 value) {
   
   acquire_ = value;
   // @@protoc_insertion_point(field_set:go.GameCowcowOver.Acquire)

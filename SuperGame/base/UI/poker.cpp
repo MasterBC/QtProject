@@ -2,6 +2,7 @@
 #include <QGridLayout>
 #include <QLabel>
 #include <QPixmap>
+#include <QBitmap>
 
 #define LOGIC_MASK_COLOR 0xF0 //花色掩码
 #define  LOGIC_MASK_VALUE 0x0F //数值掩码
@@ -24,8 +25,6 @@ Poker::Poker(QWidget *parent,bool haveCenter) : QWidget(parent),m_haveCenter(hav
 
     this->setWindowFlags(Qt::FramelessWindowHint);
     this->setLayout(layout);
-    setStyleSheet(QString("border-image: url(:/img/poker_b/b_bg.png);"));
-    setAutoFillBackground(true);
 }
 
 void Poker::setColor(Poker::EnColor color)
@@ -45,7 +44,7 @@ void Poker::setColor(Poker::EnColor color)
         pixmap.load(":/img/poker_b/b_bigtag_3.png");
         break;
     case EnColor::UnKnown:
-        pixmap.load(":/img/poker_b/b_bg.png");
+        pixmap.load(":/img/poker_b/b_poker_mask_scale9.png");
         break;
     default:
         break;
@@ -104,15 +103,58 @@ void Poker::setCard(int card)
     else if(value == 0x0E)
     {
         m_value->setPixmap(QPixmap(":/img/poker_b/b_smalltag_4.png"));
+        setColor(EnColor::UnKnown);
     }
     else if(value == 0x0F)
     {
         m_value->setPixmap(QPixmap(":/img/poker_b/b_smalltag_5.png"));
+         setColor(EnColor::UnKnown);
     }
     else
     {
-         m_value->setPixmap(QPixmap(":/img/poker_b/b_bg.png"));
+        m_value->setPixmap(QPixmap(":/img/poker_b/b_poker_mask_scale9.png"));
     }
     m_value->setScaledContents(true);
+    if(m_color->isHidden()) m_color->show();
+    if(m_value->isHidden()) m_value->show();
+}
+
+void Poker::setCenter(bool isCenter)
+{
+    if(isCenter)
+    {
+        if(nullptr == m_center)
+        {
+            m_center = new QLabel(this);
+            QGridLayout* pLayout =  qobject_cast<QGridLayout*>(this->layout()) ;
+            pLayout->addWidget(m_center,2,1,3,3,Qt::AlignLeft);
+            m_center->setScaledContents(true);
+        }
+
+    }
+    m_haveCenter = isCenter;
+}
+
+void Poker::setBackground(bool isBack)
+{
+    if(isBack){
+
+        QPixmap bgImg(":/img/poker_b/b_poker_back.png");
+        if(m_haveCenter)
+        {
+            m_center->setPixmap(bgImg);
+            m_center->setScaledContents(true);
+            m_color->hide();
+            m_value->hide();
+        }
+        else
+        {
+            m_value->setPixmap(bgImg);
+            m_value->setScaledContents(true);
+            m_value->show();
+            m_color->hide();
+        }
+
+    }
 }
 

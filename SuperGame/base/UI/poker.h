@@ -26,9 +26,12 @@ public:
     };
     Poker(QWidget *parent = nullptr,bool haveCenter = false);
     void setCard(int card);
+    void setCenter(bool isCenter);
+    void setBackground(bool isBack);
 signals:
     
 public slots:
+
 protected:
     void setColor(EnColor color);
 private:

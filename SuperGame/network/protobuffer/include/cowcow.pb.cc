@@ -163,13 +163,13 @@ const char descriptor_table_protodef_cowcow_2eproto[] =
   "\n\014cowcow.proto\022\002go\"\241\001\n\017GameCowcowEnter\022\022"
   "\n\nAwardAreas\030\001 \003(\005\022\017\n\007players\030\002 \003(\t\022\021\n\tC"
   "ountdown\030\003 \001(\005\022\r\n\005Chips\030\004 \003(\005\022\014\n\004Odds\030\005 "
-  "\003(\005\022\023\n\013BankerScore\030\006 \001(\002\022\023\n\013PlayerScore\030"
-  "\007 \001(\002\022\017\n\007Acquire\030\010 \001(\002\"6\n\021GameCowcowPlay"
-  "ing\022\017\n\007BetArea\030\001 \001(\005\022\020\n\010BetScore\030\002 \001(\002\"3"
+  "\003(\005\022\023\n\013BankerScore\030\006 \001(\003\022\023\n\013PlayerScore\030"
+  "\007 \001(\003\022\017\n\007Acquire\030\010 \001(\003\"6\n\021GameCowcowPlay"
+  "ing\022\017\n\007BetArea\030\001 \001(\005\022\020\n\010BetScore\030\002 \001(\003\"3"
   "\n\023GameCowcowBetResult\022\r\n\005State\030\001 \001(\005\022\r\n\005"
   "Hints\030\002 \001(\t\"\\\n\016GameCowcowOver\022\021\n\tAwardAr"
   "ea\030\001 \003(\005\022\022\n\nPlayerCard\030\002 \003(\005\022\022\n\nBankerCa"
-  "rd\030\003 \003(\005\022\017\n\007Acquire\030\004 \001(\002b\006proto3"
+  "rd\030\003 \003(\005\022\017\n\007Acquire\030\004 \001(\003b\006proto3"
   ;
 ::google::protobuf::internal::DescriptorTable descriptor_table_cowcow_2eproto = {
   false, InitDefaults_cowcow_2eproto, 
@@ -220,18 +220,18 @@ GameCowcowEnter::GameCowcowEnter(const GameCowcowEnter& from)
       chips_(from.chips_),
       odds_(from.odds_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::memcpy(&countdown_, &from.countdown_,
-    static_cast<size_t>(reinterpret_cast<char*>(&acquire_) -
-    reinterpret_cast<char*>(&countdown_)) + sizeof(acquire_));
+  ::memcpy(&bankerscore_, &from.bankerscore_,
+    static_cast<size_t>(reinterpret_cast<char*>(&countdown_) -
+    reinterpret_cast<char*>(&bankerscore_)) + sizeof(countdown_));
   // @@protoc_insertion_point(copy_constructor:go.GameCowcowEnter)
 }
 
 void GameCowcowEnter::SharedCtor() {
   ::google::protobuf::internal::InitSCC(
       &scc_info_GameCowcowEnter_cowcow_2eproto.base);
-  ::memset(&countdown_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&acquire_) -
-      reinterpret_cast<char*>(&countdown_)) + sizeof(acquire_));
+  ::memset(&bankerscore_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&countdown_) -
+      reinterpret_cast<char*>(&bankerscore_)) + sizeof(countdown_));
 }
 
 GameCowcowEnter::~GameCowcowEnter() {
@@ -261,9 +261,9 @@ void GameCowcowEnter::Clear() {
   players_.Clear();
   chips_.Clear();
   odds_.Clear();
-  ::memset(&countdown_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&acquire_) -
-      reinterpret_cast<char*>(&countdown_)) + sizeof(acquire_));
+  ::memset(&bankerscore_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&countdown_) -
+      reinterpret_cast<char*>(&bankerscore_)) + sizeof(countdown_));
   _internal_metadata_.Clear();
 }
 
@@ -366,25 +366,25 @@ const char* GameCowcowEnter::_InternalParse(const char* begin, const char* end, 
         } while ((::google::protobuf::io::UnalignedLoad<::google::protobuf::uint64>(ptr) & 255) == 40 && (ptr += 1));
         break;
       }
-      // float BankerScore = 6;
+      // int64 BankerScore = 6;
       case 6: {
-        if (static_cast<::google::protobuf::uint8>(tag) != 53) goto handle_unusual;
-        msg->set_bankerscore(::google::protobuf::io::UnalignedLoad<float>(ptr));
-        ptr += sizeof(float);
+        if (static_cast<::google::protobuf::uint8>(tag) != 48) goto handle_unusual;
+        msg->set_bankerscore(::google::protobuf::internal::ReadVarint(&ptr));
+        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
         break;
       }
-      // float PlayerScore = 7;
+      // int64 PlayerScore = 7;
       case 7: {
-        if (static_cast<::google::protobuf::uint8>(tag) != 61) goto handle_unusual;
-        msg->set_playerscore(::google::protobuf::io::UnalignedLoad<float>(ptr));
-        ptr += sizeof(float);
+        if (static_cast<::google::protobuf::uint8>(tag) != 56) goto handle_unusual;
+        msg->set_playerscore(::google::protobuf::internal::ReadVarint(&ptr));
+        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
         break;
       }
-      // float Acquire = 8;
+      // int64 Acquire = 8;
       case 8: {
-        if (static_cast<::google::protobuf::uint8>(tag) != 69) goto handle_unusual;
-        msg->set_acquire(::google::protobuf::io::UnalignedLoad<float>(ptr));
-        ptr += sizeof(float);
+        if (static_cast<::google::protobuf::uint8>(tag) != 64) goto handle_unusual;
+        msg->set_acquire(::google::protobuf::internal::ReadVarint(&ptr));
+        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
         break;
       }
       default: {
@@ -498,12 +498,12 @@ bool GameCowcowEnter::MergePartialFromCodedStream(
         break;
       }
 
-      // float BankerScore = 6;
+      // int64 BankerScore = 6;
       case 6: {
-        if (static_cast< ::google::protobuf::uint8>(tag) == (53 & 0xFF)) {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (48 & 0xFF)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &bankerscore_)));
         } else {
           goto handle_unusual;
@@ -511,12 +511,12 @@ bool GameCowcowEnter::MergePartialFromCodedStream(
         break;
       }
 
-      // float PlayerScore = 7;
+      // int64 PlayerScore = 7;
       case 7: {
-        if (static_cast< ::google::protobuf::uint8>(tag) == (61 & 0xFF)) {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (56 & 0xFF)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &playerscore_)));
         } else {
           goto handle_unusual;
@@ -524,12 +524,12 @@ bool GameCowcowEnter::MergePartialFromCodedStream(
         break;
       }
 
-      // float Acquire = 8;
+      // int64 Acquire = 8;
       case 8: {
-        if (static_cast< ::google::protobuf::uint8>(tag) == (69 & 0xFF)) {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (64 & 0xFF)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &acquire_)));
         } else {
           goto handle_unusual;
@@ -612,19 +612,19 @@ void GameCowcowEnter::SerializeWithCachedSizes(
       this->odds(i), output);
   }
 
-  // float BankerScore = 6;
+  // int64 BankerScore = 6;
   if (this->bankerscore() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteFloat(6, this->bankerscore(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(6, this->bankerscore(), output);
   }
 
-  // float PlayerScore = 7;
+  // int64 PlayerScore = 7;
   if (this->playerscore() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteFloat(7, this->playerscore(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(7, this->playerscore(), output);
   }
 
-  // float Acquire = 8;
+  // int64 Acquire = 8;
   if (this->acquire() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteFloat(8, this->acquire(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(8, this->acquire(), output);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -694,19 +694,19 @@ void GameCowcowEnter::SerializeWithCachedSizes(
       WriteInt32NoTagToArray(this->odds_, target);
   }
 
-  // float BankerScore = 6;
+  // int64 BankerScore = 6;
   if (this->bankerscore() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(6, this->bankerscore(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(6, this->bankerscore(), target);
   }
 
-  // float PlayerScore = 7;
+  // int64 PlayerScore = 7;
   if (this->playerscore() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(7, this->playerscore(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(7, this->playerscore(), target);
   }
 
-  // float Acquire = 8;
+  // int64 Acquire = 8;
   if (this->acquire() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(8, this->acquire(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(8, this->acquire(), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -783,26 +783,32 @@ size_t GameCowcowEnter::ByteSizeLong() const {
     total_size += data_size;
   }
 
+  // int64 BankerScore = 6;
+  if (this->bankerscore() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
+        this->bankerscore());
+  }
+
+  // int64 PlayerScore = 7;
+  if (this->playerscore() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
+        this->playerscore());
+  }
+
+  // int64 Acquire = 8;
+  if (this->acquire() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
+        this->acquire());
+  }
+
   // int32 Countdown = 3;
   if (this->countdown() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int32Size(
         this->countdown());
-  }
-
-  // float BankerScore = 6;
-  if (this->bankerscore() != 0) {
-    total_size += 1 + 4;
-  }
-
-  // float PlayerScore = 7;
-  if (this->playerscore() != 0) {
-    total_size += 1 + 4;
-  }
-
-  // float Acquire = 8;
-  if (this->acquire() != 0) {
-    total_size += 1 + 4;
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -836,9 +842,6 @@ void GameCowcowEnter::MergeFrom(const GameCowcowEnter& from) {
   players_.MergeFrom(from.players_);
   chips_.MergeFrom(from.chips_);
   odds_.MergeFrom(from.odds_);
-  if (from.countdown() != 0) {
-    set_countdown(from.countdown());
-  }
   if (from.bankerscore() != 0) {
     set_bankerscore(from.bankerscore());
   }
@@ -847,6 +850,9 @@ void GameCowcowEnter::MergeFrom(const GameCowcowEnter& from) {
   }
   if (from.acquire() != 0) {
     set_acquire(from.acquire());
+  }
+  if (from.countdown() != 0) {
+    set_countdown(from.countdown());
   }
 }
 
@@ -879,10 +885,10 @@ void GameCowcowEnter::InternalSwap(GameCowcowEnter* other) {
   players_.InternalSwap(CastToBase(&other->players_));
   chips_.InternalSwap(&other->chips_);
   odds_.InternalSwap(&other->odds_);
-  swap(countdown_, other->countdown_);
   swap(bankerscore_, other->bankerscore_);
   swap(playerscore_, other->playerscore_);
   swap(acquire_, other->acquire_);
+  swap(countdown_, other->countdown_);
 }
 
 ::google::protobuf::Metadata GameCowcowEnter::GetMetadata() const {
@@ -913,16 +919,16 @@ GameCowcowPlaying::GameCowcowPlaying(const GameCowcowPlaying& from)
   : ::google::protobuf::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::memcpy(&betarea_, &from.betarea_,
-    static_cast<size_t>(reinterpret_cast<char*>(&betscore_) -
-    reinterpret_cast<char*>(&betarea_)) + sizeof(betscore_));
+  ::memcpy(&betscore_, &from.betscore_,
+    static_cast<size_t>(reinterpret_cast<char*>(&betarea_) -
+    reinterpret_cast<char*>(&betscore_)) + sizeof(betarea_));
   // @@protoc_insertion_point(copy_constructor:go.GameCowcowPlaying)
 }
 
 void GameCowcowPlaying::SharedCtor() {
-  ::memset(&betarea_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&betscore_) -
-      reinterpret_cast<char*>(&betarea_)) + sizeof(betscore_));
+  ::memset(&betscore_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&betarea_) -
+      reinterpret_cast<char*>(&betscore_)) + sizeof(betarea_));
 }
 
 GameCowcowPlaying::~GameCowcowPlaying() {
@@ -948,9 +954,9 @@ void GameCowcowPlaying::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&betarea_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&betscore_) -
-      reinterpret_cast<char*>(&betarea_)) + sizeof(betscore_));
+  ::memset(&betscore_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&betarea_) -
+      reinterpret_cast<char*>(&betscore_)) + sizeof(betarea_));
   _internal_metadata_.Clear();
 }
 
@@ -974,11 +980,11 @@ const char* GameCowcowPlaying::_InternalParse(const char* begin, const char* end
         GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
         break;
       }
-      // float BetScore = 2;
+      // int64 BetScore = 2;
       case 2: {
-        if (static_cast<::google::protobuf::uint8>(tag) != 21) goto handle_unusual;
-        msg->set_betscore(::google::protobuf::io::UnalignedLoad<float>(ptr));
-        ptr += sizeof(float);
+        if (static_cast<::google::protobuf::uint8>(tag) != 16) goto handle_unusual;
+        msg->set_betscore(::google::protobuf::internal::ReadVarint(&ptr));
+        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
         break;
       }
       default: {
@@ -1021,12 +1027,12 @@ bool GameCowcowPlaying::MergePartialFromCodedStream(
         break;
       }
 
-      // float BetScore = 2;
+      // int64 BetScore = 2;
       case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) == (21 & 0xFF)) {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (16 & 0xFF)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &betscore_)));
         } else {
           goto handle_unusual;
@@ -1066,9 +1072,9 @@ void GameCowcowPlaying::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->betarea(), output);
   }
 
-  // float BetScore = 2;
+  // int64 BetScore = 2;
   if (this->betscore() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteFloat(2, this->betscore(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(2, this->betscore(), output);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -1089,9 +1095,9 @@ void GameCowcowPlaying::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->betarea(), target);
   }
 
-  // float BetScore = 2;
+  // int64 BetScore = 2;
   if (this->betscore() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(2, this->betscore(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(2, this->betscore(), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -1115,16 +1121,18 @@ size_t GameCowcowPlaying::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  // int64 BetScore = 2;
+  if (this->betscore() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
+        this->betscore());
+  }
+
   // int32 BetArea = 1;
   if (this->betarea() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int32Size(
         this->betarea());
-  }
-
-  // float BetScore = 2;
-  if (this->betscore() != 0) {
-    total_size += 1 + 4;
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -1154,11 +1162,11 @@ void GameCowcowPlaying::MergeFrom(const GameCowcowPlaying& from) {
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from.betarea() != 0) {
-    set_betarea(from.betarea());
-  }
   if (from.betscore() != 0) {
     set_betscore(from.betscore());
+  }
+  if (from.betarea() != 0) {
+    set_betarea(from.betarea());
   }
 }
 
@@ -1187,8 +1195,8 @@ void GameCowcowPlaying::Swap(GameCowcowPlaying* other) {
 void GameCowcowPlaying::InternalSwap(GameCowcowPlaying* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(betarea_, other->betarea_);
   swap(betscore_, other->betscore_);
+  swap(betarea_, other->betarea_);
 }
 
 ::google::protobuf::Metadata GameCowcowPlaying::GetMetadata() const {
@@ -1571,7 +1579,7 @@ GameCowcowOver::GameCowcowOver(const GameCowcowOver& from)
 }
 
 void GameCowcowOver::SharedCtor() {
-  acquire_ = 0;
+  acquire_ = PROTOBUF_LONGLONG(0);
 }
 
 GameCowcowOver::~GameCowcowOver() {
@@ -1600,7 +1608,7 @@ void GameCowcowOver::Clear() {
   awardarea_.Clear();
   playercard_.Clear();
   bankercard_.Clear();
-  acquire_ = 0;
+  acquire_ = PROTOBUF_LONGLONG(0);
   _internal_metadata_.Clear();
 }
 
@@ -1677,11 +1685,11 @@ const char* GameCowcowOver::_InternalParse(const char* begin, const char* end, v
         } while ((::google::protobuf::io::UnalignedLoad<::google::protobuf::uint64>(ptr) & 255) == 24 && (ptr += 1));
         break;
       }
-      // float Acquire = 4;
+      // int64 Acquire = 4;
       case 4: {
-        if (static_cast<::google::protobuf::uint8>(tag) != 37) goto handle_unusual;
-        msg->set_acquire(::google::protobuf::io::UnalignedLoad<float>(ptr));
-        ptr += sizeof(float);
+        if (static_cast<::google::protobuf::uint8>(tag) != 32) goto handle_unusual;
+        msg->set_acquire(::google::protobuf::internal::ReadVarint(&ptr));
+        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
         break;
       }
       default: {
@@ -1762,12 +1770,12 @@ bool GameCowcowOver::MergePartialFromCodedStream(
         break;
       }
 
-      // float Acquire = 4;
+      // int64 Acquire = 4;
       case 4: {
-        if (static_cast< ::google::protobuf::uint8>(tag) == (37 & 0xFF)) {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (32 & 0xFF)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &acquire_)));
         } else {
           goto handle_unusual;
@@ -1835,9 +1843,9 @@ void GameCowcowOver::SerializeWithCachedSizes(
       this->bankercard(i), output);
   }
 
-  // float Acquire = 4;
+  // int64 Acquire = 4;
   if (this->acquire() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteFloat(4, this->acquire(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(4, this->acquire(), output);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -1892,9 +1900,9 @@ void GameCowcowOver::SerializeWithCachedSizes(
       WriteInt32NoTagToArray(this->bankercard_, target);
   }
 
-  // float Acquire = 4;
+  // int64 Acquire = 4;
   if (this->acquire() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(4, this->acquire(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(4, this->acquire(), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -1963,9 +1971,11 @@ size_t GameCowcowOver::ByteSizeLong() const {
     total_size += data_size;
   }
 
-  // float Acquire = 4;
+  // int64 Acquire = 4;
   if (this->acquire() != 0) {
-    total_size += 1 + 4;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
+        this->acquire());
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);

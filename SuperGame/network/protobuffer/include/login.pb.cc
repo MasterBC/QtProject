@@ -509,7 +509,7 @@ const char descriptor_table_protodef_login_2eproto[] =
   "eItem\"\203\002\n\010UserInfo\022\014\n\004Name\030\001 \001(\t\022\020\n\010Acco"
   "unts\030\002 \001(\t\022\020\n\010Password\030\003 \001(\t\022\016\n\006FaceID\030\004"
   " \001(\r\022\016\n\006Gender\030\005 \001(\r\022\013\n\003Age\030\006 \001(\r\022\r\n\005Lev"
-  "el\030\007 \001(\r\022\r\n\005Money\030\010 \001(\002\022\022\n\nPassPortID\030\t "
+  "el\030\007 \001(\r\022\r\n\005Money\030\010 \001(\003\022\022\n\nPassPortID\030\t "
   "\001(\t\022\024\n\014Compellation\030\n \001(\t\022\017\n\007AgentID\030\013 \001"
   "(\r\022\026\n\016SpreaderGameID\030\014 \001(\r\022\022\n\nClientAddr"
   "\030\r \001(\r\022\023\n\013MachineCode\030\016 \001(\t\"[\n\010RoomInfo\022"
@@ -3490,11 +3490,11 @@ const char* UserInfo::_InternalParse(const char* begin, const char* end, void* o
         GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
         break;
       }
-      // float Money = 8;
+      // int64 Money = 8;
       case 8: {
-        if (static_cast<::google::protobuf::uint8>(tag) != 69) goto handle_unusual;
-        msg->set_money(::google::protobuf::io::UnalignedLoad<float>(ptr));
-        ptr += sizeof(float);
+        if (static_cast<::google::protobuf::uint8>(tag) != 64) goto handle_unusual;
+        msg->set_money(::google::protobuf::internal::ReadVarint(&ptr));
+        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
         break;
       }
       // string PassPortID = 9;
@@ -3697,12 +3697,12 @@ bool UserInfo::MergePartialFromCodedStream(
         break;
       }
 
-      // float Money = 8;
+      // int64 Money = 8;
       case 8: {
-        if (static_cast< ::google::protobuf::uint8>(tag) == (69 & 0xFF)) {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (64 & 0xFF)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &money_)));
         } else {
           goto handle_unusual;
@@ -3871,9 +3871,9 @@ void UserInfo::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(7, this->level(), output);
   }
 
-  // float Money = 8;
+  // int64 Money = 8;
   if (this->money() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteFloat(8, this->money(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(8, this->money(), output);
   }
 
   // string PassPortID = 9;
@@ -3987,9 +3987,9 @@ void UserInfo::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(7, this->level(), target);
   }
 
-  // float Money = 8;
+  // int64 Money = 8;
   if (this->money() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(8, this->money(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(8, this->money(), target);
   }
 
   // string PassPortID = 9;
@@ -4131,9 +4131,11 @@ size_t UserInfo::ByteSizeLong() const {
         this->level());
   }
 
-  // float Money = 8;
+  // int64 Money = 8;
   if (this->money() != 0) {
-    total_size += 1 + 4;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
+        this->money());
   }
 
   // uint32 AgentID = 11;

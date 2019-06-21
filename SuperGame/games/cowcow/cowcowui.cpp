@@ -12,18 +12,22 @@ CowcowUI::~CowcowUI()
 {
     delete ui;
 }
+void CowcowUI::enterScene(int scene, const std::string &data)
+{
+
+}
 
 void CowcowUI::changeState(int state, const std::string &data)
 {
 
 }
 
-void CowcowUI::enterScene(int scene, const std::string &data)
+bool CowcowUI::gameHandle(int code, const std::string &data)
 {
 
 }
 
-bool CowcowUI::gameHandle(int code, const std::string &data)
+bool CowcowUI::updateInfo(int code, const std::string &data)
 {
 
 }
