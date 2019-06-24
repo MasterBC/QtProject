@@ -18,7 +18,9 @@
 #include <QMediaPlaylist>
 UIbase::UIbase(QWidget *parent) : QWidget(parent),m_mediaPlayer(nullptr),m_playlist(nullptr)
 { 
-    m_direction = NONE;
+    m_direction = NONE; //这个设置相当重要,不然出现 光标会拖动屏幕一直
+    m_isStretch = true;
+    m_isShowFull = true;
     // 追踪鼠标
     this->setMouseTracking(true);
     // 无边框
@@ -112,6 +114,16 @@ void UIbase::stopBGM()
     }
 }
 
+void UIbase::setStretch(bool isCan)
+{
+    m_isStretch = isCan;
+}
+
+void UIbase::setShowFull(bool isCan)
+{
+    m_isShowFull = isCan;
+}
+
 
 // 实现界面拖拽
 void UIbase::mousePressEvent(QMouseEvent *event)
@@ -129,7 +141,7 @@ void UIbase::mousePressEvent(QMouseEvent *event)
         }
 
     }
-   // event->ignore();
+    // event->ignore();
     QWidget::mousePressEvent(event);
 }
 
@@ -143,8 +155,7 @@ void UIbase::mouseMoveEvent(QMouseEvent *event)
 
     if (!m_isLeftPressDown) {
         this->judgeRegionSetCursor(gloPoint);
-    }
-    else {
+    }else {
 
         if (m_direction != NONE) {
             QRect rMove(tl, rb);
@@ -241,7 +252,7 @@ void UIbase::contextMenuEvent(QContextMenuEvent *event)
 void UIbase::mouseDoubleClickEvent(QMouseEvent *event)
 {
     QWidget::mouseDoubleClickEvent(event);
-    if(event->button()==Qt::LeftButton)
+    if(m_isShowFull && event->button()==Qt::LeftButton)
     {
         windowState()!=Qt::WindowFullScreen?setWindowState(Qt::WindowFullScreen):setWindowState(Qt::WindowNoState);
     }
@@ -251,6 +262,8 @@ void UIbase::mouseDoubleClickEvent(QMouseEvent *event)
 
 void UIbase::judgeRegionSetCursor(const QPoint & currentPoint)
 {
+    if(!m_isStretch)return;
+
     // 获取窗体在屏幕上的位置区域，tl为topleft点，rb为rightbottom点
     QRect rect = this->rect();
     QPoint tl = mapToGlobal(rect.topLeft());

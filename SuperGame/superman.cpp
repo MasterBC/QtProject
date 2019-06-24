@@ -8,6 +8,7 @@
 #include "games/mahjong/mahjongui.h"
 #include "games/landlord/landlordui.h"
 #include "games/cowcow/cowcowui.h"
+#include "games/chineseChess/chinesechessui.h"
 
 #include "network/handlemsg.h"
 
@@ -46,6 +47,7 @@ SuperMan::SuperMan(QObject *parent) : QObject(parent),m_curScene(EnScene::NoScen
     m_gameMapMahjong = new MahjongUI();
     m_gameMapLandlord = new LandlordUI();
     m_gameMapCowcow = new CowcowUI();
+    m_gameMapChineseChess = new ChineseChessUI();
 
     // 场景切换
     onChangeScene(EnScene::NoScene, EnScene::Login);
@@ -77,6 +79,23 @@ SuperMan::~SuperMan()
     {
         m_gameMapBaccarat->deleteLater();
     }
+    if(nullptr != m_gameMapMahjong)
+    {
+        m_gameMapMahjong->deleteLater();
+    }
+    if(nullptr != m_gameMapLandlord)
+    {
+        m_gameMapLandlord->deleteLater();
+    }
+    if(nullptr != m_gameMapCowcow)
+    {
+        m_gameMapCowcow->deleteLater();
+    }
+    if(nullptr != m_gameMapChineseChess)
+    {
+        m_gameMapChineseChess->deleteLater();
+    }
+
 
     if(nullptr != m_gameFrameUI)
     {
@@ -124,22 +143,33 @@ void SuperMan::setSceneBGM(const QString &strMusic)
 
 void SuperMan::closeAllScene()
 {
-    m_login->close();
-    m_login->stopBGM();
-
-    m_loadingUI->close();
-    m_loadingUI->stopBGM();
-
-    m_homeUI->close();
-    m_homeUI->stopBGM();
-
-
-    m_gameFrameUI->close();
-    m_gameFrameUI->stopBGM();
-
-
-    m_gameMapBaccarat->close();
     m_gameMapBaccarat->stopBGM();
+    m_login->close();
+
+    m_loadingUI->stopBGM();
+    m_loadingUI->close();
+
+    m_homeUI->stopBGM();
+    m_homeUI->close();
+
+    m_gameFrameUI->stopBGM();
+    m_gameFrameUI->close();
+
+    m_gameMapBaccarat->stopBGM();
+    m_gameMapBaccarat->close();
+
+    m_gameMapCowcow->stopBGM();
+    m_gameMapCowcow->close();
+
+    m_gameMapLandlord->stopBGM();
+    m_gameMapLandlord->close();
+
+    m_gameMapMahjong->stopBGM();
+    m_gameMapMahjong->close();
+
+    m_gameMapChineseChess->stopBGM();
+    m_gameMapChineseChess->close();
+
 }
 
 void SuperMan::onHandleMsg(QByteArray data)
@@ -301,6 +331,10 @@ GameMap *SuperMan::currentMap()
     case GAME_MAHJONG:
         m_gameMapMahjong->setBackMusic("qrc:/sound/net/6607.mp3");
         return m_gameMapMahjong;
+    case GAME_ChinessChess:
+
+        m_gameMapChineseChess->setBackMusic("qrc:/sound/BMG/floor.wav");
+        return m_gameMapChineseChess;
     default:
         break;
     }

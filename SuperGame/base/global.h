@@ -27,6 +27,7 @@
 #define ROOM_NUM_SameTable	104	// ??????	4,5,6	20000
 #define ROOM_NUM_GamesCity	105	// ??????	3	20000
 #define ROOM_NUM_Guess	106	// ????	4	20000
+#define ROOM_NUM_Smart	107	// ????	4	20000
 
 ///////////////////->GAME<-////////////////////////////////
 //KINDID
@@ -37,6 +38,7 @@
 #define GAME_TOUBAO		2002
 #define GAME_LANDLORD	3001
 #define GAME_MAHJONG	3002
+#define GAME_ChinessChess 8002
 
 //MainID 200+ || SubID 100+
 //???

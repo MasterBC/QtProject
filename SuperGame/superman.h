@@ -14,6 +14,7 @@ class BaccaratUI;
 class MahjongUI;
 class LandlordUI;
 class CowcowUI;
+class ChineseChessUI;
 
 enum class EnScene{
     Login = 0,
@@ -72,6 +73,7 @@ private:
     MahjongUI*      m_gameMapMahjong;
     LandlordUI*     m_gameMapLandlord;
     CowcowUI*       m_gameMapCowcow;
+    ChineseChessUI* m_gameMapChineseChess;
 
     // 消息处理
     HandleMsg*      m_msg;

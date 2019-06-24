@@ -36,7 +36,8 @@ public:
     virtual void playBGM();
     virtual void pauseBGM();
     virtual void stopBGM();
-
+    virtual void setStretch(bool isCan);//是否支持拉伸
+    virtual void setShowFull(bool isCan);//是否支持全屏
 
 
 
@@ -58,7 +59,9 @@ private:
 
     const int       m_padding = 10;      // c++11 可以直接赋值
     bool            m_isLeftPressDown;  // 判断左键是否按下
-    Direction       m_direction;
+    bool            m_isStretch;        // 是否支持拉伸
+    bool            m_isShowFull;       // 是否支持全屏
+    Direction       m_direction;        // 拉伸方向
     QPoint          m_dragPosition;     // 窗口移动拖动时需要记住的点
     QMediaPlayer*   m_mediaPlayer;      // 音乐播放
     QMediaPlaylist* m_playlist;         // 音乐列表

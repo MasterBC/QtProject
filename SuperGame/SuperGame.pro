@@ -50,7 +50,10 @@ SOURCES += \
     games/baccarat/baccaratlogic.cpp \
     base/UI/uichips.cpp \
     base/UI/uibetarea.cpp \
-    base/UI/uitextscroll.cpp
+    base/UI/uitextscroll.cpp \
+    games/chineseChess/chinesechessui.cpp \
+    games/chineseChess/chinesechesslogic.cpp \
+    base/UI/uimeterprocessbar.cpp
 
 HEADERS += \
     login.pb.h \
@@ -85,7 +88,10 @@ HEADERS += \
     games/baccarat/baccaratlogic.h \
     base/UI/uichips.h \
     base/UI/uibetarea.h \
-    base/UI/uitextscroll.h
+    base/UI/uitextscroll.h \
+    games/chineseChess/chinesechessui.h \
+    games/chineseChess/chinesechesslogic.h \
+    base/UI/uimeterprocessbar.h
 
 
 FORMS += \
@@ -97,7 +103,8 @@ FORMS += \
     games/baccarat/baccaratui.ui \
     games/landlord/landlordui.ui \
     games/mahjong/mahjong.ui \
-    games/cowcow/cowcowui.ui
+    games/cowcow/cowcowui.ui \
+    games/chineseChess/chinesechessui.ui
 
 
 win32: LIBS += -L$$PWD/network/protobuffer/lib/ -lprotobuf

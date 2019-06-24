@@ -441,7 +441,7 @@
     </widget>
    </item>
    <item row="2" column="3" colspan="4">
-    <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="0,2,0,0,0,0">
+    <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="0,2,0,0,0,0,0">
      <property name="spacing">
       <number>5</number>
      </property>
@@ -586,6 +586,28 @@
        </property>
        <property name="text">
         <string>房间6</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_Smart">
+       <property name="minimumSize">
+        <size>
+         <width>80</width>
+         <height>80</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>80</width>
+         <height>80</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 170, 255);</string>
+       </property>
+       <property name="text">
+        <string>房间7</string>
        </property>
       </widget>
      </item>

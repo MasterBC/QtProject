@@ -34,6 +34,7 @@ BaccaratUI::BaccaratUI(QWidget *parent) :
     m_freeTime = 0;
     m_betTime = 0;
     m_openTime = 0;
+    m_BetGolds = 0;
     m_PlayerGold = 0;
 
     m_animatIsFinish = true;
@@ -120,6 +121,7 @@ void BaccaratUI::changeState(int state,const std::string &data)
         break;
     case SubGameStatePlaying:
         strStateName = "下注-";
+        m_BetGolds = 0;
         m_lastTime = m_betTime;
 
         ui->label_scrollText->setWords( "开始下注啦!" );
@@ -240,6 +242,7 @@ bool BaccaratUI::gameHandle(int code,const std::string &data)
             if(0 == betResult.state())
             {
 
+                m_BetGolds += betResult.betscore();
                 m_PlayerGold -= betResult.betscore();
                 ui->label_gold->setText(tr("金币:")+QString::number(m_PlayerGold/100,'f',2));
                 QString strInfo = tr("\n区域:%1 下注:%2").arg( m_logic->GetAreaText( betResult.betarea()).c_str() ).arg( betResult.betscore()/100);
@@ -290,8 +293,15 @@ bool BaccaratUI::gameHandle(int code,const std::string &data)
         m_PlayerGold += checkOut.acquire();
         ui->label_gold->setText(tr("金币:")+QString::number(m_PlayerGold/100,'f',2));
 
+        m_BetGolds = checkOut.acquire() - m_BetGolds;
         // 显示中奖信息
-        ui->label_GameInfo->setText( tr("\n\n本轮结束,赢了:%2金币\n").arg(checkOut.acquire()/100));
+        if(0 <= m_BetGolds)
+        {
+            ui->label_GameInfo->setText( tr("\n\n本轮结束,赢了:%2金币\n").arg(m_BetGolds/100));
+        }else{
+            ui->label_GameInfo->setText( tr("\n\n本轮结束,输了:%2金币\n").arg((-m_BetGolds)/100));
+        }
+
     }
         strFrameName = "结算结果";
         break;

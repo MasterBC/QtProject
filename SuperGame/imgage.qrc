@@ -155,5 +155,34 @@
         <file>img/poker_a/Q_H_1.jpg</file>
         <file>img/poker_a/Q_S_1.jpg</file>
         <file>img/poker_a/X_X_1.jpg</file>
+        <file>img/chineseChess/background.png</file>
+        <file>img/chineseChess/bche.png</file>
+        <file>img/chineseChess/bjiang.png</file>
+        <file>img/chineseChess/bkg1.png</file>
+        <file>img/chineseChess/bkg2.png</file>
+        <file>img/chineseChess/bma.png</file>
+        <file>img/chineseChess/bpao.png</file>
+        <file>img/chineseChess/bshi.png</file>
+        <file>img/chineseChess/bxiang.png</file>
+        <file>img/chineseChess/bzu.png</file>
+        <file>img/chineseChess/closeVolice.png</file>
+        <file>img/chineseChess/difficulty.jpg</file>
+        <file>img/chineseChess/floor.jpg</file>
+        <file>img/chineseChess/icon.png</file>
+        <file>img/chineseChess/new.jpg</file>
+        <file>img/chineseChess/openVolice.png</file>
+        <file>img/chineseChess/pause.jpg</file>
+        <file>img/chineseChess/rbing.png</file>
+        <file>img/chineseChess/rche.png</file>
+        <file>img/chineseChess/regret.jpg</file>
+        <file>img/chineseChess/rma.png</file>
+        <file>img/chineseChess/rpao.png</file>
+        <file>img/chineseChess/rshi.png</file>
+        <file>img/chineseChess/rshuai.png</file>
+        <file>img/chineseChess/rxiang.png</file>
+        <file>img/chineseChess/selected.png</file>
+        <file>img/chineseChess/start.jpg</file>
+        <file>img/chineseChess/yingjiemian.png</file>
+        <file>sound/BMG/floor.wav</file>
     </qresource>
 </RCC>

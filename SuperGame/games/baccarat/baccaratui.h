@@ -46,6 +46,7 @@ private:
     int m_lastTime;                 // 剩余时长
     int m_curState;                 // 当前状态
 
+    qint64 m_BetGolds;              // 下注金额
     qint64 m_PlayerGold;
     
     // 六张扑克牌

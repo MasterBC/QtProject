@@ -1,18 +1,18 @@
 #include "SuperMan.h"
 #include <QApplication>
-
-
-#include "base/UI/poker.h"
-
-#include <QDebug>
-
 #include <QIcon>
+#include "base/UI/uimeterprocessbar.h"
 
-#include <QBitmap>
-#include <QLabel>
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+
+    UiMeterProcessBar bar;
+    bar.setMaxValue(100);
+    bar.setMinValue(-300);
+    bar.setDuration(30);
+    bar.show();
+
 
     SuperMan man;
 

@@ -15,6 +15,14 @@ GameFrameUI::GameFrameUI(QWidget *parent) :
     ui(new Ui::GameFrameUI)
 {
     ui->setupUi(this);
+    ui->pushButton_DualMeet->hide();
+    ui->pushButton_Fight->hide();
+    ui->pushButton_GamesCity->hide();
+    ui->pushButton_Guess->hide();
+    ui->pushButton_Multiplayer->hide();
+    ui->pushButton_SameTable->hide();
+    ui->pushButton_Smart->hide();
+
 }
 
 GameFrameUI::~GameFrameUI()
@@ -45,6 +53,8 @@ void GameFrameUI::updateRoomInfo(const go::RoomInfo &roomInfo)
             return ui->pushButton_GamesCity;
         case ROOM_NUM_DualMeet:
             return ui->pushButton_DualMeet;
+        case ROOM_NUM_Smart:
+            return ui->pushButton_Smart;
         default:
             break;
         }
@@ -53,6 +63,7 @@ void GameFrameUI::updateRoomInfo(const go::RoomInfo &roomInfo)
     QPushButton* roomBtn = getBtn(roomInfo.roomnum());
     if(nullptr != roomBtn)
     {
+        roomBtn->show();
         roomBtn->setText(roomInfo.roomname().c_str());
         connect(roomBtn, &QPushButton::clicked, [roomInfo](){
             HandleMsg::GetInstance()->ReqEnterRoom(roomInfo.roomnum(), roomInfo.roomkey().c_str());
