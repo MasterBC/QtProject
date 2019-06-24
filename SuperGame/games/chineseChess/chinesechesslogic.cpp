@@ -87,13 +87,13 @@ bool ChineseChessLogic::CanMove(int x, int y, int toX, int toY)
     {
         qDebug()<<"成功";
         int index = m_setInfo.size();
-        setInfo info;
-        info.x = x;
-        info.y = y;
-        info.toX = toX;
-        info.toY = toY;
-        info.prePiece = m_arryChessBoard[x][y];
-        info.nowPiece = m_arryChessBoard[toX][toY];
+        setInfo* info = new setInfo();
+        info->x = x;
+        info->y = y;
+        info->toX = toX;
+        info->toY = toY;
+        info->prePiece = m_arryChessBoard[x][y];
+        info->nowPiece = m_arryChessBoard[toX][toY];
         m_setInfo.insert(index+1,info);
         m_arryChessBoard[toX][toY] = m_arryChessBoard[x][y];
         m_arryChessBoard[x][y] = 0;
@@ -108,14 +108,15 @@ bool ChineseChessLogic::CanMove(int x, int y, int toX, int toY)
 
 void ChineseChessLogic::Rollback()
 {
-//    if( 0 < m_setInfo.size() )
-//    {
-//        QMap<int, setInfo>::iterator itor = m_setInfo.end();
-//        setInfo v = itor.value();
-//        m_arryChessBoard[v.x][v.y] = v.prePiece;
-//        m_arryChessBoard[v.toX][v.toY] = v.nowPiece;
-//        m_setInfo.erase(itor);
-//    }
+    int nIdex = m_setInfo.size();
+    if( 0 < nIdex )
+    {
+        setInfo* v = m_setInfo[nIdex-1];
+        m_arryChessBoard[v->x][v->y] = v->prePiece;
+        m_arryChessBoard[v->toX][v->toY] = v->nowPiece;
+        m_setInfo.remove(nIdex-1);
+        delete v;
+    }
 
 
 }

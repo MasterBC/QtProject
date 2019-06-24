@@ -35,7 +35,7 @@ protected:
 private:
 
     unsigned char m_arryChessBoard[10][9];
-    QMap<int,setInfo> m_setInfo;
+    QMap<int,setInfo*> m_setInfo;
 };
 
 #endif // CHINESECHESSLOGIC_H

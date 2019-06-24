@@ -129,31 +129,29 @@ void ChineseChessUI::mouseReleaseEvent(QMouseEvent *e)
                 QPoint end =  toChessBoardPos(endRect);
                 if(m_logic->CanMove(start.x(),start.y(),end.x(),end.y()))
                 {
-                    m_isRed = !m_isRed;
-                    m_isSelect = false;
-                    m_selectUI->hide();
-
-                       unsigned char code = m_logic->JiangJun(end.x(),end.y());
-
+                    unsigned char code = m_logic->JiangJun(end.x(),end.y());//将军
                     if(0x03 != code && killPiece(endRect))
                     {
                         m_curPieces->setGeometry( endRect );
                         m_curPieces = nullptr;
                     }
 
+                    m_isRed = !m_isRed;
+                    m_isSelect = false;
+                    m_selectUI->hide();
                     if(0x01 == code)
                     {
                         QDialog dlg(this);
                         dlg.setMinimumSize(200,180);
                         dlg.setAutoFillBackground(true);
-                        dlg.setStyleSheet("border-image: url(:/img/chineseChess/bkg2.png)");
+                        dlg.setStyleSheet("border-image: url(:/img/chineseChess/bkg1.png)");
                         dlg.exec();
                     }else if(0x02 == code)
                     {
                         QDialog dlg(this);
                         dlg.setMinimumSize(200,180);
                         dlg.setAutoFillBackground(true);
-                        dlg.setStyleSheet("border-image: url(:/img/chineseChess/bkg1.png)");
+                        dlg.setStyleSheet("border-image: url(:/img/chineseChess/bkg2.png)");
                         dlg.exec();
                     }
 
