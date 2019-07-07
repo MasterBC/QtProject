@@ -26,6 +26,9 @@ ChineseChessUI::ChineseChessUI(QWidget *parent) :
     m_selectUI = new QLabel(this);
     m_animation = new QPropertyAnimation(m_selectUI, "geometry");
 
+    //来回切换
+    connect(ui->timeoutBlack,SIGNAL(timeoutSig()), this, SLOT(onWinner()));
+    connect(ui->timeoutRed,SIGNAL(timeoutSig()), this, SLOT(onWinner()));
     init(true);
 }
 
@@ -40,6 +43,9 @@ ChineseChessUI::~ChineseChessUI()
 void ChineseChessUI::enterScene(int scene, const std::string &data)
 {
     resetChessBoard();
+    ui->timeoutRed->setMinValue(0);
+    ui->timeoutRed->setMaxValue(100);
+    ui->timeoutRed->setDuration(20);
     //    UiMeterProcessBar* bar = new UiMeterProcessBar(ui->CheckerBoard);
     //    bar->setMaxValue(100);
     //    bar->setMinValue(0);
@@ -127,34 +133,51 @@ void ChineseChessUI::mouseReleaseEvent(QMouseEvent *e)
             {
                 QPoint start =  toChessBoardPos(curRect);
                 QPoint end =  toChessBoardPos(endRect);
+                // 先检测能不能走下一步
+                qDebug()<<"下一步: "<<start.x()<<" --"<<start.y();
                 if(m_logic->CanMove(start.x(),start.y(),end.x(),end.y()))
                 {
-                    unsigned char code = m_logic->JiangJun(end.x(),end.y());//将军
-                    if(0x03 != code && killPiece(endRect))
+                    //是否能将军
+                    m_logic->JiangJun(end.x(), end.y());//将军
+                    unsigned char code = m_logic->GetCode();
+                    qDebug()<<"当前将军状态: "<<code;
+
+                    //不能被将军
+                    if(0x03 == code)
                     {
+                        m_logic->Rollback();
+                        return GameMap::mouseReleaseEvent(e);
+                    }
+
+
+                    //吃掉棋子
+                    if( killPiece(endRect))
+                    {
+                        qDebug()<<"正在吃: "<<code;
                         m_curPieces->setGeometry( endRect );
                         m_curPieces = nullptr;
                     }
+                    else
+                    {
+                        qDebug()<<"没法吃: "<<code;
+                    }
 
+
+                    //状态切换
                     m_isRed = !m_isRed;
                     m_isSelect = false;
                     m_selectUI->hide();
-                    if(0x01 == code)
+                    turnTime(m_isRed);
+
+                    //提示被将军的一方
+                    if(0 < code)
                     {
                         QDialog dlg(this);
                         dlg.setMinimumSize(200,180);
                         dlg.setAutoFillBackground(true);
-                        dlg.setStyleSheet("border-image: url(:/img/chineseChess/bkg1.png)");
-                        dlg.exec();
-                    }else if(0x02 == code)
-                    {
-                        QDialog dlg(this);
-                        dlg.setMinimumSize(200,180);
-                        dlg.setAutoFillBackground(true);
-                        dlg.setStyleSheet("border-image: url(:/img/chineseChess/bkg2.png)");
+                        dlg.setStyleSheet( QString("border-image: url(:/img/chineseChess/bkg%1.png)").arg(code) );
                         dlg.exec();
                     }
-
                 }
             }
         }
@@ -329,6 +352,43 @@ void ChineseChessUI::resetChessBoard()
 
     ui->label_Shuai->setGeometry(QRect(370, 10, 80, 60));
     ui->label_Shuai->show();         //31
+}
+
+void ChineseChessUI::turnTime(bool isRed)
+{
+    ui->timeoutBlack->show();
+    ui->timeoutRed->show();
+    if(isRed)
+    {
+        ui->timeoutRed->setMinValue(0);
+        ui->timeoutRed->setMaxValue(100);
+        ui->timeoutRed->setDuration(20);
+
+        ui->timeoutBlack->setMinValue(0);
+        ui->timeoutBlack->setMaxValue(0);
+        ui->timeoutBlack->setDuration(20);
+    }
+    else
+    {
+        ui->timeoutRed->setMinValue(0);
+        ui->timeoutRed->setMaxValue(0);
+        ui->timeoutRed->setDuration(0);
+
+        ui->timeoutBlack->setMinValue(0);
+        ui->timeoutBlack->setMaxValue(100);
+        ui->timeoutBlack->setDuration(20);
+    }
+
+}
+
+void ChineseChessUI::onWinner()
+{
+    //    QDialog dlg(this);
+    //    dlg.setMinimumSize(200,180);
+    //    dlg.setAutoFillBackground(true);
+    //    dlg.setStyleSheet("border-image: url(:/img/chineseChess/yingjiemian.png)");
+    //    dlg.exec();
+    //    resetChessBoard();
 }
 
 void ChineseChessUI::init(bool isRedStart)

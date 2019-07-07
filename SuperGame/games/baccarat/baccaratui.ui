@@ -231,7 +231,7 @@
      </property>
      <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="0">
-       <widget class="QLabel" name="label_Zhuang">
+       <widget class="UIBetArea" name="label_Zhuang">
         <property name="cursor">
          <cursorShape>ArrowCursor</cursorShape>
         </property>
@@ -250,7 +250,7 @@
        </widget>
       </item>
       <item row="0" column="2">
-       <widget class="QLabel" name="label_Xian">
+       <widget class="UIBetArea" name="label_Xian">
         <property name="cursor">
          <cursorShape>ArrowCursor</cursorShape>
         </property>
@@ -269,7 +269,7 @@
        </widget>
       </item>
       <item row="1" column="0">
-       <widget class="QLabel" name="label_ZTW">
+       <widget class="UIBetArea" name="label_ZTW">
         <property name="cursor">
          <cursorShape>ArrowCursor</cursorShape>
         </property>
@@ -288,7 +288,7 @@
        </widget>
       </item>
       <item row="1" column="2">
-       <widget class="QLabel" name="label_XTW">
+       <widget class="UIBetArea" name="label_XTW">
         <property name="cursor">
          <cursorShape>ArrowCursor</cursorShape>
         </property>
@@ -307,7 +307,7 @@
        </widget>
       </item>
       <item row="2" column="0">
-       <widget class="QLabel" name="label_ZDZ">
+       <widget class="UIBetArea" name="label_ZDZ">
         <property name="cursor">
          <cursorShape>ArrowCursor</cursorShape>
         </property>
@@ -326,7 +326,7 @@
        </widget>
       </item>
       <item row="2" column="2">
-       <widget class="QLabel" name="label_XDZ">
+       <widget class="UIBetArea" name="label_XDZ">
         <property name="cursor">
          <cursorShape>ArrowCursor</cursorShape>
         </property>
@@ -347,7 +347,7 @@
       <item row="0" column="1" rowspan="3">
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <widget class="QLabel" name="label_Ping">
+         <widget class="UIBetArea" name="label_Ping">
           <property name="cursor">
            <cursorShape>ArrowCursor</cursorShape>
           </property>
@@ -366,7 +366,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_TDP">
+         <widget class="UIBetArea" name="label_TDP">
           <property name="cursor">
            <cursorShape>ArrowCursor</cursorShape>
           </property>
@@ -469,7 +469,13 @@
         <string notr="true">background-color: rgb(255, 85, 255);</string>
        </property>
        <property name="text">
-        <string>筹码2</string>
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="../../imgage.qrc">:/img/chips/Chip_1.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -491,7 +497,13 @@
         <string notr="true">background-color: rgb(85, 170, 255);</string>
        </property>
        <property name="text">
-        <string>筹码3</string>
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="../../imgage.qrc">:/img/chips/Chip_5.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -513,7 +525,13 @@
         <string notr="true">background-color: rgb(255, 110, 53);</string>
        </property>
        <property name="text">
-        <string>筹码4</string>
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="../../imgage.qrc">:/img/chips/Chip_25.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -535,7 +553,13 @@
         <string notr="true">background-color: rgb(255, 180, 157);</string>
        </property>
        <property name="text">
-        <string>筹码5</string>
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="../../imgage.qrc">:/img/chips/Chip_50.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -557,7 +581,13 @@
         <string notr="true">background-color: rgb(0, 170, 127);</string>
        </property>
        <property name="text">
-        <string>筹码6</string>
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="../../imgage.qrc">:/img/chips/Chip_100.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -604,7 +634,12 @@
   <customwidget>
    <class>UiTextScroll</class>
    <extends>QLabel</extends>
-   <header location="global">base/UI/uitextscroll.h</header>
+   <header>base/UI/uitextscroll.h</header>
+  </customwidget>
+  <customwidget>
+   <class>UIBetArea</class>
+   <extends>QLabel</extends>
+   <header location="global">base/UI/uibetarea.h</header>
   </customwidget>
  </customwidgets>
  <resources>

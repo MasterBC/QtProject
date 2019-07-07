@@ -89,7 +89,7 @@ void UiMeterProcessBar::paintEvent(QPaintEvent *event)
         painter.drawLine(0, 70, 0, 80);
         painter.rotate(2.8);
     }
-    if (currentValue == 0) {
+    if (currentValue == 0 || currentValue == maxValue) {
         dispayValueLabel->setFont(QFont("Arial", 12, QFont::Bold));
         dispayValueLabel->setText(tr("N/A"));
     }
@@ -122,24 +122,24 @@ void UiMeterProcessBar::paintEvent(QPaintEvent *event)
 
 void UiMeterProcessBar::mousePressEvent(QMouseEvent *event)
 {
-    bPressFlag = true;
-    beginDrag = event->pos();
-    QWidget::mousePressEvent(event);
+//    bPressFlag = true;
+//    beginDrag = event->pos();
+//    QWidget::mousePressEvent(event);
 }
 
 void UiMeterProcessBar::mouseMoveEvent(QMouseEvent *event)
 {
-    if (bPressFlag) {
-        QPoint relaPos(QCursor::pos() - beginDrag);
-        move(relaPos);
-    }
-    QWidget::mouseMoveEvent(event);
+//    if (bPressFlag) {
+//        QPoint relaPos(QCursor::pos() - beginDrag);
+//        move(relaPos);
+//    }
+//    QWidget::mouseMoveEvent(event);
 }
 
 void UiMeterProcessBar::mouseReleaseEvent(QMouseEvent *event)
 {
-    bPressFlag = false;
-    QWidget::mouseReleaseEvent(event);
+//    bPressFlag = false;
+//    QWidget::mouseReleaseEvent(event);
 }
 
 void UiMeterProcessBar::showEvent(QShowEvent *event)
@@ -152,6 +152,7 @@ void UiMeterProcessBar::showEvent(QShowEvent *event)
 void UiMeterProcessBar::hideEvent(QHideEvent *event)
 {
     if (updateTimer->isActive()) {
+        emit timeoutSig();
         updateTimer->stop();
     }
     //currentValue = 0;
@@ -161,7 +162,9 @@ void UiMeterProcessBar::hideEvent(QHideEvent *event)
 void UiMeterProcessBar::slotUpdateTimer()
 {
     if (currentValue >= maxValue) {
+        emit timeoutSig();
         updateTimer->stop();
+         update();// 屏蔽时,则可停留在currentValue == maxValue界面，否则N/A表示
         return;
     }
     currentValue++;

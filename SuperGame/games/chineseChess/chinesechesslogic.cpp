@@ -1,6 +1,6 @@
 #include "chinesechesslogic.h"
 #include <QDebug>
-//十行九列
+//十行九列 // 小写黑 大写红
 unsigned char arryChessBoard[10][9]={
     'c','m','x','s','j','s','x','m','c',
     0,  0,  0,  0,  0,  0,  0,  0,  0,
@@ -20,6 +20,7 @@ ChineseChessLogic::ChineseChessLogic()
 
 void ChineseChessLogic::initChessBoard()
 {
+    m_state = 0x00;
     memcpy_s(m_arryChessBoard,sizeof(m_arryChessBoard),arryChessBoard,sizeof(arryChessBoard));
     m_setInfo.clear();
 }
@@ -31,7 +32,7 @@ bool ChineseChessLogic::CanMove(int x, int y, int toX, int toY)
     if(10<=x || 9<=y || (x == toX && y == toY))return false;
 
 
-    //颜色相同则不符合规则(含0x00) 为了表达清晰,两个判断分开写了
+    //颜色相同则不符合规则(含0x00)
     if(judgmetColor(x,y) == judgmetColor(toX,toY))
     {
         qDebug()<<"踩到自己人了";
@@ -42,11 +43,11 @@ bool ChineseChessLogic::CanMove(int x, int y, int toX, int toY)
     //获取棋子类型
     bool isOk = false;
     unsigned char piece = m_arryChessBoard[x][y];
-    qDebug()<<"当前棋子:"<<piece <<" ->"<<m_arryChessBoard[toX][toY];
+    //qDebug()<<"当前棋子:"<<piece <<" ->"<<m_arryChessBoard[toX][toY];
     switch (piece) {
     case 'C':
     case 'c':
-        //qDebug()<<"车的走法";
+        // qDebug()<<"车的走法";
         isOk = verifyChe(x,y,toX,toY);
         break;
     case 'M':
@@ -85,8 +86,32 @@ bool ChineseChessLogic::CanMove(int x, int y, int toX, int toY)
 
     if(isOk)
     {
-        qDebug()<<"成功";
-        int index = m_setInfo.size();
+        //qDebug()<<"成功";
+qDebug()<<x<<"成功"<<y;
+        //两位将军不能见面
+        int bX = 0, bY = 0;
+        int rX = 0, rY = 0;
+        getPos('j', bX, bY);
+        getPos('J', rX, rY);
+        if(bY == rY && ((toX != bX && toY != bY) ||(toX != rX && toY != rY) ) )
+        {
+            // 两位将军之间是否存在棋子
+            bool isCan = false;
+            for(int i=bX+1 ; i<rX; i++)
+            {
+                //假设棋子已经移动
+                if(i == x && y == rY) continue;
+
+                if( (i == toX && rY == toY) || 0 < m_arryChessBoard[i][rY])
+                {
+                    isCan = true;
+                    break;
+                }
+            }
+            qDebug()<<"黑方将军位置:"<<bX<<" "<<bY<<" 红方将军位置:"<<rX<<" "<<rY;
+            if(!isCan) return false;
+        }
+
         setInfo* info = new setInfo();
         info->x = x;
         info->y = y;
@@ -94,12 +119,15 @@ bool ChineseChessLogic::CanMove(int x, int y, int toX, int toY)
         info->toY = toY;
         info->prePiece = m_arryChessBoard[x][y];
         info->nowPiece = m_arryChessBoard[toX][toY];
-        m_setInfo.insert(index+1,info);
+
+        qDebug()<<x<<"缓存前"<<y;
+        m_setInfo.append(info);
+        qDebug()<<toX<<"缓存后"<<toY;
         m_arryChessBoard[toX][toY] = m_arryChessBoard[x][y];
         m_arryChessBoard[x][y] = 0;
     }else
     {
-        qDebug()<<"失败";
+        //qDebug()<<"失败"<<x<<" -- "<<y<<piece;
     }
 
 
@@ -108,29 +136,37 @@ bool ChineseChessLogic::CanMove(int x, int y, int toX, int toY)
 
 void ChineseChessLogic::Rollback()
 {
-    int nIdex = m_setInfo.size();
-    if( 0 < nIdex )
+    int nIndex = m_setInfo.size();
+    if( 0 < nIndex )
     {
-        setInfo* v = m_setInfo[nIdex-1];
+
+        setInfo* v = m_setInfo.at(nIndex-1);
         m_arryChessBoard[v->x][v->y] = v->prePiece;
         m_arryChessBoard[v->toX][v->toY] = v->nowPiece;
-        m_setInfo.remove(nIdex-1);
+
+        qDebug()<<"回滚中..."<<v->x<<" -->" << v->y <<" 棋子-->"<< (int)v->prePiece <<" "<<(int)v->nowPiece;
+        m_setInfo.removeAt(nIndex-1);
         delete v;
+
     }
 
 
 }
 
 
-unsigned char ChineseChessLogic::JiangJun(int x, int y)
+bool ChineseChessLogic::JiangJun(int x, int y)
 {
-    if(0 == m_arryChessBoard[x][y]) return 0x00;
+    m_state = 0;
+    if(0 == m_arryChessBoard[x][y]) return false;
 
     int toX = 0;
     int toY = 0;
     bool isGet = false;
     unsigned char piece = 0;
     unsigned char whichSide = judgmetColor(x,y);        // 看下是哪一方.
+
+
+
     // 移动范围 0 1 2行  3 4 5列
     for(toX=0; toX<3; toX++)
     {
@@ -145,7 +181,7 @@ unsigned char ChineseChessLogic::JiangJun(int x, int y)
         if(isGet)break;
     }
 
-    qDebug()<<"黑方将军坐标:"<<toX<<" "<<toY;
+    // qDebug()<<"黑方将军坐标:"<<toX<<" "<<toY;
 
     //校验当前的棋子是否可以到达将军的位置
     for(int i=0; i<10; i++)
@@ -162,11 +198,13 @@ unsigned char ChineseChessLogic::JiangJun(int x, int y)
                     if(0x02 == whichSide)
                     {
                         Rollback();
-                        return 0x03;
+                        m_state = 0x03;
+                        return false;
                     }
                     else
                     {
-                        return 0x02;
+                        m_state = 0x02;
+                        return true;
                     }
                 }
             }
@@ -187,7 +225,7 @@ unsigned char ChineseChessLogic::JiangJun(int x, int y)
         }
         if(isGet)break;
     }
-    qDebug()<<"红方将军坐标:"<<toX<<" "<<toY;
+    //qDebug()<<"红方将军坐标:"<<toX<<" "<<toY;
     //校验当前的棋子是否可以到达将军的位置
     for(int i=0; i<10; i++)
     {
@@ -204,17 +242,19 @@ unsigned char ChineseChessLogic::JiangJun(int x, int y)
                     if(0x01 == whichSide)
                     {
                         Rollback();
-                        return 0x03;
+                        m_state = 0x03;
+                        return false;
                     }
                     else
                     {
-                        return 0x01;
+                        m_state = 0x01;
+                        return true;
                     }
                 }
             }
         }
     }
-    return 0x00;
+    return false;
 }
 
 
@@ -301,8 +341,6 @@ bool ChineseChessLogic::verifyMa(int x, int y, int toX, int toY)
             }
             return x == toX-1 || x == toX+1;
         }
-
-        qDebug()<<"正在校验";
     }
     return false;
 }
@@ -467,6 +505,24 @@ bool ChineseChessLogic::verifyBing(int x, int y, int toX, int toY)
         }else if(0x02 == whichSide)
         {//黑方面军
             return (x == toX-1 && y == toY) || (4 < x && (toX == x && (y == toY+1 || y == toY-1)));
+        }
+    }
+    return false;
+}
+
+bool ChineseChessLogic::getPos(unsigned char piece, int &x, int &y)
+{
+    for(int i=0; i<10; i++)
+    {
+        for(int j=0; j<9; j++)
+        {
+            if(piece == m_arryChessBoard[i][j])
+            {
+                x = i;
+                y = j;
+                return true;
+            }
+
         }
     }
     return false;

@@ -9,15 +9,10 @@
         <file>sound/net/6179.mp3</file>
         <file>sound/net/6607.mp3</file>
         <file>sound/net/dudu.wav</file>
-        <file>sound/net/iamReady.wav</file>
         <file>sound/net/jinxingqu.mp3</file>
         <file>sound/net/jinxingqu1.mp3</file>
         <file>sound/net/jinxingqu2.mp3</file>
         <file>sound/net/noonlylove.wav</file>
-        <file>sound/net/qiaomen.mp3</file>
-        <file>sound/net/ready.wav</file>
-        <file>sound/net/readyGo.wav</file>
-        <file>sound/net/手机铃声-cctv新闻联播开关的那段音乐_爱给网_aigei_com.mp3</file>
         <file>img/poker_b.plist</file>
         <file>img/poker_b.png</file>
         <file>img/wang.jpg</file>
@@ -184,5 +179,10 @@
         <file>img/chineseChess/start.jpg</file>
         <file>img/chineseChess/yingjiemian.png</file>
         <file>sound/BMG/floor.wav</file>
+        <file>img/chips/Chip_1.png</file>
+        <file>img/chips/Chip_5.png</file>
+        <file>img/chips/Chip_25.png</file>
+        <file>img/chips/Chip_50.png</file>
+        <file>img/chips/Chip_100.png</file>
     </qresource>
 </RCC>

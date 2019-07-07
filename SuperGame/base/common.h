@@ -35,8 +35,66 @@ const unsigned char CardData[]={
 #define MSG_DOWNLOAD_FILE 6         //???????
 #define MSG_COMPLETE 7              //???????
 //////////////////////////////////////////////////////////////
+namespace NSType
+{
+enum class enChip
+{
+    OneRMB = 0,
+    TwoRMB,
+    FiveRMB,
+    TwentyRMB,
+    FiftyRMB,
+    HundredRMB,
+    ZeroRMB
+};
+struct enDrag
+{
+    enum class Type{
+        Text = 1,
+        Picture,
+        Form,
+        Movice,
+        NoType
+    };
+    enDrag() {
+        memset(m_type.sz, 0, sizeof(m_type.sz));
+    }
+    enDrag (const enDrag &obj) {
+        this->m_type = obj.m_type;
+    }
+    void setType(Type type)
+    {
+        memset(m_type.sz, 0, sizeof(m_type.sz));
+        m_type.code = type;
+        switch (type) {
+        case Type::Text:
+            strcpy_s(m_type.sz,"application/x-text");
+            break;
+        case Type::Picture:
+            strcpy_s(m_type.sz,"application/x-picture");
+            break;
+        case Type::Movice:
+            strcpy_s(m_type.sz,"application/x-movice");
+            break;
+        case Type::Form:
+            strcpy_s(m_type.sz,"application/x-form");
+            break;
+        default:
+            m_type.code = Type::NoType;
+            break;
+        }
+    }
+    inline Type getType()const{return m_type.code;}
+    inline const char* getTypeName()const{return m_type.sz;}
 
-
+private:
+    union unType{
+        Type code;
+        char sz[64];
+    };
+    unType m_type;
+};
+}
 
 namespace NSNetwork
 {

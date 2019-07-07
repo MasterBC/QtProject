@@ -16,6 +16,7 @@ class QSequentialAnimationGroup;
 class QStandardItemModel;
 
 class baccaratLogic;
+class UIBetArea;
 class BaccaratUI : public GameMap
 {
     Q_OBJECT
@@ -38,6 +39,15 @@ private:
     void awardAnimation(const std::string& strAward);
     // 发牌动画
     void dealCardAnimation(const std::string& strPlayerCard,const std::string& strBankerCard);
+    //允许下注
+    void allowPlaying(bool isAllow);
+    //飞筹码
+    bool addChip(int area, int money);
+    //清空筹码
+    void clearChips();
+
+    UIBetArea *getArea(int area);
+
 
     Ui::BaccaratUI *ui;
     int m_freeTime;

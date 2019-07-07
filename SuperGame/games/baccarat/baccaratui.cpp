@@ -107,8 +107,12 @@ void BaccaratUI::changeState(int state,const std::string &data)
 
 
 
+
     switch (state) {
     case SubGameStateStart:
+        clearChips();
+        allowPlaying(false);
+
         strStateName = "开始-";
         m_lastTime = m_freeTime;
         m_select = nullptr;
@@ -120,6 +124,7 @@ void BaccaratUI::changeState(int state,const std::string &data)
         ui->label_scrollText->setWords( "请准备,即将进入下注阶段" );
         break;
     case SubGameStatePlaying:
+        allowPlaying(true);
         strStateName = "下注-";
         m_BetGolds = 0;
         m_lastTime = m_betTime;
@@ -127,6 +132,7 @@ void BaccaratUI::changeState(int state,const std::string &data)
         ui->label_scrollText->setWords( "开始下注啦!" );
         break;
     case SubGameStateOver:
+        allowPlaying(false);
         strStateName = "结束-";
         m_lastTime = m_openTime;
 
@@ -144,6 +150,7 @@ void BaccaratUI::changeState(int state,const std::string &data)
 
     m_timer->stop();
     if(0 < m_lastTime) m_timer->start( 1000 );
+
     ui->label_State->setText(tr("状态:") + strStateName);
     qDebug()<<QTime::currentTime()<<"百家乐的当前状态:"<<state<<strStateName;
 }
@@ -168,6 +175,7 @@ void BaccaratUI::enterScene(int scene,const std::string &data)
             m_lastTime = m_freeTime;
             break;
         case SubGameSencePlaying:
+            allowPlaying(true);
             strSceneName = "下注";
             m_lastTime = m_betTime;
             break;
@@ -195,11 +203,11 @@ void BaccaratUI::enterScene(int scene,const std::string &data)
         //筹码
         if(4 < enter.chips_size())
         {
-            ui->label_Clip1->setText( QString::number(enter.chips(0)) );
-            ui->label_Clip2->setText( QString::number(enter.chips(1)) );
-            ui->label_Clip3->setText( QString::number(enter.chips(2)) );
-            ui->label_Clip4->setText( QString::number(enter.chips(3)) );
-            ui->label_Clip5->setText( QString::number(enter.chips(4)) );
+            ui->label_Clip1->setToolTip( QString::number(enter.chips(0)) );
+            ui->label_Clip2->setToolTip( QString::number(enter.chips(1)) );
+            ui->label_Clip3->setToolTip( QString::number(enter.chips(2)) );
+            ui->label_Clip4->setToolTip( QString::number(enter.chips(3)) );
+            ui->label_Clip5->setToolTip( QString::number(enter.chips(4)) );
         }
 
 
@@ -382,7 +390,8 @@ bool BaccaratUI::eventFilter(QObject *watched, QEvent *event)
                     if(0xFF != area)
                     {
                         // 发送下注信息
-                        HandleMsg::GetInstance()->ReqPlayBet(area, m_select->text().toInt(nullptr,10)*100 );
+                        addChip(area,m_select->toolTip().toInt(nullptr,10));
+                        HandleMsg::GetInstance()->ReqPlayBet(area, m_select->toolTip().toInt(nullptr,10)*100 );
                     }else
                     {
                         qDebug()<<"数据异常..."<<label->text().toStdString().c_str();
@@ -464,37 +473,7 @@ void BaccaratUI::awardAnimation(const std::string &award)
         if(1 == card)
         {
             strInfo +=tr(" ")+ m_logic->GetAreaText(i).c_str();
-            QLabel *pArea = nullptr;
-            switch (i) {
-            case AREA_XIAN:
-                pArea = ui->label_Xian;
-                break;
-            case AREA_PING:
-                pArea = ui->label_Ping;
-                break;
-            case AREA_ZHUANG:
-                pArea = ui->label_Zhuang;
-                break;
-            case AREA_XIAN_TIAN:
-                pArea = ui->label_XTW;
-                break;
-            case AREA_ZHUANG_TIAN:
-                pArea = ui->label_ZTW;
-                break;
-            case AREA_TONG_DUI:
-                pArea = ui->label_TDP;
-                break;
-            case AREA_XIAN_DUI:
-                pArea = ui->label_XDZ;
-                break;
-            case AREA_ZHUANG_DUI:
-                pArea = ui->label_ZDZ;
-                break;
-            default:
-                qDebug()<<"无效区域";
-                break;
-            }
-
+            QLabel *pArea = getArea(i);
             if(nullptr != pArea)
             {
 
@@ -507,7 +486,7 @@ void BaccaratUI::awardAnimation(const std::string &award)
                 animation->setLoopCount(6);
                 //CosineCurve OutBounce OutElastic OutInElastic OutInBounce InElastic OutInCirc  InOutBounce
                 animation->setEasingCurve(QEasingCurve::OutInBounce);
-                m_animationGroup->addAnimation(animation);
+                m_animationGroup->addAnimation( animation );
 
                 qDebug()<<"有动画";
             }
@@ -542,6 +521,104 @@ void BaccaratUI::dealCardAnimation(const std::string &strPlayerCard, const std::
     ui->poker_6->setCard(strPlayerCard.at(2));
 
 
+}
+
+void BaccaratUI::clearChips()
+{
+    ui->label_TDP->clearALL();
+    ui->label_XDZ->clearALL();
+    ui->label_Xian->clearALL();
+    ui->label_XTW->clearALL();
+    ui->label_ZDZ->clearALL();
+    ui->label_Zhuang->clearALL();
+    ui->label_ZTW->clearALL();
+    ui->label_Ping->clearALL();
+
+
+}
+
+UIBetArea *BaccaratUI::getArea(int area)
+{
+    UIBetArea *pArea = nullptr;
+    switch (area) {
+    case AREA_XIAN:
+        pArea = ui->label_Xian;
+        break;
+    case AREA_PING:
+        pArea = ui->label_Ping;
+        break;
+    case AREA_ZHUANG:
+        pArea = ui->label_Zhuang;
+        break;
+    case AREA_XIAN_TIAN:
+        pArea = ui->label_XTW;
+        break;
+    case AREA_ZHUANG_TIAN:
+        pArea = ui->label_ZTW;
+        break;
+    case AREA_TONG_DUI:
+        pArea = ui->label_TDP;
+        break;
+    case AREA_XIAN_DUI:
+        pArea = ui->label_XDZ;
+        break;
+    case AREA_ZHUANG_DUI:
+        pArea = ui->label_ZDZ;
+        break;
+    default:
+        qDebug()<<"无效区域";
+        break;
+    }
+    return pArea;
+}
+
+void BaccaratUI::allowPlaying(bool isAllow)
+{
+    ui->label_TDP->allowClick(isAllow);
+    ui->label_XDZ->allowClick(isAllow);
+    ui->label_Xian->allowClick(isAllow);
+    ui->label_XTW->allowClick(isAllow);
+    ui->label_ZDZ->allowClick(isAllow);
+    ui->label_Zhuang->allowClick(isAllow);
+    ui->label_ZTW->allowClick(isAllow);
+    ui->label_Ping->allowClick(isAllow);
+}
+
+bool BaccaratUI::addChip(int area, int money)
+{
+    UIBetArea* pArea = getArea(area);
+    if(pArea)
+    {
+        qDebug()<<"---->下注金额<---- :"<<money;
+        switch (money) {
+        case 1:
+            pArea->setChipType(NSType::enChip::OneRMB);
+            break;
+        case 2:
+            pArea->setChipType(NSType::enChip::TwoRMB);
+            break;
+        case 5:
+            pArea->setChipType(NSType::enChip::FiveRMB);
+            break;
+        case 10:
+            pArea->setChipType(NSType::enChip::TwentyRMB);
+            break;
+        case 25:
+            pArea->setChipType(NSType::enChip::TwentyRMB);
+            break;
+        case 50:
+            pArea->setChipType(NSType::enChip::FiftyRMB);
+            break;
+        case 100:
+            pArea->setChipType(NSType::enChip::HundredRMB);
+            break;
+        default:
+            pArea->setChipType(NSType::enChip::ZeroRMB);
+            return false;
+        }
+
+    }
+    return true;
 }
 
 

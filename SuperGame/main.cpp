@@ -7,11 +7,11 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    UiMeterProcessBar bar;
-    bar.setMaxValue(100);
-    bar.setMinValue(-300);
-    bar.setDuration(30);
-    bar.show();
+//    UiMeterProcessBar bar;
+//    bar.setMaxValue(100);
+//    bar.setMinValue(-300);
+//    bar.setDuration(30);
+//    bar.show();
 
 
     SuperMan man;

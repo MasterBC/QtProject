@@ -38,6 +38,10 @@ private:
     QPoint toChessBoardPos(const QRect& rect);//转为 棋盘上的点
     bool killPiece(const QRect& rect);//
     void resetChessBoard();
+    void turnTime(bool isRed);//时间轮换
+
+private slots:
+    void onWinner();
 
 
 private:

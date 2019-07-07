@@ -30,7 +30,7 @@ public:
 
     explicit UIbase(QWidget *parent = nullptr);
     virtual ~UIbase();
-    virtual void setBackMusic(const QString& strPath,int volume = 0);
+    virtual void setBackMusic(const QString& strPath,int volume = 10);
     virtual void setBGMVolume(int volume);
     virtual void addBGM(const QString& strPath);
     virtual void playBGM();

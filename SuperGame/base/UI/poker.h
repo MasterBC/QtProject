@@ -11,9 +11,9 @@
 #ifndef POKER_H
 #define POKER_H
 
-#include <QWidget>
-class QLabel;
-class Poker : public QWidget
+#include <QLabel>
+//class QLabel;
+class Poker : public QLabel
 {
     Q_OBJECT
 public:

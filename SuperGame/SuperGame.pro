@@ -7,7 +7,7 @@
 QT       += core gui network multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-CONFIG += c++11  resources_big
+CONFIG += c++11 resources_big
 TARGET = SuperGame
 TEMPLATE = app
 # The following define makes your compiler emit warnings if you use
@@ -40,7 +40,6 @@ SOURCES += \
     base/UI/gamebutton.cpp \
     base/UI/uibase.cpp \
     base/UI/gamemap.cpp \
-    base/UI/chronograph.cpp \
     games/landlord/landlordui.cpp \
     base/UI/poker.cpp \
     base/UI/uilabel.cpp \
@@ -53,7 +52,8 @@ SOURCES += \
     base/UI/uitextscroll.cpp \
     games/chineseChess/chinesechessui.cpp \
     games/chineseChess/chinesechesslogic.cpp \
-    base/UI/uimeterprocessbar.cpp
+    base/UI/uimeterprocessbar.cpp \
+    games/landlord/playerui.cpp
 
 HEADERS += \
     login.pb.h \
@@ -77,7 +77,6 @@ HEADERS += \
     base/UI/gamebutton.h \
     base/UI/uibase.h \
     base/UI/gamemap.h \
-    base/UI/chronograph.h \
     games/landlord/landlordui.h \
     base/UI/poker.h \
     base/common.h \
@@ -91,7 +90,8 @@ HEADERS += \
     base/UI/uitextscroll.h \
     games/chineseChess/chinesechessui.h \
     games/chineseChess/chinesechesslogic.h \
-    base/UI/uimeterprocessbar.h
+    base/UI/uimeterprocessbar.h \
+    games/landlord/playerui.h
 
 
 FORMS += \
@@ -104,7 +104,8 @@ FORMS += \
     games/landlord/landlordui.ui \
     games/mahjong/mahjong.ui \
     games/cowcow/cowcowui.ui \
-    games/chineseChess/chinesechessui.ui
+    games/chineseChess/chinesechessui.ui \
+    games/landlord/playerui.ui
 
 
 win32: LIBS += -L$$PWD/network/protobuffer/lib/ -lprotobuf

@@ -7,11 +7,17 @@
 #define LOGIC_MASK_COLOR 0xF0 //花色掩码
 #define  LOGIC_MASK_VALUE 0x0F //数值掩码
 
-Poker::Poker(QWidget *parent,bool haveCenter) : QWidget(parent),m_haveCenter(haveCenter)
+Poker::Poker(QWidget *parent,bool haveCenter) : QLabel(parent),m_haveCenter(haveCenter)
 {
+
+    setStyleSheet("border-image: url(:/img/poker_b/b_bg.png);");
+    setAutoFillBackground(true);
     m_value = new QLabel(this);
     m_color = new QLabel(this);
     m_center = nullptr;
+
+    m_value->setStyleSheet("border:none;border-image: none;");
+    m_color->setStyleSheet("border:none;border-image: none;");
 
     QGridLayout* layout= new QGridLayout;
     layout->addWidget(m_value,0,0,1,1,Qt::AlignLeft);
@@ -44,7 +50,7 @@ void Poker::setColor(Poker::EnColor color)
         pixmap.load(":/img/poker_b/b_bigtag_3.png");
         break;
     case EnColor::UnKnown:
-        pixmap.load(":/img/poker_b/b_poker_mask_scale9.png");
+        //pixmap.load(":/img/poker_b/b_poker_mask_scale9.png");
         break;
     default:
         break;
@@ -108,7 +114,7 @@ void Poker::setCard(int card)
     else if(value == 0x0F)
     {
         m_value->setPixmap(QPixmap(":/img/poker_b/b_smalltag_5.png"));
-         setColor(EnColor::UnKnown);
+        setColor(EnColor::UnKnown);
     }
     else
     {
