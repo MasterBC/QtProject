@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>774</width>
-    <height>707</height>
+    <width>865</width>
+    <height>737</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -38,7 +38,7 @@
      <property name="minimumSize">
       <size>
        <width>0</width>
-       <height>0</height>
+       <height>44</height>
       </size>
      </property>
      <property name="maximumSize">
@@ -78,7 +78,7 @@
        <property name="maximumSize">
         <size>
          <width>120</width>
-         <height>60</height>
+         <height>170</height>
         </size>
        </property>
        <property name="text">
@@ -157,7 +157,7 @@
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="../../imgage.qrc">:/img/number/0.png</pixmap>
+         <pixmap resource="../../imgage.qrc">:/img/number/ddz_result_base_winstrea_0.png</pixmap>
         </property>
         <property name="scaledContents">
          <bool>true</bool>
@@ -614,11 +614,14 @@
      <property name="minimumSize">
       <size>
        <width>200</width>
-       <height>40</height>
+       <height>25</height>
       </size>
      </property>
      <property name="text">
       <string/>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
      </property>
     </widget>
    </item>

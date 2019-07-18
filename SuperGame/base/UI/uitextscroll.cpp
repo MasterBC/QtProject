@@ -49,13 +49,12 @@ void UiTextScroll::stop()
 }
 
 
-#include <QDebug>
 void UiTextScroll::paintEvent(QPaintEvent *event)
 {
 
     if(m_strWords.isEmpty())return QLabel::paintEvent(event);
     QPainter painter(this);
-    painter.drawText(0, 30, m_strWords.mid(m_pos));
+    painter.drawText(0, 20, m_strWords.mid(m_pos));
 //    QString strWords;
 //    switch (m_enDirect) {
 //    case Direct::Right:

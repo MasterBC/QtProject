@@ -2,7 +2,7 @@
 #define UITEXTSCROLL_H
 
 #include <QLabel>
-
+//跑马灯文字
 class UiTextScroll : public QLabel
 {
     Q_OBJECT

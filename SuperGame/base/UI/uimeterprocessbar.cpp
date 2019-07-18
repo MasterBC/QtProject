@@ -8,6 +8,7 @@
 #include <QDesktopWidget>
 UiMeterProcessBar::UiMeterProcessBar(QWidget *parent) : QWidget(parent)
 {
+    m_sate = 0;
     currentValue = 0;
     maxValue = 0;
 
@@ -70,6 +71,15 @@ void UiMeterProcessBar::setDuration(int timeout)
 void UiMeterProcessBar::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
+    if(1 == m_sate)return;
+
+    if(2 == m_sate)
+    {
+        dispayValueLabel->setFont(QFont("Arial", 12, QFont::Bold));
+        dispayValueLabel->setText(tr("N/A"));
+        return;
+    }
+
     QPainter painter(this);
     QColor usedColor(165, 220, 62);
     QColor freeColor("#8B668B"); //215, 215, 215
@@ -122,49 +132,72 @@ void UiMeterProcessBar::paintEvent(QPaintEvent *event)
 
 void UiMeterProcessBar::mousePressEvent(QMouseEvent *event)
 {
-//    bPressFlag = true;
-//    beginDrag = event->pos();
-//    QWidget::mousePressEvent(event);
+    //    bPressFlag = true;
+    //    beginDrag = event->pos();
+    QWidget::mousePressEvent(event);
 }
 
 void UiMeterProcessBar::mouseMoveEvent(QMouseEvent *event)
 {
-//    if (bPressFlag) {
-//        QPoint relaPos(QCursor::pos() - beginDrag);
-//        move(relaPos);
-//    }
-//    QWidget::mouseMoveEvent(event);
+    //    if (bPressFlag) {
+    //        QPoint relaPos(QCursor::pos() - beginDrag);
+    //        move(relaPos);
+    //    }
+    QWidget::mouseMoveEvent(event);
 }
 
 void UiMeterProcessBar::mouseReleaseEvent(QMouseEvent *event)
 {
-//    bPressFlag = false;
-//    QWidget::mouseReleaseEvent(event);
+    //    bPressFlag = false;
+    QWidget::mouseReleaseEvent(event);
 }
 
 void UiMeterProcessBar::showEvent(QShowEvent *event)
 {
     updateTimer->start();
-    //currentValue = 0;
     QWidget::showEvent(event);
 }
 
 void UiMeterProcessBar::hideEvent(QHideEvent *event)
 {
     if (updateTimer->isActive()) {
-        emit timeoutSig();
         updateTimer->stop();
     }
     //currentValue = 0;
     QWidget::hideEvent(event);
 }
 
+void UiMeterProcessBar::onStart()
+{
+    updateTimer->start();
+    m_sate = 0;
+}
+
+void UiMeterProcessBar::onPause()
+{
+    m_sate = 1;
+    if (updateTimer->isActive()) {
+        updateTimer->stop();
+    }
+}
+
+void UiMeterProcessBar::onStop()
+{
+    m_sate = 2;
+    if (updateTimer->isActive()) {
+        updateTimer->stop();
+    }
+}
+
 void UiMeterProcessBar::slotUpdateTimer()
 {
-    if (currentValue >= maxValue) {
-        emit timeoutSig();
-        updateTimer->stop();
-         update();// 屏蔽时,则可停留在currentValue == maxValue界面，否则N/A表示
+    if (currentValue >= maxValue){
+        if (updateTimer->isActive()) {
+            updateTimer->stop();
+        }
+        update();// 屏蔽时,则可停留在currentValue == maxValue界面，否则N/A表示
+        //对外发送终止信号
+        if(0!=currentValue && currentValue == maxValue)emit timeoutSig();
         return;
     }
     currentValue++;

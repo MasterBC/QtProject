@@ -65,7 +65,7 @@ bool ChineseChessUI::gameHandle(int code, const std::string &data)
 
 bool ChineseChessUI::updateInfo(int code, const std::string &data)
 {
-    
+
 }
 
 bool ChineseChessUI::eventFilter(QObject *watched, QEvent *event)
@@ -135,33 +135,23 @@ void ChineseChessUI::mouseReleaseEvent(QMouseEvent *e)
                 QPoint end =  toChessBoardPos(endRect);
                 // 先检测能不能走下一步
                 qDebug()<<"下一步: "<<start.x()<<" --"<<start.y();
-                if(m_logic->CanMove(start.x(),start.y(),end.x(),end.y()))
+                if(m_logic->CanMove(start.x(), start.y(), end.x(), end.y()))
                 {
                     //是否能将军
-                    m_logic->JiangJun(end.x(), end.y());//将军
-                    unsigned char code = m_logic->GetCode();
-                    qDebug()<<"当前将军状态: "<<code;
-
-                    //不能被将军
+                    unsigned char code = m_logic->JiangJun(end.x(), end.y())?m_logic->JudgeWin() : m_logic->getCode();
                     if(0x03 == code)
                     {
                         m_logic->Rollback();
                         return GameMap::mouseReleaseEvent(e);
                     }
 
-
                     //吃掉棋子
-                    if( killPiece(endRect))
+                    if( killPiece(endRect) )
                     {
                         qDebug()<<"正在吃: "<<code;
                         m_curPieces->setGeometry( endRect );
                         m_curPieces = nullptr;
                     }
-                    else
-                    {
-                        qDebug()<<"没法吃: "<<code;
-                    }
-
 
                     //状态切换
                     m_isRed = !m_isRed;
@@ -169,14 +159,23 @@ void ChineseChessUI::mouseReleaseEvent(QMouseEvent *e)
                     m_selectUI->hide();
                     turnTime(m_isRed);
 
-                    //提示被将军的一方
-                    if(0 < code)
+                    qDebug()<<"当前将军状态: "<<code;
+                    switch (code) {
+                    case 0x01:
+                    case 0x02://提示被将军的一方
                     {
                         QDialog dlg(this);
                         dlg.setMinimumSize(200,180);
                         dlg.setAutoFillBackground(true);
                         dlg.setStyleSheet( QString("border-image: url(:/img/chineseChess/bkg%1.png)").arg(code) );
                         dlg.exec();
+                        break;
+                    }
+                    case 0x04:
+                    case 0x05:
+                        onWinner();//暂时未作区分
+                    default:
+                        break;
                     }
                 }
             }
@@ -383,12 +382,19 @@ void ChineseChessUI::turnTime(bool isRed)
 
 void ChineseChessUI::onWinner()
 {
-    //    QDialog dlg(this);
-    //    dlg.setMinimumSize(200,180);
-    //    dlg.setAutoFillBackground(true);
-    //    dlg.setStyleSheet("border-image: url(:/img/chineseChess/yingjiemian.png)");
-    //    dlg.exec();
-    //    resetChessBoard();
+    ui->timeoutRed->setMinValue(0);
+    ui->timeoutRed->setMaxValue(0);
+    ui->timeoutRed->setDuration(0);
+
+    ui->timeoutBlack->setMinValue(0);
+    ui->timeoutBlack->setMaxValue(0);
+    ui->timeoutBlack->setDuration(0);
+    QDialog dlg(this);
+    dlg.setMinimumSize(200,180);
+    dlg.setAutoFillBackground(true);
+    dlg.setStyleSheet("border-image: url(:/img/chineseChess/yingjiemian.png)");
+    dlg.exec();
+    resetChessBoard();
 }
 
 void ChineseChessUI::init(bool isRedStart)

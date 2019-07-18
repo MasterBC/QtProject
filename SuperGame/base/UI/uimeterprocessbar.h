@@ -22,6 +22,8 @@ public:
     void setMaxValue(int value);
     void setMinValue(int value);
     void setDuration(int timeout);//设置时长-秒
+
+
     //void setSize(int width, int height);
 protected:
     void paintEvent(QPaintEvent *event);
@@ -32,18 +34,25 @@ protected:
     void hideEvent(QHideEvent *event);
 signals:
     void timeoutSig();
+public slots:
+    void onStart();
+    void onPause();
+    void onStop();
 private slots:
     void slotUpdateTimer();
+
 
 private:
     QPoint beginDrag;
     bool bPressFlag;
 
+    int m_sate;//0:开始 1:暂停 2:停止
     int maxValue;
     int currentValue;
     QLabel *startValueLabel;
     QLabel *endValueLabel;
     QLabel *dispayValueLabel;
+
 
     QTimer *updateTimer;
 };

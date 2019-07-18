@@ -53,7 +53,8 @@ SOURCES += \
     games/chineseChess/chinesechessui.cpp \
     games/chineseChess/chinesechesslogic.cpp \
     base/UI/uimeterprocessbar.cpp \
-    games/landlord/playerui.cpp
+    games/landlord/playerui.cpp \
+    games/toubao/toubaoui.cpp
 
 HEADERS += \
     login.pb.h \
@@ -91,7 +92,8 @@ HEADERS += \
     games/chineseChess/chinesechessui.h \
     games/chineseChess/chinesechesslogic.h \
     base/UI/uimeterprocessbar.h \
-    games/landlord/playerui.h
+    games/landlord/playerui.h \
+    games/toubao/toubaoui.h
 
 
 FORMS += \
@@ -105,7 +107,8 @@ FORMS += \
     games/mahjong/mahjong.ui \
     games/cowcow/cowcowui.ui \
     games/chineseChess/chinesechessui.ui \
-    games/landlord/playerui.ui
+    games/landlord/playerui.ui \
+    games/toubao/toubaoui.ui
 
 
 win32: LIBS += -L$$PWD/network/protobuffer/lib/ -lprotobuf

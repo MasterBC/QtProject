@@ -2,8 +2,6 @@
     <qresource prefix="/">
         <file>img/baccarat/123.png</file>
         <file>img/baccarat/baijiale.png</file>
-        <file>img/baccarat/beijing.jpg</file>
-        <file>img/baccarat/lunpan.jpg</file>
         <file>img/baccarat/pic.jpg</file>
         <file>img/icon.png</file>
         <file>sound/net/6179.mp3</file>
@@ -13,8 +11,6 @@
         <file>sound/net/jinxingqu1.mp3</file>
         <file>sound/net/jinxingqu2.mp3</file>
         <file>sound/net/noonlylove.wav</file>
-        <file>img/poker_b.plist</file>
-        <file>img/poker_b.png</file>
         <file>img/wang.jpg</file>
         <file>img/liaowt.png</file>
         <file>img/number/0.png</file>
@@ -97,59 +93,6 @@
         <file>img/landlord/item_tishi.png</file>
         <file>img/landlord/item_tishi_d.png</file>
         <file>img/landlord/item_zhunbei.png</file>
-        <file>img/poker_a/2_C_1.jpg</file>
-        <file>img/poker_a/2_D_1.jpg</file>
-        <file>img/poker_a/2_H_1.jpg</file>
-        <file>img/poker_a/2_S_1.jpg</file>
-        <file>img/poker_a/3_C_1.jpg</file>
-        <file>img/poker_a/3_D_1.jpg</file>
-        <file>img/poker_a/3_H_1.jpg</file>
-        <file>img/poker_a/3_S_1.jpg</file>
-        <file>img/poker_a/4_C_1.jpg</file>
-        <file>img/poker_a/4_D_1.jpg</file>
-        <file>img/poker_a/4_H_1.jpg</file>
-        <file>img/poker_a/4_S_1.jpg</file>
-        <file>img/poker_a/5_C_1.jpg</file>
-        <file>img/poker_a/5_D_1.jpg</file>
-        <file>img/poker_a/5_H_1.jpg</file>
-        <file>img/poker_a/5_S_1.jpg</file>
-        <file>img/poker_a/6_C_1.jpg</file>
-        <file>img/poker_a/6_D_1.jpg</file>
-        <file>img/poker_a/6_H_1.jpg</file>
-        <file>img/poker_a/6_S_1.jpg</file>
-        <file>img/poker_a/7_C_1.jpg</file>
-        <file>img/poker_a/7_D_1.jpg</file>
-        <file>img/poker_a/7_H_1.jpg</file>
-        <file>img/poker_a/7_S_1.jpg</file>
-        <file>img/poker_a/8_C_1.jpg</file>
-        <file>img/poker_a/8_D_1.jpg</file>
-        <file>img/poker_a/8_H_1.jpg</file>
-        <file>img/poker_a/8_S_1.jpg</file>
-        <file>img/poker_a/9_C_1.jpg</file>
-        <file>img/poker_a/9_D_1.jpg</file>
-        <file>img/poker_a/9_H_1.jpg</file>
-        <file>img/poker_a/9_S_1.jpg</file>
-        <file>img/poker_a/10_C_1.jpg</file>
-        <file>img/poker_a/10_D_1.jpg</file>
-        <file>img/poker_a/10_H_1.jpg</file>
-        <file>img/poker_a/10_S_1.jpg</file>
-        <file>img/poker_a/A_C_1.jpg</file>
-        <file>img/poker_a/A_D_1.jpg</file>
-        <file>img/poker_a/A_H_1.jpg</file>
-        <file>img/poker_a/A_S_1.jpg</file>
-        <file>img/poker_a/J_C_1.jpg</file>
-        <file>img/poker_a/J_D_1.jpg</file>
-        <file>img/poker_a/J_H_1.jpg</file>
-        <file>img/poker_a/J_S_1.jpg</file>
-        <file>img/poker_a/K_C_1.jpg</file>
-        <file>img/poker_a/K_D_1.jpg</file>
-        <file>img/poker_a/K_H_1.jpg</file>
-        <file>img/poker_a/K_S_1.jpg</file>
-        <file>img/poker_a/Q_C_1.jpg</file>
-        <file>img/poker_a/Q_D_1.jpg</file>
-        <file>img/poker_a/Q_H_1.jpg</file>
-        <file>img/poker_a/Q_S_1.jpg</file>
-        <file>img/poker_a/X_X_1.jpg</file>
         <file>img/chineseChess/background.png</file>
         <file>img/chineseChess/bche.png</file>
         <file>img/chineseChess/bjiang.png</file>
@@ -184,5 +127,64 @@
         <file>img/chips/Chip_25.png</file>
         <file>img/chips/Chip_50.png</file>
         <file>img/chips/Chip_100.png</file>
+        <file>img/majiang/card_duimian.png</file>
+        <file>img/majiang/card_youmian.png</file>
+        <file>img/majiang/card_zhengmian.png</file>
+        <file>img/majiang/card_zhuomian.png</file>
+        <file>img/majiang/tiao_1.png</file>
+        <file>img/majiang/tiao_2.png</file>
+        <file>img/majiang/tiao_3.png</file>
+        <file>img/majiang/tiao_4.png</file>
+        <file>img/majiang/tiao_5.png</file>
+        <file>img/majiang/tiao_6.png</file>
+        <file>img/majiang/tiao_7.png</file>
+        <file>img/majiang/tiao_8.png</file>
+        <file>img/majiang/tiao_9.png</file>
+        <file>img/majiang/tong_1.png</file>
+        <file>img/majiang/tong_2.png</file>
+        <file>img/majiang/tong_3.png</file>
+        <file>img/majiang/tong_4.png</file>
+        <file>img/majiang/tong_5.png</file>
+        <file>img/majiang/tong_6.png</file>
+        <file>img/majiang/tong_7.png</file>
+        <file>img/majiang/tong_8.png</file>
+        <file>img/majiang/tong_9.png</file>
+        <file>img/majiang/w_1.png</file>
+        <file>img/majiang/w_2.png</file>
+        <file>img/majiang/w_3.png</file>
+        <file>img/majiang/w_4.png</file>
+        <file>img/majiang/w_5.png</file>
+        <file>img/majiang/w_6.png</file>
+        <file>img/majiang/w_7.png</file>
+        <file>img/majiang/w_8.png</file>
+        <file>img/majiang/w_9.png</file>
+        <file>img/number/ddz_result_base_winstrea_0.png</file>
+        <file>img/number/ddz_result_base_winstrea_1.png</file>
+        <file>img/number/ddz_result_base_winstrea_2.png</file>
+        <file>img/number/ddz_result_base_winstrea_3.png</file>
+        <file>img/number/ddz_result_base_winstrea_4.png</file>
+        <file>img/number/ddz_result_base_winstrea_5.png</file>
+        <file>img/number/ddz_result_base_winstrea_6.png</file>
+        <file>img/number/ddz_result_base_winstrea_7.png</file>
+        <file>img/number/ddz_result_base_winstrea_8.png</file>
+        <file>img/number/ddz_result_base_winstrea_9.png</file>
+        <file>img/number/ddz_result_dmg_num_0.png</file>
+        <file>img/number/ddz_result_dmg_num_1.png</file>
+        <file>img/number/ddz_result_dmg_num_2.png</file>
+        <file>img/number/ddz_result_dmg_num_3.png</file>
+        <file>img/number/ddz_result_dmg_num_4.png</file>
+        <file>img/number/ddz_result_dmg_num_5.png</file>
+        <file>img/number/ddz_result_dmg_num_6.png</file>
+        <file>img/number/ddz_result_dmg_num_7.png</file>
+        <file>img/number/ddz_result_dmg_num_8.png</file>
+        <file>img/number/ddz_result_dmg_num_9.png</file>
+        <file>img/majiang/mj_10_t.png</file>
+        <file>img/majiang/mj_20_t.png</file>
+        <file>img/majiang/mj_30_t.png</file>
+        <file>img/majiang/mj_31_t.png</file>
+        <file>img/majiang/mj_32_t.png</file>
+        <file>img/majiang/mj_33_t.png</file>
+        <file>img/majiang/mj_34_t.png</file>
+        <file>img/majiang/mj_bg_t.png</file>
     </qresource>
 </RCC>

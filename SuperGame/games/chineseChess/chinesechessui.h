@@ -34,10 +34,10 @@ protected:
     //    void mouseDoubleClickEvent(QMouseEvent *event);
 private:
     void init(bool isRedStart);
-    QRect adjustRect(const QPoint& pt);
+    QRect adjustRect(const QPoint& pt);//点落至的区域
     QPoint toChessBoardPos(const QRect& rect);//转为 棋盘上的点
-    bool killPiece(const QRect& rect);//
-    void resetChessBoard();
+    bool killPiece(const QRect& rect);//吃掉棋子
+    void resetChessBoard();//重置棋盘
     void turnTime(bool isRed);//时间轮换
 
 private slots:

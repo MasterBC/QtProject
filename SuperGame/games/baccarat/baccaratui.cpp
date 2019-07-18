@@ -448,7 +448,7 @@ void BaccaratUI::onTimeout()
     // 倒计时显示
     if(0 < m_lastTime && m_lastTime < 10)
     {
-        QString strPicture = QString(":/img/number/%1.png").arg(m_lastTime);
+        QString strPicture = QString(":/img/number/ddz_result_base_winstrea_%1.png").arg(m_lastTime);
         ui->label_Number->setPixmap(QPixmap(strPicture));
         m_lastTime--;
     }else if(10 <= m_lastTime)
@@ -456,7 +456,7 @@ void BaccaratUI::onTimeout()
         m_lastTime--;
     }
     else{
-        ui->label_Number->setPixmap(QPixmap(":/img/number/0.png"));
+        ui->label_Number->setPixmap(QPixmap(":/img/number/ddz_result_base_winstrea_0.png"));
     }
 
 

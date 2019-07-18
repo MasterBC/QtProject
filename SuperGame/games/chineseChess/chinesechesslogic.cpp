@@ -87,7 +87,7 @@ bool ChineseChessLogic::CanMove(int x, int y, int toX, int toY)
     if(isOk)
     {
         //qDebug()<<"成功";
-qDebug()<<x<<"成功"<<y;
+        //qDebug()<<x<<"成功"<<y;
         //两位将军不能见面
         int bX = 0, bY = 0;
         int rX = 0, rY = 0;
@@ -147,6 +147,7 @@ void ChineseChessLogic::Rollback()
         qDebug()<<"回滚中..."<<v->x<<" -->" << v->y <<" 棋子-->"<< (int)v->prePiece <<" "<<(int)v->nowPiece;
         m_setInfo.removeAt(nIndex-1);
         delete v;
+        v = nullptr;
 
     }
 
@@ -154,33 +155,20 @@ void ChineseChessLogic::Rollback()
 }
 
 
-bool ChineseChessLogic::JiangJun(int x, int y)
+bool ChineseChessLogic::JiangJun(int x, int y, bool isSave)
 {
     m_state = 0;
     if(0 == m_arryChessBoard[x][y]) return false;
 
     int toX = 0;
     int toY = 0;
-    bool isGet = false;
     unsigned char piece = 0;
     unsigned char whichSide = judgmetColor(x,y);        // 看下是哪一方.
 
 
 
-    // 移动范围 0 1 2行  3 4 5列
-    for(toX=0; toX<3; toX++)
-    {
-        for(toY=3; toY<6; toY++)
-        {
-            if('j' == m_arryChessBoard[toX][toY])
-            {
-                isGet = true;
-                break;
-            }
-        }
-        if(isGet)break;
-    }
-
+    // 获取黑方将军的坐标
+    if(false == getPos('j', toX, toY))return false;
     // qDebug()<<"黑方将军坐标:"<<toX<<" "<<toY;
 
     //校验当前的棋子是否可以到达将军的位置
@@ -203,6 +191,11 @@ bool ChineseChessLogic::JiangJun(int x, int y)
                     }
                     else
                     {
+                        if(isSave)
+                        {
+                            m_toJiangX = i;
+                            m_toJiangY = j;
+                        }
                         m_state = 0x02;
                         return true;
                     }
@@ -211,21 +204,10 @@ bool ChineseChessLogic::JiangJun(int x, int y)
         }
     }
 
-    isGet = false;
-    // 移动范围 7 8 9行  3 4 5列
-    for(toX=7; toX<10; toX++)
-    {
-        for(toY=3; toY<6; toY++)
-        {
-            if('J' == m_arryChessBoard[toX][toY])
-            {
-                isGet = true;
-                break;
-            }
-        }
-        if(isGet)break;
-    }
+    // 获取红方将军的坐标
+    if(false == getPos('J', toX, toY))return false;
     //qDebug()<<"红方将军坐标:"<<toX<<" "<<toY;
+
     //校验当前的棋子是否可以到达将军的位置
     for(int i=0; i<10; i++)
     {
@@ -247,6 +229,11 @@ bool ChineseChessLogic::JiangJun(int x, int y)
                     }
                     else
                     {
+                        if(isSave)
+                        {
+                            m_toJiangX = i;
+                            m_toJiangY = j;
+                        }
                         m_state = 0x01;
                         return true;
                     }
@@ -256,6 +243,92 @@ bool ChineseChessLogic::JiangJun(int x, int y)
     }
     return false;
 }
+
+int ChineseChessLogic::JudgeWin()
+{
+    //校验输赢
+    //将军的位置
+    int jiangX = 0, jiangY = 0;
+    int minX = 0, maxX = 0;
+    int nCount = 0;
+
+
+    //四个方位
+    //黑方将军是否能移动
+    bool bJiang = false;
+    int nSate = m_state;
+    if((0x01 == nSate && getPos('j',jiangX,jiangY)))
+    {
+        //黑  移动范围 0 1 2行  3 4 5列
+        minX = 0;
+        maxX = 3;
+        bJiang = true;
+
+    }
+    else if(0x02 == nSate && getPos('J',jiangX,jiangY))
+    {
+        //红  移动范围 7 8 9行  3 4 5列
+        minX = 7;
+        maxX = 10;
+        bJiang = true;
+    }
+    if(bJiang)
+    {//校验将军的可行走位置
+        if(minX <= jiangX-1)//
+        {
+
+
+        }else
+        {
+            nCount++;
+        }
+
+        if(jiangX+1 < maxX)//
+        {
+
+        }
+        else
+        {
+            nCount++;
+        }
+
+        //----------------------//
+        if(3 <= jiangY-1)//
+        {
+
+        }
+        else
+        {
+            nCount++;
+        }
+
+        if(jiangY+1 < 6)//
+        {
+
+        }
+        else
+        {
+            nCount++;
+        }
+        qDebug()<<"---->不能走的步数<----"<<nCount<<" X:"<<m_toJiangX<<" Y:"<<m_toJiangY<<" 棋子"<<(int)m_arryChessBoard[m_toJiangX][m_toJiangY];
+        if(4 == nCount)
+        {
+            if('M' == m_arryChessBoard[m_toJiangX][m_toJiangY] || 'm' == m_arryChessBoard[m_toJiangX][m_toJiangY])
+            {//挡住马脚
+                return  nSate;
+            }
+            else if('P' == m_arryChessBoard[m_toJiangX][m_toJiangY] || 'p' == m_arryChessBoard[m_toJiangX][m_toJiangY]\
+                    ||'C' == m_arryChessBoard[m_toJiangX][m_toJiangY] || 'c' == m_arryChessBoard[m_toJiangX][m_toJiangY])
+            {//若是炮车 则挡在敌方的前面
+                return  nSate;
+            }
+            nSate = (0x01 == nSate)?0x04:0x05;
+        }
+    }
+    m_state = nSate;
+    return nSate;
+}
+
 
 
 bool ChineseChessLogic::verifyChe(int x, int y, int toX, int toY)
@@ -409,6 +482,40 @@ bool ChineseChessLogic::verifyJiang(int x, int y, int toX, int toY)
 {
     if ('J' == m_arryChessBoard[x][y] || 'j' == m_arryChessBoard[x][y])
     {
+
+        int startX = 0;
+        int endX = 0;
+        int rX = 0, rY = 0;
+        if('j' == m_arryChessBoard[x][y])
+        {
+            getPos('J', rX, rY);
+            startX = toX;
+            endX = rX;
+        }else{
+            getPos('j', rX, rY);
+            startX = rX;
+            endX = toX;
+        }
+
+        //----------------
+        if(toY == rY)
+        {
+            // 两位将军之间是否存在棋子
+            bool isCan = false;
+
+            for(int i=startX+1; i<endX; i++)
+            {
+                if(0 < m_arryChessBoard[i][rY])
+                {
+                    isCan = true;
+                    break;
+                }
+            }
+            if(!isCan) return false;
+        }
+
+
+
         unsigned char whichSide = judgmetColor(x,y);        // 看下是哪一方的将军.
         if(0x01 == whichSide)
         {//红  移动范围 7 8 9行  3 4 5列

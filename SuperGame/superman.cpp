@@ -332,8 +332,7 @@ GameMap *SuperMan::currentMap()
         m_gameMapMahjong->setBackMusic("qrc:/sound/net/6607.mp3");
         return m_gameMapMahjong;
     case GAME_ChinessChess:
-
-        m_gameMapChineseChess->setBackMusic("qrc:/sound/BMG/floor.wav");
+       m_gameMapChineseChess->setBackMusic("qrc:/sound/BMG/floor.wav",30);
         return m_gameMapChineseChess;
     default:
         break;
@@ -429,6 +428,7 @@ bool SuperMan::handleScene(int subID)
     {
         // 界面切换->游戏
         onChangeScene(EnScene::Home, EnScene::GameMap);
+        currentMap();
         m_gameMapFather->setID(HomeUI::S_GameID);
         m_gameMapFather->enterScene(subID, m_data);
 
